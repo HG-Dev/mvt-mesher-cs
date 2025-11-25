@@ -1,0 +1,158 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using MvtMesherCore.Mapbox.Geometry;
+
+namespace MvtMesherCore.Mapbox;
+
+/// <summary>
+/// Individual feature found on a VectorTile.Layer, encoded in a
+/// ReadOnlyMemory byte slice of its parent layer's ReadOnlyMemory.
+/// Corresponds to https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L31-L47
+/// </summary>
+[DebuggerDisplay("Feature {Id}")]
+public class VectorTileFeature
+{
+    static class PbfTags
+    {
+        internal const uint Id = 1 << 3 | (byte)WireType.Varint;
+        internal const uint Tags = 2 << 3 | (byte)WireType.Len;
+        internal const uint Type = 3 << 3 | (byte)WireType.Varint;
+        internal const uint Geometry = 4 << 3 | (byte)WireType.Len;
+        
+        internal static readonly Dictionary<string, PbfTag> Dictionary = new()
+        {
+            { "Id", (Id) },
+            { "Tags", (Tags) },
+            { "Type", (Type) },
+            { "Geometry", (Geometry) },
+            //{ "Raster", Raster }
+        };
+        
+        internal static readonly HashSet<int> ValidFieldNumbers = [..Dictionary.Values.Select(tag => tag.FieldNumber)];
+    }
+    
+    readonly VectorTileLayer _parent;
+    public VectorTileLayer ParentLayer => _parent;
+    
+    readonly ReadOnlyMemory<byte> _featureData;
+    
+    /// <summary>Index of this feature in parent layer's feature collection</summary>
+    public readonly int Index;
+    /// <summary>ID of this feature. Optional; defaults to 0.</summary>
+    /// <seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L32">Schema on GitHub</seealso>
+    public readonly ulong Id;
+    /// <summary>
+    /// Geometry type, i.e. how geometry commands found on this feature will be used.
+    /// Optional; defaults to "unknown".
+    /// </summary>
+    //public readonly Geometry.Type GeometryType;
+
+    //internal readonly ReadOnlyMemory<byte> GeometryMemory;
+
+    BaseGeometry _geometry;
+    /// <summary>
+    /// Geometry commands using internal tile coordinates: n / layer extent
+    /// </summary>
+    /// <remarks>
+    /// Saved as a packed series of uint32 (varints) in protobuf message.
+    /// </remarks>
+    public BaseGeometry Geometry
+    {
+        get
+        {
+            if (!_geometry.Parsed)
+                _geometry = _geometry.Parse(this);
+            return _geometry;
+        }
+    }
+
+    public GeometryType GeometryType => _geometry.DeclaredType;
+    
+    readonly IndexedReadOnlyDictionary<string, PropertyValue> _properties;
+    /// <summary>
+    /// Key value pairs created by dereferencing indices on lists in the parent layer
+    /// </summary>
+    /// <remarks>
+    /// Indices are saved as a packed series of uint32 (varints) in protobuf message.
+    /// </remarks>
+    public IReadOnlyDictionary<string, PropertyValue> Properties => _properties;
+
+    internal VectorTileFeature(ReadOnlyMemory<byte> featureData, VectorTileLayer parent, int index)
+    {
+        _featureData = featureData;
+        _parent = parent;
+        Index = index;
+        
+        // Validate all tags if required
+        if (VectorTile.ValidationLevel.HasFlag(PbfValidation.Tags) &&
+            PbfSpan.FindInvalidTags(featureData.Span, PbfTags.ValidFieldNumbers) is {Count: > 0} invalid)
+        {
+            throw PbfValidationFailure.FromTags(invalid);
+        }
+
+        Id = 0;
+
+        var geometryMemory = ReadOnlyMemory<byte>.Empty;
+        var geometryType = GeometryType.Unknown;
+        
+        // Traverse feature data to obtain initial values
+        int offset = 0;
+        List<int> kvTags = new List<int>();
+        while (offset < featureData.Length)
+        {
+            var tag = PbfSpan.ReadTag(featureData.Span, ref offset);
+            switch (tag)
+            {
+                case PbfTags.Id:
+                    Id = PbfSpan.ReadVarint(featureData.Span, ref offset).ToUInt64();
+                    continue;
+                case PbfTags.Type:
+                    geometryType = (GeometryType)PbfSpan.ReadVarint(featureData.Span, ref offset).ToUInt64();
+                    continue;
+                case PbfTags.Tags:
+                    var tagSpan = PbfMemory.ReadLengthDelimited(featureData, ref offset).Span;
+                    kvTags = PbfSpan.ReadVarintPackedField(tagSpan).ConvertAll(Varint.Int32Conversion);
+                    continue;
+                case PbfTags.Geometry:
+                    geometryMemory = PbfMemory.ReadLengthDelimited(featureData, ref offset);
+                    continue;
+            }
+            PbfSpan.SkipField(featureData.Span, ref offset, tag.WireType);
+        }
+
+        if (kvTags.Count % 2 is not 0)
+        {
+            if (VectorTile.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
+            {
+                throw new PbfValidationFailure(PbfValidation.FeaturePropertyPairs, 
+                    $"Feature {Id} on {_parent.Name} layer of {_parent.ParentTile.TileId} has odd number of KV tags");
+            }
+
+            kvTags.RemoveAt(kvTags.Count - 1);
+        }
+
+        _geometry = new UnparsedGeometry(geometryMemory, geometryType);
+        _properties = new IndexedReadOnlyDictionary<string, PropertyValue>(
+            _parent.PropertyNames, _parent.PropertyValues, kvTags);
+    }
+
+    public override string ToString()
+    {
+        return $"Feature: {Id} of {_parent}";
+    }
+
+    static Dictionary<string, PropertyValue> PopulateProperties(List<int> indices, IReadOnlyList<string> keys)
+    {
+        var propertyDictionary = new Dictionary<string, PropertyValue>();
+        // Enumerate all tag integers
+        for (int i = 1; i < keys.Count; i++)
+        {
+            var vIdx = indices[i];
+            var kIdx = indices[i-1];
+        }
+        
+        return propertyDictionary;
+    }
+}

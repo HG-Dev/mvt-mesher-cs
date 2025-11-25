@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvtMesherCore", "MvtMesherCore\MvtMesherCore.csproj", "{2F09C8B4-2410-4C0E-8CDB-E56515B355F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{FAC5D91E-78B0-474E-9819-D436B23DCBF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F09C8B4-2410-4C0E-8CDB-E56515B355F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F09C8B4-2410-4C0E-8CDB-E56515B355F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F09C8B4-2410-4C0E-8CDB-E56515B355F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F09C8B4-2410-4C0E-8CDB-E56515B355F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC5D91E-78B0-474E-9819-D436B23DCBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC5D91E-78B0-474E-9819-D436B23DCBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC5D91E-78B0-474E-9819-D436B23DCBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC5D91E-78B0-474E-9819-D436B23DCBF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
