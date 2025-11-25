@@ -9,7 +9,7 @@ public abstract class BaseGeometry
 {
     public readonly GeometryType DeclaredType;
     public abstract bool Parsed { get; }
-    public virtual int MajorElements => 0;
+    public virtual int MajorElementCount => 0;
 
     //public abstract ReadOnlyPoints Points { get; }
     // public IReadOnlyList<Polyline> Polylines { get; private set; }

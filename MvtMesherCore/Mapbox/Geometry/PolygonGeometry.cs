@@ -12,7 +12,7 @@ namespace MvtMesherCore.Mapbox.Geometry;
 public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryType.Point)
 {
     public readonly ReadOnlyPolygons Polygons = pgons;
-    public override int MajorElements => Polygons.Count;
+    public override int MajorElementCount => Polygons.Count;
 
     internal static PolygonGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
     {

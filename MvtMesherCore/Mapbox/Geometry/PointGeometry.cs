@@ -11,7 +11,7 @@ namespace MvtMesherCore.Mapbox.Geometry;
 public class PointGeometry(ReadOnlyPoints points) : ParsedGeometry(GeometryType.Point)
 {
     public readonly ReadOnlyPoints Points = points;
-    public override int MajorElements => Points.Count;
+    public override int MajorElementCount => Points.Count;
 
     internal static PointGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
     {

@@ -13,7 +13,7 @@ namespace MvtMesherCore.Mapbox.Geometry;
 public class PolylineGeometry(ReadOnlyPolylines plines) : ParsedGeometry(GeometryType.Point)
 {
     public readonly ReadOnlyPolylines Polylines = plines;
-    public override int MajorElements => Polylines.Count;
+    public override int MajorElementCount => Polylines.Count;
 
     internal static PolylineGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
     {
