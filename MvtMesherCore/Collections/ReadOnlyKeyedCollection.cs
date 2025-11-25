@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-namespace System.Runtime.CompilerServices.Collections;
+namespace MvtMesherCore.Collections;
 
 public abstract class ReadOnlyKeyedCollection<TKey, TKeyedValue>(IEnumerable<TKeyedValue> features) : IReadOnlyDictionary<TKey, TKeyedValue>
     where TKey : notnull

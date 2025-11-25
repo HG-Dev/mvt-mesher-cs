@@ -1,5 +1,6 @@
 using System;
-using MvtMesherCore.Collections;
+
+namespace MvtMesherCore.Collections;
 
 public readonly struct Polygon(ReadOnlyPolylines rings)
 {
@@ -7,6 +8,8 @@ public readonly struct Polygon(ReadOnlyPolylines rings)
     readonly ReadOnlyPolylines _rings = rings;
 
     public bool HasInteriorRings => _rings.Count > 1;
+
+    public ReadOnlyPolylines AllRings => _rings;
 
     public ReadOnlyPoints ExteriorRing => _rings[0];
     public ReadOnlyPolylines InteriorRings => HasInteriorRings

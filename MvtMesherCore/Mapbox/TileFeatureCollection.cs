@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices.Collections;
+using MvtMesherCore.Collections;
 
 namespace MvtMesherCore.Mapbox;
 
