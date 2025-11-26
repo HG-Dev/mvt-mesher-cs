@@ -9,6 +9,5 @@ public enum ValueKind : byte
     Int64,
     UInt64,
     SInt64,
-    Bool,
-    IndexOnly
+    Bool
 }

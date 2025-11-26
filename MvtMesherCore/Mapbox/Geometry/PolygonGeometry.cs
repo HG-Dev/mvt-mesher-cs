@@ -9,7 +9,7 @@ namespace MvtMesherCore.Mapbox.Geometry;
 /// Each polyline should contain at least two UV coordinates.
 /// </summary>
 /// <param name="plines">Polyline collection to be held by container.</param>
-public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryType.Point)
+public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryType.Polygon)
 {
     public readonly ReadOnlyPolygons Polygons = pgons;
     public override int MajorElementCount => Polygons.Count;

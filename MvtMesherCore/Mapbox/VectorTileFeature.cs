@@ -14,6 +14,8 @@ namespace MvtMesherCore.Mapbox;
 [DebuggerDisplay("Feature {Id}")]
 public class VectorTileFeature
 {
+    public const string NAME_PROPERTY_KEY = "name";
+
     static class PbfTags
     {
         internal const uint Id = 1 << 3 | (byte)WireType.Varint;
@@ -43,15 +45,34 @@ public class VectorTileFeature
     /// <summary>ID of this feature. Optional; defaults to 0.</summary>
     /// <seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L32">Schema on GitHub</seealso>
     public readonly ulong Id;
-    /// <summary>
-    /// Geometry type, i.e. how geometry commands found on this feature will be used.
-    /// Optional; defaults to "unknown".
-    /// </summary>
-    //public readonly Geometry.Type GeometryType;
+    
+    public string Name
+    {
+        get
+        {
+            if (_properties.TryGetValue(NAME_PROPERTY_KEY, out var val))
+            {
+                if (val.Kind is ValueKind.String)
+                {
+                    return val.StringValue;
+                }
+                else if (VectorTile.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
+                {
+                    throw new PbfValidationFailure(PbfValidation.FeaturePropertyPairs, $"{ToString()} has 'name' property with unexpected kind {val.Kind}");
+                }
+                else
+                {
+                    return val.ToShortString();
+                }
+            }
+            else
+            {
+                return $"F({Id})";
+            }
+        }
+    }
 
-    //internal readonly ReadOnlyMemory<byte> GeometryMemory;
-
-    BaseGeometry _geometry;
+    public BaseGeometry _geometry;
     /// <summary>
     /// Geometry commands using internal tile coordinates: n / layer extent
     /// </summary>
@@ -110,6 +131,7 @@ public class VectorTileFeature
                     continue;
                 case PbfTags.Type:
                     geometryType = (GeometryType)PbfSpan.ReadVarint(featureData.Span, ref offset).ToUInt64();
+                    Console.Out.WriteLine($"{Id} geometry type: " + geometryType);
                     continue;
                 case PbfTags.Tags:
                     var tagSpan = PbfMemory.ReadLengthDelimited(featureData, ref offset).Span;

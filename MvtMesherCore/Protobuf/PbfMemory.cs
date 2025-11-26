@@ -8,11 +8,12 @@ public static class PbfMemory
     /// <summary>
     /// Reads a length-delimited field from ReadOnlyMemory.
     /// </summary>
-    /// <returns>A memory slice defined by the initially given length.</returns>
+    /// <returns>A memory slice with length defined by the varint at the beginning of the field.</returns>
     public static ReadOnlyMemory<byte> ReadLengthDelimited(ReadOnlyMemory<byte> memory, ref int offset)
     {
         ulong length = PbfSpan.ReadVarint(memory.Span, ref offset).ToUInt64();
-        if (offset + (int)length > memory.Length) throw new FormatException("Not enough data to read LengthDelimited field");
+        if (offset + (int)length > memory.Length) 
+            throw new PbfReadFailure($"Not enough data to read LengthDelimited field: requested {length} bytes, but only {memory.Length - offset} available");
         var slice = memory.Slice(offset, (int)length);
         offset += (int)length;
         return slice;

@@ -1,0 +1,4019 @@
+{
+  "layers": {
+    "boundary": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "admin_level",
+        "disputed",
+        "maritime"
+      ],
+      "propertyValues": [
+        "7",
+        "0"
+      ],
+      "features": [
+        {
+          "id": 3004952062,
+          "geometryType": 2,
+          "properties": {
+            "admin_level": "7",
+            "disputed": "0",
+            "maritime": "0"
+          }
+        }
+      ]
+    },
+    "building": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "render_height",
+        "render_min_height"
+      ],
+      "propertyValues": [
+        "5",
+        "0"
+      ],
+      "features": [
+        {
+          "id": 1915597462,
+          "geometryType": 3,
+          "properties": {
+            "render_height": "5",
+            "render_min_height": "0"
+          }
+        }
+      ]
+    },
+    "landcover": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "subclass",
+        "class"
+      ],
+      "propertyValues": [
+        "park",
+        "grass",
+        "forest",
+        "wood",
+        "flowerbed"
+      ],
+      "features": [
+        {
+          "id": 1916933592,
+          "geometryType": 3,
+          "properties": {
+            "subclass": "park",
+            "class": "grass"
+          }
+        },
+        {
+          "id": 3353347992,
+          "geometryType": 3,
+          "properties": {
+            "subclass": "park",
+            "class": "grass"
+          }
+        },
+        {
+          "id": 7181117412,
+          "geometryType": 3,
+          "properties": {
+            "subclass": "forest",
+            "class": "wood"
+          }
+        },
+        {
+          "id": 13878770622,
+          "geometryType": 3,
+          "properties": {
+            "subclass": "flowerbed",
+            "class": "grass"
+          }
+        }
+      ]
+    },
+    "landuse": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "class"
+      ],
+      "propertyValues": [
+        "commercial"
+      ],
+      "features": [
+        {
+          "id": 7306635852,
+          "geometryType": 3,
+          "properties": {
+            "class": "commercial"
+          }
+        }
+      ]
+    },
+    "mountain_peak": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "class",
+        "rank"
+      ],
+      "propertyValues": [
+        "cliff",
+        "3"
+      ],
+      "features": [
+        {
+          "id": 1916948532,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 1916948542,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 1916948552,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 1916948562,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 1916948572,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 4394687482,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 8552335582,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 8552335952,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 8552336082,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 8552414172,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 8552414202,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 8552414242,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 13960431012,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 13960483462,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        },
+        {
+          "id": 13960483472,
+          "geometryType": 2,
+          "properties": {
+            "class": "cliff",
+            "rank": "3"
+          }
+        }
+      ]
+    },
+    "place": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "name_int",
+        "name:ja",
+        "name:nonlatin",
+        "name:ja-Hira",
+        "name:nl",
+        "name:tr",
+        "name:ko",
+        "name_de",
+        "name",
+        "rank",
+        "name:en",
+        "class",
+        "name:es",
+        "name:latin",
+        "name:zh",
+        "name_en",
+        "name:fr",
+        "name:ja-Latn"
+      ],
+      "propertyValues": [
+        "Katasekaigan",
+        "片瀬海岸",
+        "かたせかいがん",
+        "가타세카이간",
+        "11",
+        "quarter",
+        "片瀨海岸",
+        "Koshigoe",
+        "腰越",
+        "12",
+        "こしごえ",
+        "neighbourhood",
+        "Tsunishi 1-chome",
+        "津西一丁目",
+        "13",
+        "つにし1ちょうめ",
+        "Tsunishi 2-chome",
+        "津西二丁目",
+        "14",
+        "つにし2ちょうめ",
+        "Koshigoe 1-chome",
+        "腰越一丁目",
+        "15",
+        "こしごえ1ちょうめ",
+        "Koshigoe 3-chome",
+        "腰越三丁目",
+        "16",
+        "こしごえ3ちょうめ",
+        "Koshigoe 2-chome",
+        "腰越二丁目",
+        "17",
+        "こしごえ2ちょうめ",
+        "Koshigoe 5-chome",
+        "腰越五丁目",
+        "18",
+        "こしごえ5ちょうめ",
+        "Koshigoe 4-chome",
+        "腰越四丁目",
+        "19",
+        "こしごえ4ちょうめ",
+        "Katase-mejiroyama",
+        "片瀬目白山",
+        "20",
+        "かたせめじろやま",
+        "Katase 4-chome",
+        "片瀬四丁目",
+        "21",
+        "かたせ4ちょうめ",
+        "Katase 3-chome",
+        "片瀬三丁目",
+        "22",
+        "かたせ3ちょうめ",
+        "Gokurakuji 4-chome",
+        "極楽寺四丁目",
+        "23",
+        "ごくらくじ4ちょうめ",
+        "Kamakurayama 2-chome",
+        "鎌倉山二丁目",
+        "24",
+        "かまくらやま2ちょうめ",
+        "Enoshima 2-chōme",
+        "江の島二丁目",
+        "25",
+        "えのしま2ちょうめ",
+        "Enoshima 1-chōme",
+        "江の島一丁目",
+        "26",
+        "えのしま1ちょうめ",
+        "Shichirigahama 1-chome",
+        "七里ガ浜一丁目",
+        "27",
+        "しちりがはま1ちょうめ",
+        "Shichirigahama 2-chome",
+        "七里ガ浜二丁目",
+        "28",
+        "しちりがはま2ちょうめ",
+        "Inamuragasaki 1-chome",
+        "稲村ガ崎一丁目",
+        "29",
+        "いなむらがさき1ちょうめ",
+        "Inamuragasaki 2-chome",
+        "稲村ガ崎二丁目",
+        "30",
+        "いなむらがさき2ちょうめ",
+        "Inamuragasaki 3-chome",
+        "稲村ガ崎三丁目",
+        "31",
+        "いなむらがさき3ちょうめ",
+        "Inamuragasaki 5-chome",
+        "稲村ガ崎五丁目",
+        "32",
+        "いなむらがさき5ちょうめ",
+        "Inamuragasaki 4-chome",
+        "稲村ガ崎四丁目",
+        "33",
+        "いなむらがさき4ちょうめ",
+        "Katasekaigan 2-chome",
+        "片瀬海岸二丁目",
+        "34",
+        "かたせかいがん2ちょうめ",
+        "Kugenuma-kaigan 1-chome",
+        "鵠沼海岸一丁目",
+        "35",
+        "くげぬまかいがん1ちょうめ",
+        "Katasekaigan 3-chome",
+        "片瀬海岸三丁目",
+        "36",
+        "かたせかいがん3ちょうめ",
+        "Katasekaigan 1-chome",
+        "片瀬海岸一丁目",
+        "37",
+        "かたせかいがん1ちょうめ",
+        "Shichirigahama-higashi 1-chome",
+        "七里ガ浜東一丁目",
+        "38",
+        "しちりがはまひがし1ちょうめ",
+        "Shichirigahama-higashi 3-chome",
+        "七里ガ浜東三丁目",
+        "39",
+        "しちりがはまひがし3ちょうめ",
+        "Shichirigahama-higashi 2-chome",
+        "七里ガ浜東二丁目",
+        "40",
+        "しちりがはまひがし2ちょうめ",
+        "Shichirigahama-higashi 5-chome",
+        "七里ガ浜東五丁目",
+        "41",
+        "しちりがはまひがし5ちょうめ",
+        "Shichirigahama-higashi 4-chome",
+        "七里ガ浜東四丁目",
+        "42",
+        "しちりがはまひがし4ちょうめ"
+      ],
+      "features": [
+        {
+          "id": 37356037871,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Katasekaigan",
+            "name:ja": "片瀬海岸",
+            "name:nonlatin": "片瀬海岸",
+            "name:ja-Hira": "かたせかいがん",
+            "name:nl": "Katasekaigan",
+            "name:tr": "Katasekaigan",
+            "name:ko": "가타세카이간",
+            "name_de": "片瀬海岸",
+            "name": "片瀬海岸",
+            "rank": "11",
+            "name:en": "Katasekaigan",
+            "class": "quarter",
+            "name:es": "Katasekaigan",
+            "name:latin": "Katasekaigan",
+            "name:zh": "片瀨海岸",
+            "name_en": "Katasekaigan"
+          }
+        },
+        {
+          "id": 88372349301,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Koshigoe",
+            "name:ja": "腰越",
+            "name:nonlatin": "腰越",
+            "name_de": "腰越",
+            "name": "腰越",
+            "rank": "12",
+            "name:en": "Koshigoe",
+            "name:ja-Hira": "こしごえ",
+            "class": "neighbourhood",
+            "name:latin": "Koshigoe",
+            "name_en": "Koshigoe"
+          }
+        },
+        {
+          "id": 18002035281,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Tsunishi 1-chome",
+            "name:ja": "津西一丁目",
+            "name:nonlatin": "津西一丁目",
+            "name_de": "津西一丁目",
+            "name": "津西一丁目",
+            "rank": "13",
+            "name:en": "Tsunishi 1-chome",
+            "name:ja-Hira": "つにし1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Tsunishi 1-chome",
+            "name_en": "Tsunishi 1-chome"
+          }
+        },
+        {
+          "id": 18002035291,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Tsunishi 2-chome",
+            "name:ja": "津西二丁目",
+            "name:nonlatin": "津西二丁目",
+            "name_de": "津西二丁目",
+            "name": "津西二丁目",
+            "rank": "14",
+            "name:en": "Tsunishi 2-chome",
+            "name:ja-Hira": "つにし2ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Tsunishi 2-chome",
+            "name_en": "Tsunishi 2-chome"
+          }
+        },
+        {
+          "id": 18002035661,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Koshigoe 1-chome",
+            "name:ja": "腰越一丁目",
+            "name:nonlatin": "腰越一丁目",
+            "name_de": "腰越一丁目",
+            "name": "腰越一丁目",
+            "rank": "15",
+            "name:en": "Koshigoe 1-chome",
+            "name:ja-Hira": "こしごえ1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Koshigoe 1-chome",
+            "name_en": "Koshigoe 1-chome"
+          }
+        },
+        {
+          "id": 18002035671,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Koshigoe 3-chome",
+            "name:ja": "腰越三丁目",
+            "name:nonlatin": "腰越三丁目",
+            "name_de": "腰越三丁目",
+            "name": "腰越三丁目",
+            "rank": "16",
+            "name:en": "Koshigoe 3-chome",
+            "name:ja-Hira": "こしごえ3ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Koshigoe 3-chome",
+            "name_en": "Koshigoe 3-chome"
+          }
+        },
+        {
+          "id": 18002035681,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Koshigoe 2-chome",
+            "name:ja": "腰越二丁目",
+            "name:nonlatin": "腰越二丁目",
+            "name_de": "腰越二丁目",
+            "name": "腰越二丁目",
+            "rank": "17",
+            "name:en": "Koshigoe 2-chome",
+            "name:ja-Hira": "こしごえ2ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Koshigoe 2-chome",
+            "name_en": "Koshigoe 2-chome"
+          }
+        },
+        {
+          "id": 18002035781,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Koshigoe 5-chome",
+            "name:ja": "腰越五丁目",
+            "name:nonlatin": "腰越五丁目",
+            "name_de": "腰越五丁目",
+            "name": "腰越五丁目",
+            "name:fr": "Koshigoe 5-chome",
+            "rank": "18",
+            "name:en": "Koshigoe 5-chome",
+            "name:ja-Hira": "こしごえ5ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Koshigoe 5-chome",
+            "name_en": "Koshigoe 5-chome"
+          }
+        },
+        {
+          "id": 18002035811,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Koshigoe 4-chome",
+            "name:ja": "腰越四丁目",
+            "name:nonlatin": "腰越四丁目",
+            "name_de": "腰越四丁目",
+            "name": "腰越四丁目",
+            "rank": "19",
+            "name:en": "Koshigoe 4-chome",
+            "name:ja-Hira": "こしごえ4ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Koshigoe 4-chome",
+            "name_en": "Koshigoe 4-chome"
+          }
+        },
+        {
+          "id": 88372638091,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Katase-mejiroyama",
+            "name:ja": "片瀬目白山",
+            "name:nonlatin": "片瀬目白山",
+            "name_de": "片瀬目白山",
+            "name": "片瀬目白山",
+            "name:fr": "Katase-mejiroyama",
+            "rank": "20",
+            "name:en": "Katase-mejiroyama",
+            "name:ja-Hira": "かたせめじろやま",
+            "class": "neighbourhood",
+            "name:latin": "Katase-mejiroyama",
+            "name_en": "Katase-mejiroyama"
+          }
+        },
+        {
+          "id": 88372638151,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Katase 4-chome",
+            "name:ja": "片瀬四丁目",
+            "name:nonlatin": "片瀬四丁目",
+            "name_de": "片瀬四丁目",
+            "name": "片瀬四丁目",
+            "rank": "21",
+            "name:en": "Katase 4-chome",
+            "name:ja-Hira": "かたせ4ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Katase 4-chome",
+            "name_en": "Katase 4-chome"
+          }
+        },
+        {
+          "id": 88372638161,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Katase 3-chome",
+            "name:ja": "片瀬三丁目",
+            "name:nonlatin": "片瀬三丁目",
+            "name_de": "片瀬三丁目",
+            "name": "片瀬三丁目",
+            "rank": "22",
+            "name:en": "Katase 3-chome",
+            "name:ja-Hira": "かたせ3ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Katase 3-chome",
+            "name_en": "Katase 3-chome"
+          }
+        },
+        {
+          "id": 18002035261,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Gokurakuji 4-chome",
+            "name:ja": "極楽寺四丁目",
+            "name:nonlatin": "極楽寺四丁目",
+            "name_de": "極楽寺四丁目",
+            "name": "極楽寺四丁目",
+            "rank": "23",
+            "name:en": "Gokurakuji 4-chome",
+            "name:ja-Hira": "ごくらくじ4ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Gokurakuji 4-chome",
+            "name_en": "Gokurakuji 4-chome"
+          }
+        },
+        {
+          "id": 18002035911,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Kamakurayama 2-chome",
+            "name:ja": "鎌倉山二丁目",
+            "name:nonlatin": "鎌倉山二丁目",
+            "name_de": "鎌倉山二丁目",
+            "name": "鎌倉山二丁目",
+            "rank": "24",
+            "name:en": "Kamakurayama 2-chome",
+            "name:ja-Hira": "かまくらやま2ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Kamakurayama 2-chome",
+            "name_en": "Kamakurayama 2-chome"
+          }
+        },
+        {
+          "id": 88372638211,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Enoshima 2-chōme",
+            "name:nonlatin": "江の島二丁目",
+            "name_de": "江の島二丁目",
+            "name": "江の島二丁目",
+            "name:ja-Latn": "Enoshima 2-chōme",
+            "name:fr": "Enoshima 2-chōme",
+            "rank": "25",
+            "name:en": "Enoshima 2-chōme",
+            "name:ja-Hira": "えのしま2ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Enoshima 2-chōme",
+            "name_en": "Enoshima 2-chōme"
+          }
+        },
+        {
+          "id": 88372638221,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Enoshima 1-chōme",
+            "name:nonlatin": "江の島一丁目",
+            "name_de": "江の島一丁目",
+            "name": "江の島一丁目",
+            "name:ja-Latn": "Enoshima 1-chōme",
+            "name:fr": "Enoshima 1-chōme",
+            "rank": "26",
+            "name:en": "Enoshima 1-chōme",
+            "name:ja-Hira": "えのしま1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Enoshima 1-chōme",
+            "name_en": "Enoshima 1-chōme"
+          }
+        },
+        {
+          "id": 18002034301,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shichirigahama 1-chome",
+            "name:ja": "七里ガ浜一丁目",
+            "name:nonlatin": "七里ガ浜一丁目",
+            "name_de": "七里ガ浜一丁目",
+            "name": "七里ガ浜一丁目",
+            "rank": "27",
+            "name:en": "Shichirigahama 1-chome",
+            "name:ja-Hira": "しちりがはま1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Shichirigahama 1-chome",
+            "name_en": "Shichirigahama 1-chome"
+          }
+        },
+        {
+          "id": 18002034321,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shichirigahama 2-chome",
+            "name:ja": "七里ガ浜二丁目",
+            "name:nonlatin": "七里ガ浜二丁目",
+            "name_de": "七里ガ浜二丁目",
+            "name": "七里ガ浜二丁目",
+            "rank": "28",
+            "name:en": "Shichirigahama 2-chome",
+            "name:ja-Hira": "しちりがはま2ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Shichirigahama 2-chome",
+            "name_en": "Shichirigahama 2-chome"
+          }
+        },
+        {
+          "id": 18002035471,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Inamuragasaki 1-chome",
+            "name:ja": "稲村ガ崎一丁目",
+            "name:nonlatin": "稲村ガ崎一丁目",
+            "name_de": "稲村ガ崎一丁目",
+            "name": "稲村ガ崎一丁目",
+            "rank": "29",
+            "name:en": "Inamuragasaki 1-chome",
+            "name:ja-Hira": "いなむらがさき1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Inamuragasaki 1-chome",
+            "name_en": "Inamuragasaki 1-chome"
+          }
+        },
+        {
+          "id": 18002035481,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Inamuragasaki 2-chome",
+            "name:ja": "稲村ガ崎二丁目",
+            "name:nonlatin": "稲村ガ崎二丁目",
+            "name_de": "稲村ガ崎二丁目",
+            "name": "稲村ガ崎二丁目",
+            "rank": "30",
+            "name:en": "Inamuragasaki 2-chome",
+            "name:ja-Hira": "いなむらがさき2ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Inamuragasaki 2-chome",
+            "name_en": "Inamuragasaki 2-chome"
+          }
+        },
+        {
+          "id": 18002035491,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Inamuragasaki 3-chome",
+            "name:ja": "稲村ガ崎三丁目",
+            "name:nonlatin": "稲村ガ崎三丁目",
+            "name_de": "稲村ガ崎三丁目",
+            "name": "稲村ガ崎三丁目",
+            "rank": "31",
+            "name:en": "Inamuragasaki 3-chome",
+            "name:ja-Hira": "いなむらがさき3ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Inamuragasaki 3-chome",
+            "name_en": "Inamuragasaki 3-chome"
+          }
+        },
+        {
+          "id": 18002035501,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Inamuragasaki 5-chome",
+            "name:ja": "稲村ガ崎五丁目",
+            "name:nonlatin": "稲村ガ崎五丁目",
+            "name_de": "稲村ガ崎五丁目",
+            "name": "稲村ガ崎五丁目",
+            "rank": "32",
+            "name:en": "Inamuragasaki 5-chome",
+            "name:ja-Hira": "いなむらがさき5ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Inamuragasaki 5-chome",
+            "name_en": "Inamuragasaki 5-chome"
+          }
+        },
+        {
+          "id": 18002035511,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Inamuragasaki 4-chome",
+            "name:ja": "稲村ガ崎四丁目",
+            "name:nonlatin": "稲村ガ崎四丁目",
+            "name_de": "稲村ガ崎四丁目",
+            "name": "稲村ガ崎四丁目",
+            "rank": "33",
+            "name:en": "Inamuragasaki 4-chome",
+            "name:ja-Hira": "いなむらがさき4ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Inamuragasaki 4-chome",
+            "name_en": "Inamuragasaki 4-chome"
+          }
+        },
+        {
+          "id": 37356037861,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Katasekaigan 2-chome",
+            "name:ja": "片瀬海岸二丁目",
+            "name:nonlatin": "片瀬海岸二丁目",
+            "name_de": "片瀬海岸二丁目",
+            "name": "片瀬海岸二丁目",
+            "rank": "34",
+            "name:en": "Katasekaigan 2-chome",
+            "name:ja-Hira": "かたせかいがん2ちょうめ",
+            "class": "neighbourhood",
+            "name:es": "Katasekaigan 2-chome",
+            "name:latin": "Katasekaigan 2-chome",
+            "name_en": "Katasekaigan 2-chome"
+          }
+        },
+        {
+          "id": 88372637981,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Kugenuma-kaigan 1-chome",
+            "name:ja": "鵠沼海岸一丁目",
+            "name:nonlatin": "鵠沼海岸一丁目",
+            "name_de": "鵠沼海岸一丁目",
+            "name": "鵠沼海岸一丁目",
+            "rank": "35",
+            "name:en": "Kugenuma-kaigan 1-chome",
+            "name:ja-Hira": "くげぬまかいがん1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Kugenuma-kaigan 1-chome",
+            "name_en": "Kugenuma-kaigan 1-chome"
+          }
+        },
+        {
+          "id": 88372638191,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Katasekaigan 3-chome",
+            "name:ja": "片瀬海岸三丁目",
+            "name:nonlatin": "片瀬海岸三丁目",
+            "name_de": "片瀬海岸三丁目",
+            "name": "片瀬海岸三丁目",
+            "rank": "36",
+            "name:en": "Katasekaigan 3-chome",
+            "name:ja-Hira": "かたせかいがん3ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Katasekaigan 3-chome",
+            "name_en": "Katasekaigan 3-chome"
+          }
+        },
+        {
+          "id": 88372638201,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Katasekaigan 1-chome",
+            "name:ja": "片瀬海岸一丁目",
+            "name:nonlatin": "片瀬海岸一丁目",
+            "name_de": "片瀬海岸一丁目",
+            "name": "片瀬海岸一丁目",
+            "name:fr": "Katasekaigan 1-chome",
+            "rank": "37",
+            "name:en": "Katasekaigan 1-chome",
+            "name:ja-Hira": "かたせかいがん1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Katasekaigan 1-chome",
+            "name_en": "Katasekaigan 1-chome"
+          }
+        },
+        {
+          "id": 18002034331,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shichirigahama-higashi 1-chome",
+            "name:ja": "七里ガ浜東一丁目",
+            "name:nonlatin": "七里ガ浜東一丁目",
+            "name_de": "七里ガ浜東一丁目",
+            "name": "七里ガ浜東一丁目",
+            "rank": "38",
+            "name:en": "Shichirigahama-higashi 1-chome",
+            "name:ja-Hira": "しちりがはまひがし1ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Shichirigahama-higashi 1-chome",
+            "name_en": "Shichirigahama-higashi 1-chome"
+          }
+        },
+        {
+          "id": 18002034341,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shichirigahama-higashi 3-chome",
+            "name:ja": "七里ガ浜東三丁目",
+            "name:nonlatin": "七里ガ浜東三丁目",
+            "name_de": "七里ガ浜東三丁目",
+            "name": "七里ガ浜東三丁目",
+            "rank": "39",
+            "name:en": "Shichirigahama-higashi 3-chome",
+            "name:ja-Hira": "しちりがはまひがし3ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Shichirigahama-higashi 3-chome",
+            "name_en": "Shichirigahama-higashi 3-chome"
+          }
+        },
+        {
+          "id": 18002034351,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shichirigahama-higashi 2-chome",
+            "name:ja": "七里ガ浜東二丁目",
+            "name:nonlatin": "七里ガ浜東二丁目",
+            "name_de": "七里ガ浜東二丁目",
+            "name": "七里ガ浜東二丁目",
+            "rank": "40",
+            "name:en": "Shichirigahama-higashi 2-chome",
+            "name:ja-Hira": "しちりがはまひがし2ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Shichirigahama-higashi 2-chome",
+            "name_en": "Shichirigahama-higashi 2-chome"
+          }
+        },
+        {
+          "id": 18002034361,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shichirigahama-higashi 5-chome",
+            "name:ja": "七里ガ浜東五丁目",
+            "name:nonlatin": "七里ガ浜東五丁目",
+            "name_de": "七里ガ浜東五丁目",
+            "name": "七里ガ浜東五丁目",
+            "rank": "41",
+            "name:en": "Shichirigahama-higashi 5-chome",
+            "name:ja-Hira": "しちりがはまひがし5ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Shichirigahama-higashi 5-chome",
+            "name_en": "Shichirigahama-higashi 5-chome"
+          }
+        },
+        {
+          "id": 18002034371,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shichirigahama-higashi 4-chome",
+            "name:ja": "七里ガ浜東四丁目",
+            "name:nonlatin": "七里ガ浜東四丁目",
+            "name_de": "七里ガ浜東四丁目",
+            "name": "七里ガ浜東四丁目",
+            "rank": "42",
+            "name:en": "Shichirigahama-higashi 4-chome",
+            "name:ja-Hira": "しちりがはまひがし4ちょうめ",
+            "class": "neighbourhood",
+            "name:latin": "Shichirigahama-higashi 4-chome",
+            "name_en": "Shichirigahama-higashi 4-chome"
+          }
+        }
+      ]
+    },
+    "poi": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "name_int",
+        "name:nonlatin",
+        "name_de",
+        "name",
+        "subclass",
+        "rank",
+        "class",
+        "name:latin",
+        "name_en",
+        "layer",
+        "name:ar",
+        "name:ja",
+        "name:ja-Latn",
+        "name:ja-Hira",
+        "name:ca",
+        "name:ru",
+        "name:de",
+        "name:fr",
+        "name:en",
+        "name:eo",
+        "name:eu",
+        "name:zh",
+        "name:ja_rm",
+        "name:id",
+        "name:ko",
+        "name:es",
+        "level"
+      ],
+      "propertyValues": [
+        "jiāngno dǎo",
+        "江ノ島",
+        "bus_stop",
+        "1",
+        "bus",
+        "2",
+        "bus_station",
+        "3",
+        "kanagawa nǚ xìngsentā",
+        "かながわ女性センター",
+        "xiāng nán gǎng zhàn qiáo",
+        "湘南港桟橋",
+        "Mt. Fuji Viewpoint",
+        "viewpoint",
+        "4",
+        "attraction",
+        "Mt. Fuji Beach Viewpoint",
+        "5",
+        "sazae dǎo",
+        "さざえ島",
+        "3",
+        "Enoshima Yacht Harbour",
+        "ميناء إنوشيما لليخوت",
+        "江ノ島ヨットハーバー",
+        "江の島ヨットハーバー",
+        "Enoshima yottohābā",
+        "えのしま ヨットハーバー",
+        "port nàutic d'Enoshima",
+        "Яхтенная гавань Эносима",
+        "Yachthafen Enoshimaeu",
+        "marina",
+        "Port de plaisance d'Enoshima",
+        "jaĥta haveno Enoŝima",
+        "harbor",
+        "Enoshima Yate Kaia",
+        "江之島遊艇港口",
+        "Shadanhoujin Enoshima yottokurabu",
+        "(社)江の島ヨットクラブ",
+        "Club nautique d'Enoshima",
+        "(しゃ ) えのしま ヨットクラブ",
+        "xiǎo tián jí jiāngno dǎoyottokurabu",
+        "小田急江の島ヨットクラブ",
+        "jiāngno dǎo shì mínno jiā",
+        "江の島市民の家",
+        "community_centre",
+        "6",
+        "town_hall",
+        "shèng tiān dǎo gōng yuán",
+        "聖天島公園",
+        "park",
+        "7",
+        "Enoshima Chūzaisho",
+        "江の島駐在所",
+        "police",
+        "8",
+        "Bureau de poste",
+        "江ノ島郵便局",
+        "post_office",
+        "9",
+        "Enoshima Yūbinkyoku",
+        "post",
+        "kitasan chá wū",
+        "きたさん茶屋",
+        "gift",
+        "10",
+        "shop",
+        "zhōng cūn wū yáng gēng diàn",
+        "中村屋羊羹店",
+        "confectionery",
+        "11",
+        "21 days",
+        "12",
+        "bèi guǎng wù chǎn diàn",
+        "貝広物産店",
+        "yuuhi chá wū",
+        "ゆうひ茶屋",
+        "fast_food",
+        "zhōng yě shāng diàn",
+        "中野商店",
+        "clothes",
+        "13",
+        "clothing_store",
+        "jiāngno dǎo sandēmāto",
+        "江の島　サンデーマート",
+        "Ejima Shrine",
+        "江島神社",
+        "Kuil Enoshima",
+        "Enoshima-jinja",
+        "에노시마 신사",
+        "Enoshima Schrein",
+        "shinto",
+        "Sanctuaire d'Enoshima",
+        "14",
+        "place_of_worship",
+        "Tobiccho Sandoten",
+        "しらす問屋 とびっちょ参道店",
+        "しらす問屋 とびっちょ",
+        "restaurant",
+        "15",
+        "Zuishin Gate",
+        "瑞心門",
+        "Zuishin-mon",
+        "づいしん もん",
+        "gate",
+        "Porte Zuishin",
+        "16",
+        "Puerta Zuishin",
+        "Moke's Hawaii",
+        "ハワイアンカフェ '",
+        "ハワイアンカフェ Moke's Hawaii Enoshima",
+        "17",
+        "kimura",
+        "きむら",
+        "18",
+        "Tobiccho, main restaurant, shirasu specialty",
+        "しらす問屋 とびっちょ本店",
+        "19",
+        "Shirasu Tonya Tobiccho Honten",
+        "Tobiccho Honten",
+        "Hetsunomiya Shrine",
+        "江島神社 辺津宮",
+        "Ejima-jinja Hentsunomiya",
+        "えのしま じんじゃ へつの みや",
+        "Sanctuaire principal de Hetsunomiya",
+        "20",
+        "Santuario Hetsunomiya",
+        "Cafe Maru",
+        "カフェーマル",
+        "cafe",
+        "21",
+        "LONCAFE",
+        "22",
+        "Lon Cafe",
+        "Ejima-jinja hōan-dono",
+        "江島神社奉安殿",
+        "えじま じんじゃ ほうあん どの",
+        "museum",
+        "Pavillon Hōan",
+        "23",
+        "Salón Hoanden",
+        "Zazamaru",
+        "湘南海鮮 座々丸",
+        "24",
+        "Enoshima Samuel Cocking Garden",
+        "江の島サムエル・コッキング苑",
+        "Enoshima Samueru Kokkingu En",
+        "えのしまサムエル・コッキングえん",
+        "Сад Сэмюэля Кокинга",
+        "garden",
+        "Jardin Samuel Cocking",
+        "25",
+        "Jardín de Plantas Tropicales de Enoshima",
+        "江之島Samuel Cocking苑",
+        "Kodama Shrine",
+        "児玉神社",
+        "Kuil Kodama",
+        "Kodama-jinja",
+        "こだま じんじゃ",
+        "Kodama Schrein",
+        "Sanctuaire Kodama",
+        "26",
+        "Santuario Kodama",
+        "兒玉神社",
+        "Nakatsumiya Square",
+        "中津宮広場",
+        "Nakatsunomiya hiroba",
+        "なかつ みや ひろば",
+        "Place Nakatsumiya",
+        "27",
+        "Uohana",
+        "魚華",
+        "28",
+        "harumi shí táng",
+        "ハルミ食堂",
+        "29",
+        "kaishima",
+        "かいしま",
+        "30",
+        "bù lǎo mén zài jiàn jì niàn bēi",
+        "不老門再建記念碑",
+        "board",
+        "31",
+        "information",
+        "yuán tián yàn dà shén",
+        "猿田彦大神",
+        "32",
+        "zhǎo tián lài fǔno gē bēi",
+        "沼田頼輔の歌碑",
+        "33",
+        "sòng guó yún láino gǔ bēi",
+        "宋国伝来の古碑",
+        "34",
+        "qiū yè shè",
+        "秋葉社",
+        "35",
+        "Inarisha",
+        "稲荷社",
+        "36",
+        "bā bǎn shén shè",
+        "八坂神社",
+        "37",
+        "qí dǎo shòu fù suǒ",
+        "祈祷受付所",
+        "religion",
+        "38",
+        "office",
+        "fú shí",
+        "福石",
+        "39",
+        "shān shān jiǎn xiàono mù",
+        "杉山検校の墓",
+        "40",
+        "shān xíng yǒu péng gē bēi",
+        "山形有朋歌碑",
+        "41",
+        "xiè jiè shí shī bēi",
+        "謝介石詩碑",
+        "42",
+        "hòu téng xīn píng shī bēi",
+        "後藤新平詩碑",
+        "43",
+        "shí hēi zhōng zhí shī bēi",
+        "石黒忠直詩碑",
+        "44",
+        "ěr líng shānno shí",
+        "爾霊山の石",
+        "45",
+        "jiāng dǎo shén shè sān gōngno yù àn nèi",
+        "江島神社　三宮の御案内",
+        "46",
+        "Cafe Madu",
+        "47",
+        "jiāng zhī dǎo tíng",
+        "江之島亭",
+        "48",
+        "qún yuán fèng sài xiàng gēng shēn tǎ",
+        "群猿奉賽像庚申塔",
+        "49",
+        "yóu lǎn tíng",
+        "遊覧亭",
+        "50",
+        "mù shí shàng rén xíng chǎng kū",
+        "木食上人行場窟",
+        "51",
+        "yáo qū‘jiāng dǎo’to biàn cái tiān",
+        "謡曲「江島」と弁才天",
+        "52",
+        "bèi zuò",
+        "1",
+        "貝作",
+        "53",
+        "ruì xīn mén táng shī zǐ",
+        "瑞心門唐獅子",
+        "artwork",
+        "54",
+        "art_gallery",
+        "biān jīn gōng",
+        "辺津宮",
+        "55",
+        "biàn cái tiān tóng zǐ xiàng",
+        "弁財天　童子像",
+        "56",
+        "shān shān jiǎn xiào",
+        "杉山検校",
+        "57",
+        "qián xǐ bái lóng wáng",
+        "銭洗白龍王",
+        "58",
+        "jiāng dǎo shén shè quán jǐng de tú",
+        "江島神社全景地図",
+        "59",
+        "lóng shénto biàn cái tiān",
+        "龍神と弁財天",
+        "60",
+        "61",
+        "mù shí",
+        "墓石",
+        "62",
+        "Todai Kitchen",
+        "63",
+        "jiāngno dǎo guān guāng àn nèi suǒ",
+        "江の島観光案内所",
+        "64",
+        "wén zuǒ shí táng",
+        "文佐食堂",
+        "65",
+        "yán běn lóu běn guǎn",
+        "岩本楼本館",
+        "hotel",
+        "66",
+        "lodging",
+        "mín sùwejima",
+        "民宿ゑじま",
+        "guest_house",
+        "67",
+        "jiāngno dǎohoteru",
+        "江の島ホテル",
+        "68",
+        "jiāngno dǎokamome zhù chē chǎng",
+        "江の島かもめ駐車場",
+        "parking",
+        "Ejima-jinja nakatsunomiya",
+        "江島神社 中津宮",
+        "えのしま じんじゃ なかつの みや",
+        "Sanctuaire intermédiaire d'Ejima",
+        "Santuario Nakatsunomiya",
+        "biàn tiān chá wū",
+        "弁天茶屋",
+        "Kamegaoka Square",
+        "亀ヶ岡広場",
+        "Kamegaoka hiroba",
+        "かめ ヶ おかひろじょう",
+        "Place Kamegaoka",
+        "jiāngno dǎokamome zhù chē chǎng (basu)",
+        "江の島かもめ駐車場(バス)",
+        "Enoshima Daishi",
+        "江の島大師",
+        "Wihara Enoshima Daishi",
+        "buddhist",
+        "江之島大師",
+        "shān èrtsu",
+        "山二つ",
+        "Maritime Pass",
+        "海上亭",
+        "yī biàn shàng rénno dǎo jǐng hù",
+        "一遍上人の島井戸",
+        "hǎi shàng tíng",
+        "jiāngnomaru",
+        "江のまる",
+        "fú dǎo yú cūnno jù bēi",
+        "福島漁村の句碑",
+        "UMIHANATEI",
+        "海花亭",
+        "bara neru・mātin",
+        "バラ　ネル・マーティン",
+        "jiāng dǎo shén shè zhōng jīn gōng",
+        "江島神社　中津宮",
+        "zhōng jīn gōng",
+        "中津宮",
+        "shuǐ qín kū",
+        "水琴窟",
+        "shuǐ qínno yīnnogo shén xiào",
+        "水琴の音のご神効",
+        "jú wǔ lángnoshidare yīng",
+        "菊五郎のしだれ櫻",
+        "IL CHANTI CAFE",
+        "Drinking water fountain",
+        "drinking_water",
+        "jiāngno dǎoyottohābā",
+        "-1",
+        "Yachthafen Enoshima",
+        "port de plaisance d'Enoshima",
+        "Enoshima Yacht Harbor",
+        "kafe・tobitcho",
+        "カフェ・トビッチョ",
+        "shèng tiān dǎoto shèng tiān shàng rén",
+        "聖天島と聖天上人",
+        "shèng tiān dǎo",
+        "聖天島",
+        "jiāngno dǎo xī lǜ de zhù lúnsupēsu",
+        "江の島西緑地駐輪スペース",
+        "bicycle_rental",
+        "xiāng nán gǎng lín gǎng dào lù fù shǔ zhù chē chǎng",
+        "湘南港臨港道路付属駐車場",
+        "69",
+        "70",
+        "71",
+        "72",
+        "toilets",
+        "73",
+        "swimming_pool",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "map",
+        "92",
+        "93",
+        "94",
+        "monument",
+        "95",
+        "96",
+        "97",
+        "guidepost",
+        "98",
+        "waste_basket",
+        "99",
+        "100",
+        "101",
+        "102",
+        "motorcycle_parking",
+        "103",
+        "lift_gate"
+      ],
+      "features": [
+        {
+          "id": 34225256671,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎo",
+            "name:nonlatin": "江ノ島",
+            "name_de": "江ノ島",
+            "name": "江ノ島",
+            "subclass": "bus_stop",
+            "rank": "1",
+            "class": "bus",
+            "name:latin": "jiāngno dǎo",
+            "name_en": "江ノ島"
+          }
+        },
+        {
+          "id": 34225256681,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎo",
+            "name:nonlatin": "江ノ島",
+            "name_de": "江ノ島",
+            "name": "江ノ島",
+            "subclass": "bus_stop",
+            "rank": "2",
+            "class": "bus",
+            "name:latin": "jiāngno dǎo",
+            "name_en": "江ノ島"
+          }
+        },
+        {
+          "id": 128468035201,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎo",
+            "name:nonlatin": "江ノ島",
+            "name_de": "江ノ島",
+            "name": "江ノ島",
+            "subclass": "bus_station",
+            "rank": "3",
+            "class": "bus",
+            "name:latin": "jiāngno dǎo",
+            "name_en": "江ノ島"
+          }
+        },
+        {
+          "id": 34225256631,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "kanagawa nǚ xìngsentā",
+            "name:nonlatin": "かながわ女性センター",
+            "name_de": "かながわ女性センター",
+            "name": "かながわ女性センター",
+            "subclass": "bus_stop",
+            "rank": "1",
+            "class": "bus",
+            "name:latin": "kanagawa nǚ xìngsentā",
+            "name_en": "かながわ女性センター"
+          }
+        },
+        {
+          "id": 34225256641,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "kanagawa nǚ xìngsentā",
+            "name:nonlatin": "かながわ女性センター",
+            "name_de": "かながわ女性センター",
+            "name": "かながわ女性センター",
+            "subclass": "bus_stop",
+            "rank": "2",
+            "class": "bus",
+            "name:latin": "kanagawa nǚ xìngsentā",
+            "name_en": "かながわ女性センター"
+          }
+        },
+        {
+          "id": 34225256691,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "xiāng nán gǎng zhàn qiáo",
+            "name:nonlatin": "湘南港桟橋",
+            "name_de": "湘南港桟橋",
+            "name": "湘南港桟橋",
+            "subclass": "bus_stop",
+            "rank": "1",
+            "class": "bus",
+            "name:latin": "xiāng nán gǎng zhàn qiáo",
+            "name_en": "湘南港桟橋"
+          }
+        },
+        {
+          "id": 34225256701,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "xiāng nán gǎng zhàn qiáo",
+            "name:nonlatin": "湘南港桟橋",
+            "name_de": "湘南港桟橋",
+            "name": "湘南港桟橋",
+            "subclass": "bus_stop",
+            "rank": "2",
+            "class": "bus",
+            "name:latin": "xiāng nán gǎng zhàn qiáo",
+            "name_en": "湘南港桟橋"
+          }
+        },
+        {
+          "id": 126038305011,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Mt. Fuji Viewpoint",
+            "name_de": "Mt. Fuji Viewpoint",
+            "name": "Mt. Fuji Viewpoint",
+            "subclass": "viewpoint",
+            "rank": "4",
+            "class": "attraction",
+            "name:latin": "Mt. Fuji Viewpoint",
+            "name_en": "Mt. Fuji Viewpoint"
+          }
+        },
+        {
+          "id": 126038306011,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Mt. Fuji Beach Viewpoint",
+            "name_de": "Mt. Fuji Beach Viewpoint",
+            "name": "Mt. Fuji Beach Viewpoint",
+            "subclass": "viewpoint",
+            "rank": "5",
+            "class": "attraction",
+            "name:latin": "Mt. Fuji Beach Viewpoint",
+            "name_en": "Mt. Fuji Beach Viewpoint"
+          }
+        },
+        {
+          "id": 53465717101,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "sazae dǎo",
+            "name:nonlatin": "さざえ島",
+            "name_de": "さざえ島",
+            "name": "さざえ島",
+            "subclass": "viewpoint",
+            "rank": "3",
+            "class": "attraction",
+            "layer": "3",
+            "name:latin": "sazae dǎo",
+            "name_en": "さざえ島"
+          }
+        },
+        {
+          "id": 12349124412,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Enoshima Yacht Harbour",
+            "name:ar": "ميناء إنوشيما لليخوت",
+            "name:ja": "江ノ島ヨットハーバー",
+            "name:nonlatin": "江の島ヨットハーバー",
+            "name:ja-Latn": "Enoshima yottohābā",
+            "name:ja-Hira": "えのしま ヨットハーバー",
+            "name:ca": "port nàutic d'Enoshima",
+            "name:ru": "Яхтенная гавань Эносима",
+            "name:de": "Yachthafen Enoshimaeu",
+            "name_de": "Yachthafen Enoshimaeu",
+            "name": "江の島ヨットハーバー",
+            "subclass": "marina",
+            "name:fr": "Port de plaisance d'Enoshima",
+            "rank": "4",
+            "name:en": "Enoshima Yacht Harbour",
+            "name:eo": "jaĥta haveno Enoŝima",
+            "class": "harbor",
+            "name:eu": "Enoshima Yate Kaia",
+            "name:latin": "Enoshima Yacht Harbour",
+            "name:zh": "江之島遊艇港口",
+            "name_en": "Enoshima Yacht Harbour"
+          }
+        },
+        {
+          "id": 12349124422,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Shadanhoujin Enoshima yottokurabu",
+            "name:nonlatin": "(社)江の島ヨットクラブ",
+            "name_de": "(社)江の島ヨットクラブ",
+            "name": "(社)江の島ヨットクラブ",
+            "name:ja-Latn": "Shadanhoujin Enoshima yottokurabu",
+            "subclass": "marina",
+            "name:fr": "Club nautique d'Enoshima",
+            "rank": "5",
+            "name:ja-Hira": "(しゃ ) えのしま ヨットクラブ",
+            "class": "harbor",
+            "name:latin": "Shadanhoujin Enoshima yottokurabu",
+            "name_en": "(社)江の島ヨットクラブ"
+          }
+        },
+        {
+          "id": 43968288221,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "xiǎo tián jí jiāngno dǎoyottokurabu",
+            "name:nonlatin": "小田急江の島ヨットクラブ",
+            "name_de": "小田急江の島ヨットクラブ",
+            "name": "小田急江の島ヨットクラブ",
+            "subclass": "marina",
+            "rank": "3",
+            "class": "harbor",
+            "name:latin": "xiǎo tián jí jiāngno dǎoyottokurabu",
+            "name_en": "小田急江の島ヨットクラブ"
+          }
+        },
+        {
+          "id": 59656655551,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎo shì mínno jiā",
+            "name:nonlatin": "江の島市民の家",
+            "name_de": "江の島市民の家",
+            "name": "江の島市民の家",
+            "subclass": "community_centre",
+            "rank": "6",
+            "class": "town_hall",
+            "name:latin": "jiāngno dǎo shì mínno jiā",
+            "name_en": "江の島市民の家"
+          }
+        },
+        {
+          "id": 3353347992,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shèng tiān dǎo gōng yuán",
+            "name:nonlatin": "聖天島公園",
+            "name_de": "聖天島公園",
+            "name": "聖天島公園",
+            "subclass": "park",
+            "rank": "7",
+            "class": "park",
+            "name:latin": "shèng tiān dǎo gōng yuán",
+            "name_en": "聖天島公園"
+          }
+        },
+        {
+          "id": 11168882801,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Enoshima Chūzaisho",
+            "name:nonlatin": "江の島駐在所",
+            "name_de": "江の島駐在所",
+            "name": "江の島駐在所",
+            "subclass": "police",
+            "rank": "8",
+            "name:ja_rm": "Enoshima Chūzaisho",
+            "class": "police",
+            "name:latin": "Enoshima Chūzaisho",
+            "name_en": "江の島駐在所"
+          }
+        },
+        {
+          "id": 11168883361,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Bureau de poste",
+            "name:nonlatin": "江ノ島郵便局",
+            "name_de": "江ノ島郵便局",
+            "name": "江ノ島郵便局",
+            "subclass": "post_office",
+            "name:fr": "Bureau de poste",
+            "rank": "9",
+            "name:ja_rm": "Enoshima Yūbinkyoku",
+            "class": "post",
+            "name:latin": "Bureau de poste",
+            "name_en": "江ノ島郵便局"
+          }
+        },
+        {
+          "id": 59657290341,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "kitasan chá wū",
+            "name:nonlatin": "きたさん茶屋",
+            "name_de": "きたさん茶屋",
+            "name": "きたさん茶屋",
+            "subclass": "gift",
+            "rank": "10",
+            "class": "shop",
+            "name:latin": "kitasan chá wū",
+            "name_en": "きたさん茶屋"
+          }
+        },
+        {
+          "id": 59657290371,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "zhōng cūn wū yáng gēng diàn",
+            "name:nonlatin": "中村屋羊羹店",
+            "name_de": "中村屋羊羹店",
+            "name": "中村屋羊羹店",
+            "subclass": "confectionery",
+            "rank": "11",
+            "class": "shop",
+            "name:latin": "zhōng cūn wū yáng gēng diàn",
+            "name_en": "中村屋羊羹店"
+          }
+        },
+        {
+          "id": 112588914471,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "21 days",
+            "name_de": "21 days",
+            "name": "21 days",
+            "subclass": "gift",
+            "rank": "12",
+            "class": "shop",
+            "name:latin": "21 days",
+            "name_en": "21 days"
+          }
+        },
+        {
+          "id": 59657290461,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "bèi guǎng wù chǎn diàn",
+            "name:nonlatin": "貝広物産店",
+            "name_de": "貝広物産店",
+            "name": "貝広物産店",
+            "subclass": "gift",
+            "rank": "1",
+            "class": "shop",
+            "name:latin": "bèi guǎng wù chǎn diàn",
+            "name_en": "貝広物産店"
+          }
+        },
+        {
+          "id": 68439037191,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "yuuhi chá wū",
+            "name:nonlatin": "ゆうひ茶屋",
+            "name_de": "ゆうひ茶屋",
+            "name": "ゆうひ茶屋",
+            "subclass": "fast_food",
+            "rank": "2",
+            "class": "fast_food",
+            "name:latin": "yuuhi chá wū",
+            "name_en": "ゆうひ茶屋"
+          }
+        },
+        {
+          "id": 59657290331,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "zhōng yě shāng diàn",
+            "name:nonlatin": "中野商店",
+            "name_de": "中野商店",
+            "name": "中野商店",
+            "subclass": "clothes",
+            "rank": "13",
+            "class": "clothing_store",
+            "name:latin": "zhōng yě shāng diàn",
+            "name_en": "中野商店"
+          }
+        },
+        {
+          "id": 59657290431,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎo sandēmāto",
+            "name:nonlatin": "江の島　サンデーマート",
+            "name_de": "江の島　サンデーマート",
+            "name": "江の島　サンデーマート",
+            "subclass": "clothes",
+            "rank": "3",
+            "class": "clothing_store",
+            "name:latin": "jiāngno dǎo sandēmāto",
+            "name_en": "江の島　サンデーマート"
+          }
+        },
+        {
+          "id": 73976033,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Ejima Shrine",
+            "name:ja": "江島神社",
+            "name:nonlatin": "江島神社",
+            "name:id": "Kuil Enoshima",
+            "name:ja-Latn": "Enoshima-jinja",
+            "name:ko": "에노시마 신사",
+            "name:de": "Enoshima Schrein",
+            "name_de": "Enoshima Schrein",
+            "name": "江島神社",
+            "subclass": "shinto",
+            "name:fr": "Sanctuaire d'Enoshima",
+            "rank": "14",
+            "name:en": "Ejima Shrine",
+            "class": "place_of_worship",
+            "name:latin": "Ejima Shrine",
+            "name:zh": "江島神社",
+            "name_en": "Ejima Shrine"
+          }
+        },
+        {
+          "id": 1915554822,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Tobiccho Sandoten",
+            "name:ja": "しらす問屋 とびっちょ参道店",
+            "name:nonlatin": "しらす問屋 とびっちょ",
+            "name_de": "しらす問屋 とびっちょ",
+            "name": "しらす問屋 とびっちょ",
+            "subclass": "restaurant",
+            "rank": "15",
+            "class": "restaurant",
+            "name:es": "Tobiccho Sandoten",
+            "name:latin": "Tobiccho Sandoten",
+            "name_en": "しらす問屋 とびっちょ"
+          }
+        },
+        {
+          "id": 1915573672,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Zuishin Gate",
+            "name:nonlatin": "瑞心門",
+            "name:ja-Latn": "Zuishin-mon",
+            "name:ja-Hira": "づいしん もん",
+            "name_de": "瑞心門",
+            "name": "瑞心門",
+            "subclass": "gate",
+            "name:fr": "Porte Zuishin",
+            "rank": "16",
+            "name:en": "Zuishin Gate",
+            "class": "gate",
+            "name:es": "Puerta Zuishin",
+            "name:latin": "Zuishin Gate",
+            "name_en": "Zuishin Gate"
+          }
+        },
+        {
+          "id": 1916600352,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Moke's Hawaii",
+            "name:nonlatin": "ハワイアンカフェ '",
+            "name_de": "ハワイアンカフェ Moke's Hawaii Enoshima",
+            "name": "ハワイアンカフェ Moke's Hawaii Enoshima",
+            "subclass": "restaurant",
+            "rank": "17",
+            "class": "restaurant",
+            "name:es": "Moke's Hawaii",
+            "name:latin": "Moke's Hawaii",
+            "name_en": "ハワイアンカフェ Moke's Hawaii Enoshima"
+          }
+        },
+        {
+          "id": 1916600552,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "kimura",
+            "name:nonlatin": "きむら",
+            "name_de": "きむら",
+            "name": "きむら",
+            "subclass": "restaurant",
+            "rank": "18",
+            "class": "restaurant",
+            "name:latin": "kimura",
+            "name_en": "きむら"
+          }
+        },
+        {
+          "id": 1916601192,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Tobiccho, main restaurant, shirasu specialty",
+            "name:nonlatin": "しらす問屋 とびっちょ本店",
+            "name_de": "しらす問屋 とびっちょ本店",
+            "name": "しらす問屋 とびっちょ本店",
+            "subclass": "restaurant",
+            "rank": "19",
+            "name:en": "Tobiccho, main restaurant, shirasu specialty",
+            "name:ja_rm": "Shirasu Tonya Tobiccho Honten",
+            "class": "restaurant",
+            "name:es": "Tobiccho Honten",
+            "name:latin": "Tobiccho, main restaurant, shirasu specialty",
+            "name_en": "Tobiccho, main restaurant, shirasu specialty"
+          }
+        },
+        {
+          "id": 1916601592,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Hetsunomiya Shrine",
+            "name:nonlatin": "江島神社 辺津宮",
+            "name:ja-Latn": "Ejima-jinja Hentsunomiya",
+            "name:ja-Hira": "えのしま じんじゃ へつの みや",
+            "name_de": "江島神社 辺津宮",
+            "name": "江島神社 辺津宮",
+            "subclass": "shinto",
+            "name:fr": "Sanctuaire principal de Hetsunomiya",
+            "rank": "20",
+            "name:en": "Hetsunomiya Shrine",
+            "class": "place_of_worship",
+            "name:es": "Santuario Hetsunomiya",
+            "name:latin": "Hetsunomiya Shrine",
+            "name_en": "Hetsunomiya Shrine"
+          }
+        },
+        {
+          "id": 1916601722,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Cafe Maru",
+            "name:nonlatin": "カフェーマル",
+            "name_de": "カフェーマル",
+            "name": "カフェーマル",
+            "subclass": "cafe",
+            "rank": "21",
+            "class": "cafe",
+            "name:es": "Cafe Maru",
+            "name:latin": "Cafe Maru",
+            "name_en": "カフェーマル"
+          }
+        },
+        {
+          "id": 1916601732,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "LONCAFE",
+            "name_de": "LONCAFE",
+            "name": "LONCAFE",
+            "subclass": "cafe",
+            "rank": "22",
+            "class": "cafe",
+            "name:es": "Lon Cafe",
+            "name:latin": "LONCAFE",
+            "name_en": "LONCAFE"
+          }
+        },
+        {
+          "id": 1916601902,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Ejima-jinja hōan-dono",
+            "name:nonlatin": "江島神社奉安殿",
+            "name:ja-Latn": "Ejima-jinja hōan-dono",
+            "name:ja-Hira": "えじま じんじゃ ほうあん どの",
+            "name_de": "江島神社奉安殿",
+            "name": "江島神社奉安殿",
+            "subclass": "museum",
+            "name:fr": "Pavillon Hōan",
+            "rank": "23",
+            "class": "museum",
+            "name:es": "Salón Hoanden",
+            "name:latin": "Ejima-jinja hōan-dono",
+            "name_en": "江島神社奉安殿"
+          }
+        },
+        {
+          "id": 1916601922,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Zazamaru",
+            "name:nonlatin": "湘南海鮮 座々丸",
+            "name_de": "湘南海鮮 座々丸",
+            "name": "湘南海鮮 座々丸",
+            "subclass": "restaurant",
+            "rank": "24",
+            "class": "restaurant",
+            "name:es": "Zazamaru",
+            "name:latin": "Zazamaru",
+            "name_en": "湘南海鮮 座々丸"
+          }
+        },
+        {
+          "id": 1916900872,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Enoshima Samuel Cocking Garden",
+            "name:ja": "江の島サムエル・コッキング苑",
+            "name:nonlatin": "江の島サムエル・コッキング苑",
+            "name:ja-Latn": "Enoshima Samueru Kokkingu En",
+            "name:ja-Hira": "えのしまサムエル・コッキングえん",
+            "name:ru": "Сад Сэмюэля Кокинга",
+            "name_de": "江の島サムエル・コッキング苑",
+            "name": "江の島サムエル・コッキング苑",
+            "subclass": "garden",
+            "name:fr": "Jardin Samuel Cocking",
+            "rank": "25",
+            "name:en": "Enoshima Samuel Cocking Garden",
+            "class": "garden",
+            "name:es": "Jardín de Plantas Tropicales de Enoshima",
+            "name:latin": "Enoshima Samuel Cocking Garden",
+            "name:zh": "江之島Samuel Cocking苑",
+            "name_en": "Enoshima Samuel Cocking Garden"
+          }
+        },
+        {
+          "id": 3905502352,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Kodama Shrine",
+            "name:ja": "児玉神社",
+            "name:nonlatin": "児玉神社",
+            "name:id": "Kuil Kodama",
+            "name:ja-Latn": "Kodama-jinja",
+            "name:ja-Hira": "こだま じんじゃ",
+            "name:de": "Kodama Schrein",
+            "name_de": "Kodama Schrein",
+            "name": "児玉神社",
+            "subclass": "shinto",
+            "name:fr": "Sanctuaire Kodama",
+            "rank": "26",
+            "name:en": "Kodama Shrine",
+            "class": "place_of_worship",
+            "name:es": "Santuario Kodama",
+            "name:latin": "Kodama Shrine",
+            "name:zh": "兒玉神社",
+            "name_en": "Kodama Shrine"
+          }
+        },
+        {
+          "id": 5078588052,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Nakatsumiya Square",
+            "name:nonlatin": "中津宮広場",
+            "name:ja-Latn": "Nakatsunomiya hiroba",
+            "name:ja-Hira": "なかつ みや ひろば",
+            "name_de": "中津宮広場",
+            "name": "中津宮広場",
+            "subclass": "garden",
+            "name:fr": "Place Nakatsumiya",
+            "rank": "27",
+            "name:en": "Nakatsumiya Square",
+            "class": "garden",
+            "name:latin": "Nakatsumiya Square",
+            "name_en": "Nakatsumiya Square"
+          }
+        },
+        {
+          "id": 7223671752,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Uohana",
+            "name:nonlatin": "魚華",
+            "name_de": "魚華",
+            "name": "魚華",
+            "subclass": "restaurant",
+            "rank": "28",
+            "name:ja_rm": "Uohana",
+            "class": "restaurant",
+            "name:es": "Uohana",
+            "name:latin": "Uohana",
+            "name_en": "魚華"
+          }
+        },
+        {
+          "id": 34241761911,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "harumi shí táng",
+            "name:nonlatin": "ハルミ食堂",
+            "name_de": "ハルミ食堂",
+            "name": "ハルミ食堂",
+            "subclass": "restaurant",
+            "rank": "29",
+            "class": "restaurant",
+            "name:latin": "harumi shí táng",
+            "name_en": "ハルミ食堂"
+          }
+        },
+        {
+          "id": 53488783641,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "kaishima",
+            "name:nonlatin": "かいしま",
+            "name_de": "かいしま",
+            "name": "かいしま",
+            "subclass": "restaurant",
+            "rank": "30",
+            "class": "restaurant",
+            "name:latin": "kaishima",
+            "name_en": "かいしま"
+          }
+        },
+        {
+          "id": 59656655321,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "bù lǎo mén zài jiàn jì niàn bēi",
+            "name:nonlatin": "不老門再建記念碑",
+            "name_de": "不老門再建記念碑",
+            "name": "不老門再建記念碑",
+            "subclass": "board",
+            "rank": "31",
+            "class": "information",
+            "name:latin": "bù lǎo mén zài jiàn jì niàn bēi",
+            "name_en": "不老門再建記念碑"
+          }
+        },
+        {
+          "id": 59656655361,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "yuán tián yàn dà shén",
+            "name:nonlatin": "猿田彦大神",
+            "name_de": "猿田彦大神",
+            "name": "猿田彦大神",
+            "subclass": "board",
+            "rank": "32",
+            "class": "information",
+            "name:latin": "yuán tián yàn dà shén",
+            "name_en": "猿田彦大神"
+          }
+        },
+        {
+          "id": 59656655421,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "zhǎo tián lài fǔno gē bēi",
+            "name:nonlatin": "沼田頼輔の歌碑",
+            "name_de": "沼田頼輔の歌碑",
+            "name": "沼田頼輔の歌碑",
+            "subclass": "board",
+            "rank": "33",
+            "class": "information",
+            "name:latin": "zhǎo tián lài fǔno gē bēi",
+            "name_en": "沼田頼輔の歌碑"
+          }
+        },
+        {
+          "id": 59656655431,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "sòng guó yún láino gǔ bēi",
+            "name:nonlatin": "宋国伝来の古碑",
+            "name_de": "宋国伝来の古碑",
+            "name": "宋国伝来の古碑",
+            "subclass": "board",
+            "rank": "34",
+            "class": "information",
+            "name:latin": "sòng guó yún láino gǔ bēi",
+            "name_en": "宋国伝来の古碑"
+          }
+        },
+        {
+          "id": 59656655461,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "qiū yè shè",
+            "name:nonlatin": "秋葉社",
+            "name_de": "秋葉社",
+            "name": "秋葉社",
+            "subclass": "shinto",
+            "rank": "35",
+            "class": "place_of_worship",
+            "name:latin": "qiū yè shè",
+            "name_en": "秋葉社"
+          }
+        },
+        {
+          "id": 59656655471,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Inarisha",
+            "name:nonlatin": "稲荷社",
+            "name_de": "稲荷社",
+            "name": "稲荷社",
+            "subclass": "shinto",
+            "rank": "36",
+            "name:en": "Inarisha",
+            "class": "place_of_worship",
+            "name:latin": "Inarisha",
+            "name_en": "Inarisha"
+          }
+        },
+        {
+          "id": 59656655481,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "bā bǎn shén shè",
+            "name:nonlatin": "八坂神社",
+            "name_de": "八坂神社",
+            "name": "八坂神社",
+            "subclass": "board",
+            "rank": "37",
+            "class": "information",
+            "name:latin": "bā bǎn shén shè",
+            "name_en": "八坂神社"
+          }
+        },
+        {
+          "id": 59656655501,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "qí dǎo shòu fù suǒ",
+            "name:nonlatin": "祈祷受付所",
+            "name_de": "祈祷受付所",
+            "name": "祈祷受付所",
+            "subclass": "religion",
+            "rank": "38",
+            "class": "office",
+            "name:latin": "qí dǎo shòu fù suǒ",
+            "name_en": "祈祷受付所"
+          }
+        },
+        {
+          "id": 59656655521,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "fú shí",
+            "name:nonlatin": "福石",
+            "name_de": "福石",
+            "name": "福石",
+            "subclass": "board",
+            "rank": "39",
+            "class": "information",
+            "name:latin": "fú shí",
+            "name_en": "福石"
+          }
+        },
+        {
+          "id": 59656655541,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shān shān jiǎn xiàono mù",
+            "name:nonlatin": "杉山検校の墓",
+            "name_de": "杉山検校の墓",
+            "name": "杉山検校の墓",
+            "subclass": "board",
+            "rank": "40",
+            "class": "information",
+            "name:latin": "shān shān jiǎn xiàono mù",
+            "name_en": "杉山検校の墓"
+          }
+        },
+        {
+          "id": 59657289871,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shān xíng yǒu péng gē bēi",
+            "name:nonlatin": "山形有朋歌碑",
+            "name_de": "山形有朋歌碑",
+            "name": "山形有朋歌碑",
+            "subclass": "board",
+            "rank": "41",
+            "class": "information",
+            "name:latin": "shān xíng yǒu péng gē bēi",
+            "name_en": "山形有朋歌碑"
+          }
+        },
+        {
+          "id": 59657289921,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "xiè jiè shí shī bēi",
+            "name:nonlatin": "謝介石詩碑",
+            "name_de": "謝介石詩碑",
+            "name": "謝介石詩碑",
+            "subclass": "board",
+            "rank": "42",
+            "class": "information",
+            "name:latin": "xiè jiè shí shī bēi",
+            "name_en": "謝介石詩碑"
+          }
+        },
+        {
+          "id": 59657289941,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "hòu téng xīn píng shī bēi",
+            "name:nonlatin": "後藤新平詩碑",
+            "name_de": "後藤新平詩碑",
+            "name": "後藤新平詩碑",
+            "subclass": "board",
+            "rank": "43",
+            "class": "information",
+            "name:latin": "hòu téng xīn píng shī bēi",
+            "name_en": "後藤新平詩碑"
+          }
+        },
+        {
+          "id": 59657289961,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shí hēi zhōng zhí shī bēi",
+            "name:nonlatin": "石黒忠直詩碑",
+            "name_de": "石黒忠直詩碑",
+            "name": "石黒忠直詩碑",
+            "subclass": "board",
+            "rank": "44",
+            "class": "information",
+            "name:latin": "shí hēi zhōng zhí shī bēi",
+            "name_en": "石黒忠直詩碑"
+          }
+        },
+        {
+          "id": 59657289971,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "ěr líng shānno shí",
+            "name:nonlatin": "爾霊山の石",
+            "name_de": "爾霊山の石",
+            "name": "爾霊山の石",
+            "subclass": "board",
+            "rank": "45",
+            "class": "information",
+            "name:latin": "ěr líng shānno shí",
+            "name_en": "爾霊山の石"
+          }
+        },
+        {
+          "id": 59657289981,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāng dǎo shén shè sān gōngno yù àn nèi",
+            "name:nonlatin": "江島神社　三宮の御案内",
+            "name_de": "江島神社　三宮の御案内",
+            "name": "江島神社　三宮の御案内",
+            "subclass": "board",
+            "rank": "46",
+            "class": "information",
+            "name:latin": "jiāng dǎo shén shè sān gōngno yù àn nèi",
+            "name_en": "江島神社　三宮の御案内"
+          }
+        },
+        {
+          "id": 59657290281,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Cafe Madu",
+            "name_de": "Cafe Madu",
+            "name": "Cafe Madu",
+            "subclass": "cafe",
+            "rank": "47",
+            "class": "cafe",
+            "name:latin": "Cafe Madu",
+            "name_en": "Cafe Madu"
+          }
+        },
+        {
+          "id": 59657290291,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāng zhī dǎo tíng",
+            "name:nonlatin": "江之島亭",
+            "name_de": "江之島亭",
+            "name": "江之島亭",
+            "subclass": "restaurant",
+            "rank": "48",
+            "class": "restaurant",
+            "name:latin": "jiāng zhī dǎo tíng",
+            "name_en": "江之島亭"
+          }
+        },
+        {
+          "id": 59657290311,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "qún yuán fèng sài xiàng gēng shēn tǎ",
+            "name:nonlatin": "群猿奉賽像庚申塔",
+            "name_de": "群猿奉賽像庚申塔",
+            "name": "群猿奉賽像庚申塔",
+            "subclass": "board",
+            "rank": "49",
+            "class": "information",
+            "name:latin": "qún yuán fèng sài xiàng gēng shēn tǎ",
+            "name_en": "群猿奉賽像庚申塔"
+          }
+        },
+        {
+          "id": 59657290321,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "yóu lǎn tíng",
+            "name:nonlatin": "遊覧亭",
+            "name_de": "遊覧亭",
+            "name": "遊覧亭",
+            "subclass": "restaurant",
+            "rank": "50",
+            "class": "restaurant",
+            "name:latin": "yóu lǎn tíng",
+            "name_en": "遊覧亭"
+          }
+        },
+        {
+          "id": 59657290361,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "mù shí shàng rén xíng chǎng kū",
+            "name:nonlatin": "木食上人行場窟",
+            "name_de": "木食上人行場窟",
+            "name": "木食上人行場窟",
+            "subclass": "board",
+            "rank": "51",
+            "class": "information",
+            "name:latin": "mù shí shàng rén xíng chǎng kū",
+            "name_en": "木食上人行場窟"
+          }
+        },
+        {
+          "id": 59657290631,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "yáo qū‘jiāng dǎo’to biàn cái tiān",
+            "name:nonlatin": "謡曲「江島」と弁才天",
+            "name_de": "謡曲「江島」と弁才天",
+            "name": "謡曲「江島」と弁才天",
+            "subclass": "board",
+            "rank": "52",
+            "class": "information",
+            "name:latin": "yáo qū‘jiāng dǎo’to biàn cái tiān",
+            "name_en": "謡曲「江島」と弁才天"
+          }
+        },
+        {
+          "id": 59661832251,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "bèi zuò",
+            "level": "1",
+            "name:nonlatin": "貝作",
+            "name_de": "貝作",
+            "name": "貝作",
+            "subclass": "restaurant",
+            "rank": "53",
+            "class": "restaurant",
+            "name:latin": "bèi zuò",
+            "name_en": "貝作"
+          }
+        },
+        {
+          "id": 79754926051,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "ruì xīn mén táng shī zǐ",
+            "name:nonlatin": "瑞心門唐獅子",
+            "name_de": "瑞心門唐獅子",
+            "name": "瑞心門唐獅子",
+            "subclass": "artwork",
+            "rank": "54",
+            "class": "art_gallery",
+            "name:latin": "ruì xīn mén táng shī zǐ",
+            "name_en": "瑞心門唐獅子"
+          }
+        },
+        {
+          "id": 79754926341,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "biān jīn gōng",
+            "name:nonlatin": "辺津宮",
+            "name_de": "辺津宮",
+            "name": "辺津宮",
+            "subclass": "board",
+            "rank": "55",
+            "class": "information",
+            "name:latin": "biān jīn gōng",
+            "name_en": "辺津宮"
+          }
+        },
+        {
+          "id": 79754926501,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "biàn cái tiān tóng zǐ xiàng",
+            "name:nonlatin": "弁財天　童子像",
+            "name_de": "弁財天　童子像",
+            "name": "弁財天　童子像",
+            "subclass": "artwork",
+            "rank": "56",
+            "class": "art_gallery",
+            "name:latin": "biàn cái tiān tóng zǐ xiàng",
+            "name_en": "弁財天　童子像"
+          }
+        },
+        {
+          "id": 79754961871,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shān shān jiǎn xiào",
+            "name:nonlatin": "杉山検校",
+            "name_de": "杉山検校",
+            "name": "杉山検校",
+            "subclass": "artwork",
+            "rank": "57",
+            "class": "art_gallery",
+            "name:latin": "shān shān jiǎn xiào",
+            "name_en": "杉山検校"
+          }
+        },
+        {
+          "id": 79754964061,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "qián xǐ bái lóng wáng",
+            "name:nonlatin": "銭洗白龍王",
+            "name_de": "銭洗白龍王",
+            "name": "銭洗白龍王",
+            "subclass": "artwork",
+            "rank": "58",
+            "class": "art_gallery",
+            "name:latin": "qián xǐ bái lóng wáng",
+            "name_en": "銭洗白龍王"
+          }
+        },
+        {
+          "id": 79754964421,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāng dǎo shén shè quán jǐng de tú",
+            "name:nonlatin": "江島神社全景地図",
+            "name_de": "江島神社全景地図",
+            "name": "江島神社全景地図",
+            "subclass": "board",
+            "rank": "59",
+            "class": "information",
+            "name:latin": "jiāng dǎo shén shè quán jǐng de tú",
+            "name_en": "江島神社全景地図"
+          }
+        },
+        {
+          "id": 79754964451,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "lóng shénto biàn cái tiān",
+            "name:nonlatin": "龍神と弁財天",
+            "name_de": "龍神と弁財天",
+            "name": "龍神と弁財天",
+            "subclass": "board",
+            "rank": "60",
+            "class": "information",
+            "name:latin": "lóng shénto biàn cái tiān",
+            "name_en": "龍神と弁財天"
+          }
+        },
+        {
+          "id": 79754964851,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "ruì xīn mén táng shī zǐ",
+            "name:nonlatin": "瑞心門唐獅子",
+            "name_de": "瑞心門唐獅子",
+            "name": "瑞心門唐獅子",
+            "subclass": "artwork",
+            "rank": "61",
+            "class": "art_gallery",
+            "name:latin": "ruì xīn mén táng shī zǐ",
+            "name_en": "瑞心門唐獅子"
+          }
+        },
+        {
+          "id": 79754965011,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "mù shí",
+            "name:nonlatin": "墓石",
+            "name_de": "墓石",
+            "name": "墓石",
+            "subclass": "board",
+            "rank": "62",
+            "class": "information",
+            "name:latin": "mù shí",
+            "name_en": "墓石"
+          }
+        },
+        {
+          "id": 112589080681,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Todai Kitchen",
+            "name_de": "Todai Kitchen",
+            "name": "Todai Kitchen",
+            "subclass": "cafe",
+            "rank": "63",
+            "class": "cafe",
+            "name:latin": "Todai Kitchen",
+            "name_en": "Todai Kitchen"
+          }
+        },
+        {
+          "id": 128477059891,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎo guān guāng àn nèi suǒ",
+            "name:nonlatin": "江の島観光案内所",
+            "name_de": "江の島観光案内所",
+            "name": "江の島観光案内所",
+            "subclass": "office",
+            "rank": "64",
+            "class": "information",
+            "name:latin": "jiāngno dǎo guān guāng àn nèi suǒ",
+            "name_en": "江の島観光案内所"
+          }
+        },
+        {
+          "id": 128734068861,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "wén zuǒ shí táng",
+            "name:nonlatin": "文佐食堂",
+            "name_de": "文佐食堂",
+            "name": "文佐食堂",
+            "subclass": "restaurant",
+            "rank": "65",
+            "class": "restaurant",
+            "name:latin": "wén zuǒ shí táng",
+            "name_en": "文佐食堂"
+          }
+        },
+        {
+          "id": 129637798631,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "yán běn lóu běn guǎn",
+            "name:nonlatin": "岩本楼本館",
+            "name_de": "岩本楼本館",
+            "name": "岩本楼本館",
+            "subclass": "hotel",
+            "rank": "66",
+            "class": "lodging",
+            "name:latin": "yán běn lóu běn guǎn",
+            "name_en": "岩本楼本館"
+          }
+        },
+        {
+          "id": 129637798641,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "mín sùwejima",
+            "name:nonlatin": "民宿ゑじま",
+            "name_de": "民宿ゑじま",
+            "name": "民宿ゑじま",
+            "subclass": "guest_house",
+            "rank": "67",
+            "class": "lodging",
+            "name:latin": "mín sùwejima",
+            "name_en": "民宿ゑじま"
+          }
+        },
+        {
+          "id": 129637798671,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎohoteru",
+            "name:nonlatin": "江の島ホテル",
+            "name_de": "江の島ホテル",
+            "name": "江の島ホテル",
+            "subclass": "hotel",
+            "rank": "68",
+            "class": "lodging",
+            "name:latin": "jiāngno dǎohoteru",
+            "name_en": "江の島ホテル"
+          }
+        },
+        {
+          "id": 1916566262,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎokamome zhù chē chǎng",
+            "name:nonlatin": "江の島かもめ駐車場",
+            "name_de": "江の島かもめ駐車場",
+            "name": "江の島かもめ駐車場",
+            "subclass": "parking",
+            "rank": "4",
+            "class": "parking",
+            "name:latin": "jiāngno dǎokamome zhù chē chǎng",
+            "name_en": "江の島かもめ駐車場"
+          }
+        },
+        {
+          "id": 1916600412,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Ejima-jinja nakatsunomiya",
+            "name:nonlatin": "江島神社 中津宮",
+            "name:ja-Latn": "Ejima-jinja nakatsunomiya",
+            "name:ja-Hira": "えのしま じんじゃ なかつの みや",
+            "name_de": "江島神社 中津宮",
+            "name": "江島神社 中津宮",
+            "subclass": "shinto",
+            "name:fr": "Sanctuaire intermédiaire d'Ejima",
+            "rank": "5",
+            "class": "place_of_worship",
+            "name:es": "Santuario Nakatsunomiya",
+            "name:latin": "Ejima-jinja nakatsunomiya",
+            "name_en": "江島神社 中津宮"
+          }
+        },
+        {
+          "id": 1916601062,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "biàn tiān chá wū",
+            "name:nonlatin": "弁天茶屋",
+            "name_de": "弁天茶屋",
+            "name": "弁天茶屋",
+            "subclass": "restaurant",
+            "rank": "6",
+            "class": "restaurant",
+            "name:latin": "biàn tiān chá wū",
+            "name_en": "弁天茶屋"
+          }
+        },
+        {
+          "id": 1916900892,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Kamegaoka Square",
+            "name:nonlatin": "亀ヶ岡広場",
+            "name:ja-Latn": "Kamegaoka hiroba",
+            "name:ja-Hira": "かめ ヶ おかひろじょう",
+            "name_de": "亀ヶ岡広場",
+            "name": "亀ヶ岡広場",
+            "subclass": "garden",
+            "name:fr": "Place Kamegaoka",
+            "rank": "7",
+            "name:en": "Kamegaoka Square",
+            "class": "garden",
+            "name:latin": "Kamegaoka Square",
+            "name_en": "Kamegaoka Square"
+          }
+        },
+        {
+          "id": 7181117242,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎokamome zhù chē chǎng (basu)",
+            "name:nonlatin": "江の島かもめ駐車場(バス)",
+            "name_de": "江の島かもめ駐車場(バス)",
+            "name": "江の島かもめ駐車場(バス)",
+            "subclass": "parking",
+            "rank": "8",
+            "class": "parking",
+            "name:latin": "jiāngno dǎokamome zhù chē chǎng (basu)",
+            "name_en": "江の島かもめ駐車場(バス)"
+          }
+        },
+        {
+          "id": 26009561901,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Enoshima Daishi",
+            "name:ja": "江の島大師",
+            "name:nonlatin": "江の島大師",
+            "name:id": "Wihara Enoshima Daishi",
+            "name_de": "江の島大師",
+            "name": "江の島大師",
+            "subclass": "buddhist",
+            "rank": "9",
+            "name:en": "Enoshima Daishi",
+            "class": "place_of_worship",
+            "name:es": "Enoshima Daishi",
+            "name:latin": "Enoshima Daishi",
+            "name:zh": "江之島大師",
+            "name_en": "Enoshima Daishi"
+          }
+        },
+        {
+          "id": 59657290381,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shān èrtsu",
+            "name:nonlatin": "山二つ",
+            "name_de": "山二つ",
+            "name": "山二つ",
+            "subclass": "board",
+            "rank": "10",
+            "class": "information",
+            "name:latin": "shān èrtsu",
+            "name_en": "山二つ"
+          }
+        },
+        {
+          "id": 59657290401,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Maritime Pass",
+            "name:nonlatin": "海上亭",
+            "name_de": "海上亭",
+            "name": "海上亭",
+            "subclass": "hotel",
+            "rank": "11",
+            "name:en": "Maritime Pass",
+            "class": "lodging",
+            "name:latin": "Maritime Pass",
+            "name_en": "Maritime Pass"
+          }
+        },
+        {
+          "id": 59657290421,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "yī biàn shàng rénno dǎo jǐng hù",
+            "name:nonlatin": "一遍上人の島井戸",
+            "name_de": "一遍上人の島井戸",
+            "name": "一遍上人の島井戸",
+            "subclass": "board",
+            "rank": "12",
+            "class": "information",
+            "name:latin": "yī biàn shàng rénno dǎo jǐng hù",
+            "name_en": "一遍上人の島井戸"
+          }
+        },
+        {
+          "id": 59657290441,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "hǎi shàng tíng",
+            "name:nonlatin": "海上亭",
+            "name_de": "海上亭",
+            "name": "海上亭",
+            "subclass": "restaurant",
+            "rank": "13",
+            "class": "restaurant",
+            "name:latin": "hǎi shàng tíng",
+            "name_en": "海上亭"
+          }
+        },
+        {
+          "id": 59657290451,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngnomaru",
+            "name:nonlatin": "江のまる",
+            "name_de": "江のまる",
+            "name": "江のまる",
+            "subclass": "cafe",
+            "rank": "14",
+            "class": "cafe",
+            "name:latin": "jiāngnomaru",
+            "name_en": "江のまる"
+          }
+        },
+        {
+          "id": 59657290481,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "fú dǎo yú cūnno jù bēi",
+            "name:nonlatin": "福島漁村の句碑",
+            "name_de": "福島漁村の句碑",
+            "name": "福島漁村の句碑",
+            "subclass": "board",
+            "rank": "15",
+            "class": "information",
+            "name:latin": "fú dǎo yú cūnno jù bēi",
+            "name_en": "福島漁村の句碑"
+          }
+        },
+        {
+          "id": 59657290501,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "UMIHANATEI",
+            "name:nonlatin": "海花亭",
+            "name_de": "海花亭",
+            "name": "海花亭",
+            "subclass": "restaurant",
+            "rank": "16",
+            "name:en": "UMIHANATEI",
+            "class": "restaurant",
+            "name:latin": "UMIHANATEI",
+            "name_en": "UMIHANATEI"
+          }
+        },
+        {
+          "id": 59657290511,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "bara neru・mātin",
+            "name:nonlatin": "バラ　ネル・マーティン",
+            "name_de": "バラ　ネル・マーティン",
+            "name": "バラ　ネル・マーティン",
+            "subclass": "board",
+            "rank": "17",
+            "class": "information",
+            "name:latin": "bara neru・mātin",
+            "name_en": "バラ　ネル・マーティン"
+          }
+        },
+        {
+          "id": 59657290521,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāng dǎo shén shè zhōng jīn gōng",
+            "name:nonlatin": "江島神社　中津宮",
+            "name_de": "江島神社　中津宮",
+            "name": "江島神社　中津宮",
+            "subclass": "board",
+            "rank": "18",
+            "class": "information",
+            "name:latin": "jiāng dǎo shén shè zhōng jīn gōng",
+            "name_en": "江島神社　中津宮"
+          }
+        },
+        {
+          "id": 59657290561,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "zhōng jīn gōng",
+            "name:nonlatin": "中津宮",
+            "name_de": "中津宮",
+            "name": "中津宮",
+            "subclass": "board",
+            "rank": "19",
+            "class": "information",
+            "name:latin": "zhōng jīn gōng",
+            "name_en": "中津宮"
+          }
+        },
+        {
+          "id": 59657290571,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shuǐ qín kū",
+            "name:nonlatin": "水琴窟",
+            "name_de": "水琴窟",
+            "name": "水琴窟",
+            "subclass": "board",
+            "rank": "20",
+            "class": "information",
+            "name:latin": "shuǐ qín kū",
+            "name_en": "水琴窟"
+          }
+        },
+        {
+          "id": 59657290591,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shuǐ qínno yīnnogo shén xiào",
+            "name:nonlatin": "水琴の音のご神効",
+            "name_de": "水琴の音のご神効",
+            "name": "水琴の音のご神効",
+            "subclass": "board",
+            "rank": "21",
+            "class": "information",
+            "name:latin": "shuǐ qínno yīnnogo shén xiào",
+            "name_en": "水琴の音のご神効"
+          }
+        },
+        {
+          "id": 59657290621,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jú wǔ lángnoshidare yīng",
+            "name:nonlatin": "菊五郎のしだれ櫻",
+            "name_de": "菊五郎のしだれ櫻",
+            "name": "菊五郎のしだれ櫻",
+            "subclass": "board",
+            "rank": "22",
+            "class": "information",
+            "name:latin": "jú wǔ lángnoshidare yīng",
+            "name_en": "菊五郎のしだれ櫻"
+          }
+        },
+        {
+          "id": 66810010081,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shān èrtsu",
+            "name:nonlatin": "山二つ",
+            "name_de": "山二つ",
+            "name": "山二つ",
+            "subclass": "board",
+            "rank": "23",
+            "class": "information",
+            "name:latin": "shān èrtsu",
+            "name_en": "山二つ"
+          }
+        },
+        {
+          "id": 66810010091,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shān èrtsu",
+            "name:nonlatin": "山二つ",
+            "name_de": "山二つ",
+            "name": "山二つ",
+            "subclass": "board",
+            "rank": "24",
+            "class": "information",
+            "name:latin": "shān èrtsu",
+            "name_en": "山二つ"
+          }
+        },
+        {
+          "id": 68439037171,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "IL CHANTI CAFE",
+            "name_de": "IL CHANTI CAFE",
+            "name": "IL CHANTI CAFE",
+            "subclass": "cafe",
+            "rank": "25",
+            "class": "cafe",
+            "name:latin": "IL CHANTI CAFE",
+            "name_en": "IL CHANTI CAFE"
+          }
+        },
+        {
+          "id": 126038309011,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Drinking water fountain",
+            "name_de": "Drinking water fountain",
+            "name": "Drinking water fountain",
+            "subclass": "drinking_water",
+            "rank": "26",
+            "class": "drinking_water",
+            "name:latin": "Drinking water fountain",
+            "name_en": "Drinking water fountain"
+          }
+        },
+        {
+          "id": 6894261772,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎoyottohābā",
+            "name:ar": "ميناء إنوشيما لليخوت",
+            "name:ja": "江ノ島ヨットハーバー",
+            "name:nonlatin": "江の島ヨットハーバー",
+            "layer": "-1",
+            "name:ca": "port nàutic d'Enoshima",
+            "name:ru": "Яхтенная гавань Эносима",
+            "name:de": "Yachthafen Enoshima",
+            "name_de": "江の島ヨットハーバー",
+            "name": "江の島ヨットハーバー",
+            "subclass": "parking",
+            "name:fr": "port de plaisance d'Enoshima",
+            "rank": "6",
+            "name:en": "Enoshima Yacht Harbor",
+            "name:eo": "jaĥta haveno Enoŝima",
+            "class": "parking",
+            "name:eu": "Enoshima Yate Kaia",
+            "name:latin": "jiāngno dǎoyottohābā",
+            "name:zh": "江之島遊艇港口",
+            "name_en": "江の島ヨットハーバー"
+          }
+        },
+        {
+          "id": 43968271291,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "kafe・tobitcho",
+            "name:nonlatin": "カフェ・トビッチョ",
+            "name_de": "カフェ・トビッチョ",
+            "name": "カフェ・トビッチョ",
+            "subclass": "cafe",
+            "rank": "7",
+            "class": "cafe",
+            "name:latin": "kafe・tobitcho",
+            "name_en": "カフェ・トビッチョ"
+          }
+        },
+        {
+          "id": 59657350871,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shèng tiān dǎoto shèng tiān shàng rén",
+            "name:nonlatin": "聖天島と聖天上人",
+            "name_de": "聖天島と聖天上人",
+            "name": "聖天島と聖天上人",
+            "subclass": "board",
+            "rank": "8",
+            "class": "information",
+            "name:latin": "shèng tiān dǎoto shèng tiān shàng rén",
+            "name_en": "聖天島と聖天上人"
+          }
+        },
+        {
+          "id": 59657350881,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shèng tiān dǎo",
+            "name:nonlatin": "聖天島",
+            "name_de": "聖天島",
+            "name": "聖天島",
+            "subclass": "board",
+            "rank": "9",
+            "class": "information",
+            "name:latin": "shèng tiān dǎo",
+            "name_en": "聖天島"
+          }
+        },
+        {
+          "id": 110383615951,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jiāngno dǎo xī lǜ de zhù lúnsupēsu",
+            "name:ja": "江の島西緑地駐輪スペース",
+            "name:nonlatin": "江の島西緑地駐輪スペース",
+            "name_de": "江の島西緑地駐輪スペース",
+            "name": "江の島西緑地駐輪スペース",
+            "subclass": "bicycle_rental",
+            "rank": "10",
+            "class": "bicycle_rental",
+            "name:latin": "jiāngno dǎo xī lǜ de zhù lúnsupēsu",
+            "name_en": "江の島西緑地駐輪スペース"
+          }
+        },
+        {
+          "id": 99786233,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "xiāng nán gǎng lín gǎng dào lù fù shǔ zhù chē chǎng",
+            "name:nonlatin": "湘南港臨港道路付属駐車場",
+            "name_de": "湘南港臨港道路付属駐車場",
+            "name": "湘南港臨港道路付属駐車場",
+            "subclass": "parking",
+            "rank": "4",
+            "class": "parking",
+            "name:latin": "xiāng nán gǎng lín gǎng dào lù fù shǔ zhù chē chǎng",
+            "name_en": "湘南港臨港道路付属駐車場"
+          }
+        },
+        {
+          "id": 44288073921,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "viewpoint",
+            "class": "attraction",
+            "rank": "69"
+          }
+        },
+        {
+          "id": 46814251951,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "viewpoint",
+            "class": "attraction",
+            "rank": "70"
+          }
+        },
+        {
+          "id": 79754965061,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "viewpoint",
+            "class": "attraction",
+            "rank": "71"
+          }
+        },
+        {
+          "id": 59657290391,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "viewpoint",
+            "class": "attraction",
+            "rank": "27"
+          }
+        },
+        {
+          "id": 68439037051,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "viewpoint",
+            "class": "attraction",
+            "rank": "28"
+          }
+        },
+        {
+          "id": 79755616261,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "viewpoint",
+            "class": "attraction",
+            "rank": "29"
+          }
+        },
+        {
+          "id": 11078834302,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "park",
+            "class": "park",
+            "rank": "72"
+          }
+        },
+        {
+          "id": 1916933472,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "park",
+            "class": "park",
+            "rank": "11"
+          }
+        },
+        {
+          "id": 1916933592,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "park",
+            "class": "park",
+            "rank": "5"
+          }
+        },
+        {
+          "id": 1915554572,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "73"
+          }
+        },
+        {
+          "id": 1915554592,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "swimming_pool",
+            "class": "swimming_pool",
+            "rank": "74"
+          }
+        },
+        {
+          "id": 1915554752,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "75"
+          }
+        },
+        {
+          "id": 1915573702,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "76"
+          }
+        },
+        {
+          "id": 1915671922,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "parking",
+            "class": "parking",
+            "rank": "77"
+          }
+        },
+        {
+          "id": 1916933512,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "garden",
+            "class": "garden",
+            "rank": "78"
+          }
+        },
+        {
+          "id": 1916933522,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "garden",
+            "class": "garden",
+            "rank": "79"
+          }
+        },
+        {
+          "id": 1916933532,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "garden",
+            "class": "garden",
+            "rank": "80"
+          }
+        },
+        {
+          "id": 1916933542,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "garden",
+            "class": "garden",
+            "rank": "81"
+          }
+        },
+        {
+          "id": 1916933612,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "garden",
+            "class": "garden",
+            "rank": "82"
+          }
+        },
+        {
+          "id": 8552336212,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "83"
+          }
+        },
+        {
+          "id": 9677254522,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "swimming_pool",
+            "class": "swimming_pool",
+            "rank": "84"
+          }
+        },
+        {
+          "id": 9677254532,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "swimming_pool",
+            "class": "swimming_pool",
+            "rank": "85"
+          }
+        },
+        {
+          "id": 9677254542,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "swimming_pool",
+            "class": "swimming_pool",
+            "rank": "86"
+          }
+        },
+        {
+          "id": 11168885301,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "87"
+          }
+        },
+        {
+          "id": 25845832081,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "88"
+          }
+        },
+        {
+          "id": 25845832171,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "89"
+          }
+        },
+        {
+          "id": 79754926031,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "90"
+          }
+        },
+        {
+          "id": 79754926481,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "91"
+          }
+        },
+        {
+          "id": 79754961951,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "map",
+            "class": "information",
+            "rank": "92"
+          }
+        },
+        {
+          "id": 79754962061,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "board",
+            "class": "information",
+            "rank": "93"
+          }
+        },
+        {
+          "id": 79754962091,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "94"
+          }
+        },
+        {
+          "id": 79754962381,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "monument",
+            "class": "monument",
+            "rank": "95"
+          }
+        },
+        {
+          "id": 79754962521,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "96"
+          }
+        },
+        {
+          "id": 79754962721,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "map",
+            "class": "information",
+            "rank": "97"
+          }
+        },
+        {
+          "id": 79754963121,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "guidepost",
+            "class": "information",
+            "rank": "98"
+          }
+        },
+        {
+          "id": 79754963931,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "waste_basket",
+            "class": "waste_basket",
+            "rank": "99"
+          }
+        },
+        {
+          "id": 79755798231,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "100"
+          }
+        },
+        {
+          "id": 105726575091,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "gate",
+            "class": "gate",
+            "rank": "101"
+          }
+        },
+        {
+          "id": 105726575111,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "board",
+            "class": "information",
+            "rank": "102"
+          }
+        },
+        {
+          "id": 124527335201,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "motorcycle_parking",
+            "class": "motorcycle_parking",
+            "rank": "103"
+          }
+        },
+        {
+          "id": 1915671932,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "parking",
+            "class": "parking",
+            "rank": "30"
+          }
+        },
+        {
+          "id": 11168869231,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "31"
+          }
+        },
+        {
+          "id": 25845832091,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "32"
+          }
+        },
+        {
+          "id": 79755616271,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "33"
+          }
+        },
+        {
+          "id": 79755616741,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "34"
+          }
+        },
+        {
+          "id": 79755951401,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "map",
+            "class": "information",
+            "rank": "35"
+          }
+        },
+        {
+          "id": 105785877301,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "36"
+          }
+        },
+        {
+          "id": 105785877311,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "37"
+          }
+        },
+        {
+          "id": 105785877321,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "38"
+          }
+        },
+        {
+          "id": 105785877331,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "39"
+          }
+        },
+        {
+          "id": 105785954141,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "artwork",
+            "class": "art_gallery",
+            "rank": "40"
+          }
+        },
+        {
+          "id": 120524573841,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "waste_basket",
+            "class": "waste_basket",
+            "rank": "41"
+          }
+        },
+        {
+          "id": 158166073,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "12"
+          }
+        },
+        {
+          "id": 1915672012,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "parking",
+            "class": "parking",
+            "rank": "13"
+          }
+        },
+        {
+          "id": 1916933562,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "garden",
+            "class": "garden",
+            "rank": "14"
+          }
+        },
+        {
+          "id": 1916978062,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "garden",
+            "class": "garden",
+            "rank": "15"
+          }
+        },
+        {
+          "id": 20228405311,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "gate",
+            "class": "gate",
+            "rank": "16"
+          }
+        },
+        {
+          "id": 25846280471,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "toilets",
+            "class": "toilets",
+            "rank": "6"
+          }
+        },
+        {
+          "id": 25846397211,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "lift_gate",
+            "class": "lift_gate",
+            "rank": "7"
+          }
+        },
+        {
+          "id": 68439090611,
+          "geometryType": 1,
+          "properties": {
+            "subclass": "lift_gate",
+            "class": "lift_gate",
+            "rank": "8"
+          }
+        }
+      ]
+    },
+    "transportation": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "class",
+        "oneway",
+        "service",
+        "subclass",
+        "surface",
+        "bicycle"
+      ],
+      "propertyValues": [
+        "service",
+        "1",
+        "parking_aisle",
+        "footway",
+        "paved",
+        "path",
+        "driveway",
+        "yes",
+        "pedestrian",
+        "tertiary"
+      ],
+      "features": [
+        {
+          "id": 537490542,
+          "geometryType": 2,
+          "properties": {
+            "class": "service",
+            "oneway": "1",
+            "service": "parking_aisle"
+          }
+        },
+        {
+          "id": 1641533402,
+          "geometryType": 2,
+          "properties": {
+            "class": "service"
+          }
+        },
+        {
+          "id": 1916566182,
+          "geometryType": 2,
+          "properties": {
+            "subclass": "footway",
+            "surface": "paved",
+            "class": "path"
+          }
+        },
+        {
+          "id": 1916977872,
+          "geometryType": 2,
+          "properties": {
+            "subclass": "footway",
+            "class": "path"
+          }
+        },
+        {
+          "id": 1917010912,
+          "geometryType": 2,
+          "properties": {
+            "class": "service",
+            "service": "driveway"
+          }
+        },
+        {
+          "id": 2524047562,
+          "geometryType": 2,
+          "properties": {
+            "class": "service",
+            "oneway": "1",
+            "service": "parking_aisle"
+          }
+        },
+        {
+          "id": 2524047582,
+          "geometryType": 2,
+          "properties": {
+            "class": "service",
+            "service": "parking_aisle"
+          }
+        },
+        {
+          "id": 2524049922,
+          "geometryType": 2,
+          "properties": {
+            "subclass": "footway",
+            "bicycle": "yes",
+            "surface": "paved",
+            "class": "path"
+          }
+        },
+        {
+          "id": 7181117252,
+          "geometryType": 2,
+          "properties": {
+            "surface": "paved",
+            "class": "service",
+            "service": "parking_aisle"
+          }
+        },
+        {
+          "id": 7199189852,
+          "geometryType": 2,
+          "properties": {
+            "class": "service",
+            "oneway": "1",
+            "service": "parking_aisle"
+          }
+        },
+        {
+          "id": 7199189862,
+          "geometryType": 2,
+          "properties": {
+            "class": "service",
+            "oneway": "1",
+            "service": "parking_aisle"
+          }
+        },
+        {
+          "id": 7199218882,
+          "geometryType": 2,
+          "properties": {
+            "class": "service",
+            "oneway": "1",
+            "service": "parking_aisle"
+          }
+        },
+        {
+          "id": 12088197752,
+          "geometryType": 2,
+          "properties": {
+            "subclass": "pedestrian",
+            "surface": "paved",
+            "class": "path"
+          }
+        },
+        {
+          "id": 3351420962,
+          "geometryType": 2,
+          "properties": {
+            "surface": "paved",
+            "class": "tertiary"
+          }
+        },
+        {
+          "id": 3771162462,
+          "geometryType": 2,
+          "properties": {
+            "surface": "paved",
+            "class": "tertiary",
+            "oneway": "1"
+          }
+        }
+      ]
+    },
+    "transportation_name": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "name_int",
+        "name:nonlatin",
+        "name_de",
+        "name",
+        "class",
+        "name:latin",
+        "name_en"
+      ],
+      "propertyValues": [
+        "xiāng nán gǎng lín gǎng dào lù",
+        "湘南港臨港道路",
+        "tertiary"
+      ],
+      "features": [
+        {
+          "id": 3351420962,
+          "geometryType": 2,
+          "properties": {
+            "name_int": "xiāng nán gǎng lín gǎng dào lù",
+            "name:nonlatin": "湘南港臨港道路",
+            "name_de": "湘南港臨港道路",
+            "name": "湘南港臨港道路",
+            "class": "tertiary",
+            "name:latin": "xiāng nán gǎng lín gǎng dào lù",
+            "name_en": "湘南港臨港道路"
+          }
+        }
+      ]
+    },
+    "water": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "class"
+      ],
+      "propertyValues": [
+        "ocean"
+      ],
+      "features": [
+        {
+          "id": 20600,
+          "geometryType": 3,
+          "properties": {
+            "class": "ocean"
+          }
+        }
+      ]
+    },
+    "water_name": {
+      "version": 2,
+      "extent": 4096,
+      "propertyNames": [
+        "name_int",
+        "name:nonlatin",
+        "name_de",
+        "intermittent",
+        "name",
+        "class",
+        "name:latin",
+        "name_en",
+        "name:ja-Latn",
+        "name:fr",
+        "name:en",
+        "name:ja-Hira"
+      ],
+      "propertyValues": [
+        "jìng chuān",
+        "境川",
+        "0",
+        "lake",
+        "taidopūru",
+        "タイドプール",
+        "shuǐno guǎng chǎng",
+        "水の広場",
+        "wú rè chí",
+        "無熱池",
+        "shì lì yāo yuè xiǎo xué xiàopūru",
+        "市立腰越小学校プール",
+        "Uchitsuumi",
+        "内っ海",
+        "bay",
+        "West Bay",
+        "西浦",
+        "Nishi-ura",
+        "Baie Ouest",
+        "にしうら"
+      ],
+      "features": [
+        {
+          "id": 602114952,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "jìng chuān",
+            "name:nonlatin": "境川",
+            "name_de": "境川",
+            "intermittent": "0",
+            "name": "境川",
+            "class": "lake",
+            "name:latin": "jìng chuān",
+            "name_en": "境川"
+          }
+        },
+        {
+          "id": 5539499282,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "taidopūru",
+            "name:nonlatin": "タイドプール",
+            "name_de": "タイドプール",
+            "intermittent": "0",
+            "name": "タイドプール",
+            "class": "lake",
+            "name:latin": "taidopūru",
+            "name_en": "タイドプール"
+          }
+        },
+        {
+          "id": 5580341552,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shuǐno guǎng chǎng",
+            "name:nonlatin": "水の広場",
+            "name_de": "水の広場",
+            "intermittent": "0",
+            "name": "水の広場",
+            "class": "lake",
+            "name:latin": "shuǐno guǎng chǎng",
+            "name_en": "水の広場"
+          }
+        },
+        {
+          "id": 8552335592,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "wú rè chí",
+            "name:nonlatin": "無熱池",
+            "name_de": "無熱池",
+            "intermittent": "0",
+            "name": "無熱池",
+            "class": "lake",
+            "name:latin": "wú rè chí",
+            "name_en": "無熱池"
+          }
+        },
+        {
+          "id": 11091720892,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "shì lì yāo yuè xiǎo xué xiàopūru",
+            "name:nonlatin": "市立腰越小学校プール",
+            "name_de": "市立腰越小学校プール",
+            "intermittent": "0",
+            "name": "市立腰越小学校プール",
+            "class": "lake",
+            "name:latin": "shì lì yāo yuè xiǎo xué xiàopūru",
+            "name_en": "市立腰越小学校プール"
+          }
+        },
+        {
+          "id": 120650494861,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "Uchitsuumi",
+            "name:nonlatin": "内っ海",
+            "name_de": "内っ海",
+            "intermittent": "0",
+            "name": "内っ海",
+            "name:ja-Latn": "Uchitsuumi",
+            "class": "bay",
+            "name:latin": "Uchitsuumi",
+            "name_en": "内っ海"
+          }
+        },
+        {
+          "id": 120650495211,
+          "geometryType": 1,
+          "properties": {
+            "name_int": "West Bay",
+            "name:nonlatin": "西浦",
+            "name_de": "西浦",
+            "intermittent": "0",
+            "name": "西浦",
+            "name:ja-Latn": "Nishi-ura",
+            "name:fr": "Baie Ouest",
+            "name:en": "West Bay",
+            "name:ja-Hira": "にしうら",
+            "class": "bay",
+            "name:latin": "West Bay",
+            "name_en": "West Bay"
+          }
+        }
+      ]
+    }
+  },
+  "tileid": "14/14540/6473"
+}

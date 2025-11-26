@@ -168,12 +168,6 @@ public static class PbfSpan
 
         return System.Text.Encoding.UTF8.GetString(slice);
     }
-
-    public static string ReadStringField(ReadOnlySpan<byte> totalSpan)
-    {
-        var offset = 0;
-        return ReadString(totalSpan, ref offset);
-    }
     
     public static List<string> ReadAllStringsWithTag(ReadOnlySpan<byte> span, PbfTag tag)
     {
@@ -181,7 +175,9 @@ public static class PbfSpan
         var offset = 0;
         while (offset < span.Length && PbfSpan.TryFindNextTag(span, tag, ref offset))
         {
-            found.Add(ReadString(span, ref offset));
+            var str = ReadString(span, ref offset);
+            Console.Out.WriteLine($"Found <{str}> at offset {offset}");
+            found.Add(str);
         }
 
         return found;

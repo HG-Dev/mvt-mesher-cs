@@ -1,4 +1,3 @@
-using Mapbox.VectorTile;
 using MvtMesherCore;
 using MvtMesherCore.Mapbox;
 using MvtMesherCore.Models;
@@ -9,10 +8,6 @@ namespace Tests.Protobuf;
 [TestFixture]
 public class PbfTests
 {
-    public const string EnoshimaPbfPath = "Res/14-14540-6473_enoshima.pbf";
-    public const string EnoshimaExpectedLayers = "boundary,building,landcover,landuse,mountain_peak,place," +
-                                                 "poi,transportation,transportation_name,water,water_name";
-
     [SetUp]
     public void Setup()
     {
@@ -24,33 +19,11 @@ public class PbfTests
     
     [TearDown]
     public void TearDown() => VectorTile.ValidationLevel = PbfValidation.None;
-    
-    [TestCase(EnoshimaPbfPath, EnoshimaExpectedLayers)]
-    public void ValidPbfHasExpectedLayerNamesOriginalMapbox(string pbfPath, string layerNameCsv)
-    {
-        using var stream = File.OpenRead(pbfPath);
-        using var byteReader = new BinaryReader(stream);
-        var numBytes = stream.Length;
-        Assert.That(numBytes, Is.LessThan(int.MaxValue));
-        var bytes = byteReader.ReadBytes((int)numBytes);
-        var vectorTileReader = new VectorTileReader(bytes, validate: false);
-        Assert.That(vectorTileReader.LayerNames(), Is.EquivalentTo(layerNameCsv.Split(',')));
-        foreach (var layerName in vectorTileReader.LayerNames())
-        {
-            var layer = vectorTileReader.GetLayer(layerName);
-            var featureCount = layer.FeatureCount();
-            TestContext.Out.WriteLine($"{layerName} (v{layer.Version}) has {featureCount} features; {layer.Keys.Count} keys and {layer.Values.Count} values");
-            for (int i = 0; i < featureCount; i++)
-            {
-                var feature = layer.GetFeature(i);
-                TestContext.Out.WriteLine($"{feature.Id} {feature.GeometryType}: {feature.GeometryCommands.Count} commands; {feature.Tags.Count} tags");
-                TestContext.Out.WriteLine($"Tags = {string.Join(", ", feature.Tags)}");
-            }
-        }
-    }
-    
-    [TestCase(EnoshimaPbfPath, EnoshimaExpectedLayers)]
-    public void ValidPbfHasExpectedLayerNames(string pbfPath, string layerNameCsv)
+
+
+    [TestCase(Constants.AtlanticPbfPath, Constants.AtlanticJsonPath)]
+    [TestCase(Constants.EnoshimaPbfPath, Constants.EnoshimaJsonPath)]
+    public void PbfFileShouldParseWithEquivalenceToJson(string pbfPath, string jsonPath)
     {
         using var stream = File.OpenRead(pbfPath);
         using var byteReader = new BinaryReader(stream);
@@ -58,16 +31,67 @@ public class PbfTests
         Assert.That(numBytes, Is.LessThan(int.MaxValue));
         var bytes = byteReader.ReadBytes((int)numBytes);
         var vectorTile = VectorTile.FromByteArray(bytes, CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-'));
-        Assert.That(vectorTile.LayerNames, Is.EquivalentTo(layerNameCsv.Split(',')));
-        foreach (var (layerName, layer) in vectorTile)
-        {
-            var featureCount = layer.Features.Count;
-            TestContext.Out.WriteLine($"{layerName} (v{layer.Version}) has {featureCount} features, {layer.PropertyNames.Count} keys and {layer.PropertyValues.Count} values");
-            foreach (var (id, feature) in layer.Features)
-            {
-                Assert.That(feature.Id, Is.EqualTo(id));
-                TestContext.Out.WriteLine($"{id} {feature.Geometry}; {feature.Properties.Count} key-value pairs");
-            }
-        }
+        
+        var expectedJson = jsonPath.LoadAsMvtJson();
+        JsonUtility.AssertEquivalency(vectorTile, expectedJson);
     }
+
+    //[TestCase(EnoshimaPbfPath, EnoshimaFeatureNameCsvPath)]
+    //[TestCase(AtlanticPbfPath, AtlanticFeatureNameCsvPath)]
+    // public void ValidPbfHasExpectedFeatureNames(string pbfPath, string jsonPath)
+    // {
+    //     Dictionary<(string layerName, ulong featureId), string> expectedNames = new();
+    //     using (var reader = new StreamReader(jsonPath))
+    //     {
+    //         var jsonText = reader.ReadToEnd();
+    //         var jsonObj = JObject.Parse(jsonText);
+    //         var layersObj = (JObject)jsonObj["Layers"]!;
+    //         foreach (var layerProp in layersObj.Properties())
+    //         {
+    //             var layerName = layerProp.Name;
+    //             var layerObj = (JObject)layerProp.Value;
+    //             var featuresArray = (JArray)layerObj["Features"]!;
+    //             foreach (var featureToken in featuresArray)
+    //             {
+    //                 var featureObj = (JObject)featureToken;
+    //                 var featureId = featureObj["Id"]!.Value<ulong>();
+    //                 var propertiesObj = (JObject)featureObj["Properties"]!;
+    //                 if (propertiesObj.TryGetValue("name", out var nameToken))
+    //                 {
+    //                     var name = nameToken.Value<string>()!;
+    //                     expectedNames.Add((layerName, featureId), name);
+    //                 }
+    //             }
+    //         }
+    //     }
+
+
+    //     using var stream = File.OpenRead(pbfPath);
+    //     using var byteReader = new BinaryReader(stream);
+    //     var numBytes = stream.Length;
+    //     Assert.That(numBytes, Is.LessThan(int.MaxValue));
+    //     var bytes = byteReader.ReadBytes((int)numBytes);
+    //     var vectorTile = VectorTile.FromByteArray(bytes, CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-'));
+
+    //     foreach (var (layerName, layer) in vectorTile)
+    //     {
+    //         var layerShouldHaveNames = expectedNames.Keys.Any(k => k.layerName == layerName);
+    //         var layerActuallyHasNames = layer.PropertyNames.Contains(MvtMesherCore.Mapbox.VectorTileFeature.NAME_PROPERTY_KEY);
+    //         Assert.That(layerActuallyHasNames, Is.EqualTo(layerShouldHaveNames), $"Layer {layerName} name property presence mismatch");
+    //         TestContext.Out.WriteLine($"Layer properties: {string.Join(", ", layer.PropertyNames)}");
+    //         TestContext.Out.WriteLine($"Layer values: {string.Join(", ", layer.PropertyValues)}");
+    //         foreach (var (id, feature) in layer.Features)
+    //         {
+    //             if (expectedNames.TryGetValue((layerName, id), out var expectedName))
+    //             {
+    //                 var actualName = feature.Name;
+    //                 Assert.That(actualName, Is.EqualTo(expectedName), $"Feature {id} in layer {layerName} name mismatch");
+    //             }
+    //             else if (feature.Properties.ContainsKey(MvtMesherCore.Mapbox.VectorTileFeature.NAME_PROPERTY_KEY))
+    //             {
+    //                 Assert.Fail($"Feature {id} in layer {layerName} has unexpected name property: {feature.Name}");
+    //             }
+    //         }
+    //     }
+    // }
 }

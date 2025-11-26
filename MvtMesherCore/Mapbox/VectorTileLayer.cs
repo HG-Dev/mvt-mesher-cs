@@ -12,7 +12,7 @@ namespace MvtMesherCore.Mapbox;
 /// Corresponds to https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L50-L73
 /// </summary>
 [DebuggerDisplay("Layer {Name}")]
-public class VectorTileLayer : IReadOnlyDictionary<ulong, VectorTileFeature>
+public class VectorTileLayer
 {
     const uint DefaultExtent = 4096;
     internal static class PbfTags
@@ -90,11 +90,11 @@ public class VectorTileLayer : IReadOnlyDictionary<ulong, VectorTileFeature>
     public IReadOnlyList<PropertyValue> PropertyValues =>
         _values ??= PbfMemoryUtility.EnumeratePropertyValuesWithTag(_layerData, PbfTags.Values).ToList();
     
-    readonly TileFeatureCollection _features;
     /// <summary>
     /// Feature objects found on this layer.
+    /// Some may have overlapping or missing IDs.
     /// </summary>
-    public IReadOnlyDictionary<ulong, VectorTileFeature> Features => _features;
+    public readonly LayerFeatureGroups FeatureGroups;
     
     /// <summary>
     /// Construct a VectorTileLayer from a slice of vector tile data.
@@ -145,7 +145,7 @@ public class VectorTileLayer : IReadOnlyDictionary<ulong, VectorTileFeature>
             IsUnnamedInPbf = true;
         }
 
-        _features = new (EnumerateFeatures(layerData, this));
+        FeatureGroups = new (EnumerateFeatures(layerData, this));
     }
 
     public override string ToString()
@@ -184,34 +184,4 @@ public class VectorTileLayer : IReadOnlyDictionary<ulong, VectorTileFeature>
             yield return new VectorTileFeature(featureMemory, parent, featuresFound++);
         }
     }
-
-#region IReadOnlyDictionary<ulong, VectorTileFeature> implementation
-    public IEnumerator<KeyValuePair<ulong, VectorTileFeature>> GetEnumerator()
-    {
-        return Features.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return ((IEnumerable)Features).GetEnumerator();
-    }
-
-    public int Count => Features.Count;
-
-    public bool ContainsKey(ulong key)
-    {
-        return Features.ContainsKey(key);
-    }
-
-    public bool TryGetValue(ulong key, out VectorTileFeature value)
-    {
-        return Features.TryGetValue(key, out value);
-    }
-
-    public VectorTileFeature this[ulong key] => Features[key];
-
-    public IEnumerable<ulong> Keys => Features.Keys;
-
-    public IEnumerable<VectorTileFeature> Values => Features.Values;
-#endregion
 }

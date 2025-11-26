@@ -23,6 +23,17 @@ public readonly struct PropertyValue
         public const uint Bool = 7 << 3 | (byte)WireType.Varint;
         
         public static readonly HashSet<PbfTag> ValidSet = [String, Float, Double, Int64, UInt64, SInt64, Bool];
+
+        public static Dictionary<PbfTag, ValueKind> TagToValueKindMap = new()
+        {
+            { (String), ValueKind.String },
+            { (Float), ValueKind.Float },
+            { (Double), ValueKind.Double },
+            { (Int64), ValueKind.Int64 },
+            { (UInt64), ValueKind.UInt64 },
+            { (SInt64), ValueKind.SInt64 },
+            { (Bool), ValueKind.Bool }
+        };
     }
 
     /// <summary>
@@ -74,7 +85,37 @@ public readonly struct PropertyValue
     public readonly Varint Varint;
     public readonly ReadOnlyMemory<byte> Bytes;
 
-    public string StringValue => PbfSpan.ReadStringField(Bytes.Span);
+    public override string ToString()
+    {
+        return $"PropertyValue[{Index}] ({Kind}): {Varint}:{ToShortString()}";
+    }
+
+    public string ToShortString()
+    {
+        switch (Kind)
+        {
+            case ValueKind.String:
+                return StringValue;
+            case ValueKind.Float:
+                return FloatValue.ToString();
+            case ValueKind.Double:
+                return DoubleValue.ToString();
+            case ValueKind.Int64:
+                return Int64Value.ToString();
+            case ValueKind.UInt64:
+                return UInt64Value.ToString();
+            case ValueKind.SInt64:
+                return SInt64Value.ToString();
+            case ValueKind.Bool:
+                return BooleanValue.ToString();
+            default:
+                return "Unknown";
+        }
+    }
+
+    public string StringValue => Kind == ValueKind.String 
+        ? System.Text.Encoding.UTF8.GetString(Bytes.Span) 
+        : throw new PbfReadFailure($"{ToString()} not a string");
     public float FloatValue => Varint.ToUInt32();
     public double DoubleValue => Varint.ToUInt64();
     public long Int64Value => Varint.ToInt64();
