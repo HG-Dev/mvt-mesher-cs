@@ -6,5 +6,5 @@ namespace MvtMesherCore.Mapbox.Geometry;
 public abstract class ParsedGeometry(GeometryType declaredType) : BaseGeometry(declaredType)
 {
     public override bool Parsed => true;
-    public override ParsedGeometry Parse(VectorTileFeature feature) => this;
+    public override ParsedGeometry Parse(float scale = 1f) => this;
 }

@@ -1,3 +1,6 @@
-1. Mesh creation
-2. HTTP client (UniTask)
+1. Mesh creation -- partially complete using Tess
+2. HTTP client (UniTask) -- should be handled by client?
 3. Remove reference to Unity's Newtonsoft.JSON package
+4. VectorTile needs a ToString() method
+5. Consider aggregating layers field in VectorTile instead of treating vector tile as collection -- DONE
+6. Remove reference to vector-tile-cs

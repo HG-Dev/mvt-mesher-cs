@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MvtMesherCore.Collections;
 
 namespace MvtMesherCore.Mapbox.Geometry;
@@ -12,6 +13,7 @@ public class PointGeometry(ReadOnlyPoints points) : ParsedGeometry(GeometryType.
 {
     public readonly ReadOnlyPoints Points = points;
     public override int MajorElementCount => Points.Count;
+    public override IEnumerable<System.Numerics.Vector2> EnumerateAllPoints() => Points;
 
     internal static PointGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
     {
@@ -28,6 +30,12 @@ public class PointGeometry(ReadOnlyPoints points) : ParsedGeometry(GeometryType.
     {
         int valueIdx = 0;
         int offset = 0;
+        /////////
+        // Cursor
+        // Initialized only once; all subsequent command parameters are relative to last position
+        long cX = 0;
+        long cY = 0;
+        /////////
         while (offset < field.Length)
         {
             var cmdInteger = PbfSpan.ReadVarint(field, ref offset).ToUInt32();
@@ -36,18 +44,17 @@ public class PointGeometry(ReadOnlyPoints points) : ParsedGeometry(GeometryType.
 
             if (commandId is not CanvasCommand.MoveTo)
             {
-                if (VectorTile.ValidationLevel.HasFlag(PbfValidation.Geometry))
-                {
-                    throw new PbfReadFailure(
-                        $"Encountered unexpected geometry command command {commandId} when parsing {GeometryType.Point}(s)");
-                }
+                throw new PbfReadFailure(
+                    $"Encountered unexpected geometry command command {commandId} when parsing {GeometryType.Point}(s)");
             }
             
             // For every time MoveTo is repeated, obtain normalized coordinates.
             for (int i = 0; i < pointsToConsume; i++)
             {
-                values[valueIdx++] = PbfSpan.ReadVarint(field, ref offset).ZigZagDecode();
-                values[valueIdx++] = PbfSpan.ReadVarint(field, ref offset).ZigZagDecode();
+                cX += PbfSpan.ReadVarint(field, ref offset).ZigZagDecode();
+                cY += PbfSpan.ReadVarint(field, ref offset).ZigZagDecode();
+                values[valueIdx++] = cX;
+                values[valueIdx++] = cY;
             }
         }
 

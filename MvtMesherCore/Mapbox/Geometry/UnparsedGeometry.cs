@@ -6,25 +6,14 @@ public class UnparsedGeometry(ReadOnlyMemory<byte> commands, GeometryType type) 
 {
     public override bool Parsed => false;
     
-    public override ParsedGeometry Parse(VectorTileFeature feature)
+    public override ParsedGeometry Parse(float scale = 1f)
     {
-        try
+        return DeclaredType switch
         {
-            return DeclaredType switch
-            {
-                GeometryType.Point => PointGeometry.CreateFromCommands(commands.Span, (float)1 / feature.ParentLayer.Extent),
-                GeometryType.Polyline => PolylineGeometry.CreateFromCommands(commands.Span, (float)1 / feature.ParentLayer.Extent),
-                GeometryType.Polygon => PolygonGeometry.CreateFromCommands(commands.Span, (float)1 / feature.ParentLayer.Extent),
-                _ => throw new PbfReadFailure($"{DeclaredType} is unsupported geometry type"),
-            };
-        }
-        catch (PbfReadFailure geometryIssue)
-        {
-            throw new PbfValidationFailure(PbfValidation.Geometry, $"{DeclaredType} read failure on {feature}", geometryIssue);
-        }
-        catch (ArgumentOutOfRangeException alloationIssue)
-        {
-            throw new PbfValidationFailure(PbfValidation.Geometry, $"{DeclaredType} read failure on {feature}", alloationIssue);
-        }
+            GeometryType.Point => PointGeometry.CreateFromCommands(commands.Span, scale),
+            GeometryType.Polyline => PolylineGeometry.CreateFromCommands(commands.Span, scale),
+            GeometryType.Polygon => PolygonGeometry.CreateFromCommands(commands.Span, scale),
+            _ => throw new PbfReadFailure($"{DeclaredType} is unsupported geometry type"),
+        };
     }
 }

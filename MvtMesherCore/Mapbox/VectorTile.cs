@@ -8,12 +8,12 @@ using MvtMesherCore.Models;
 namespace MvtMesherCore.Mapbox;
 
 [DebuggerDisplay("Tile {TileId}")]
-public class VectorTile : ReadOnlyDictionary<string, VectorTileLayer>
+public class VectorTile
 {
     public const int ProtobufSchemaVersion = 2;
-    static class PbfTags
+    public static class PbfTags
     {
-        internal static readonly PbfTag Layers = new PbfTag(3, WireType.Len);
+        public static readonly PbfTag Layers = new PbfTag(3, WireType.Len);
         internal static readonly Dictionary<string, PbfTag> Dictionary = new()
         {
             { "Layers", Layers }
@@ -21,32 +21,48 @@ public class VectorTile : ReadOnlyDictionary<string, VectorTileLayer>
         internal static readonly HashSet<int> ValidFieldNumbers = [..Dictionary.Values.Select(tag => tag.FieldNumber)];
     }
 
-    public static PbfValidation ValidationLevel;
+    public class ReadSettings
+    {
+        public bool ScaleToLayerExtents = true;
+        public PbfValidation ValidationLevel = PbfValidation.Standard;
+    }
+
     public readonly CanonicalTileId TileId;
-    public ICollection<string> LayerNames => Dictionary.Keys;
+    public readonly ReadSettings Settings;
+    
+    /// <summary>
+    /// Alternative dereferencing method for clarity
+    /// </summary>
+    public readonly ReadOnlyDictionary<string, VectorTileLayer> LayersByName;
+    public ICollection<string> LayerNames => LayersByName.Keys;
+    public ICollection<VectorTileLayer> Layers => LayersByName.Values;
+
 
     /// <summary>
     /// A Mapbox Vector Tile layer. Contains features, Name, Version, Extent (ulong), PropertyValues, and Keys
     /// </summary>
-    VectorTile(CanonicalTileId tileId, Dictionary<string, VectorTileLayer> layers) : base(layers)
+    VectorTile(CanonicalTileId tileId, Dictionary<string, VectorTileLayer> layers, ReadSettings settings)
     {
         TileId = tileId;
+        Settings = settings;
+        LayersByName = new ReadOnlyDictionary<string, VectorTileLayer>(layers);
     }
 
-    public static VectorTile FromByteArray(byte[] rawData, CanonicalTileId tileId)
+    public static VectorTile FromByteArray(byte[] rawData, CanonicalTileId tileId, ReadSettings? settings = null)
     {
+        settings ??= new ReadSettings();
         if (rawData is not { Length: > 0 }) throw new ArgumentException("Array must not be null or empty.", nameof(rawData));
         // Detect gzipped array: https://stackoverflow.com/questions/19364497/how-to-tell-if-a-byte-array-is-gzipped
         if (rawData[0] == 31 /*0x1F*/ && rawData[1] == 139) throw new ArgumentException("Array bytes are a gzip stream. It must be unzipped first.", nameof(rawData));
 
-        if (ValidationLevel.HasFlag(PbfValidation.Tags) &&
+        if (settings.ValidationLevel.HasFlag(PbfValidation.Tags) &&
             PbfSpan.FindInvalidTags(rawData, PbfTags.ValidFieldNumbers) is { Count: > 0 } invalid)
         {
             throw PbfValidationFailure.FromTags(invalid);
         }
 
         var layers = new Dictionary<string, VectorTileLayer>();
-        var tile = new VectorTile(tileId, layers);
+        var tile = new VectorTile(tileId, layers, settings);
         PopulateLayers(layers, rawData, tile);
         return tile;
     }
@@ -60,7 +76,7 @@ public class VectorTile : ReadOnlyDictionary<string, VectorTileLayer>
             // Create a potential new layer and get its Name through construction
             var layer = VectorTileLayer.FromBytes(layerMemory, parent, layerIndex++);
         
-            if (ValidationLevel.HasFlag(PbfValidation.LayerNames) && layer.IsUnnamedInPbf)
+            if (parent.Settings.ValidationLevel.HasFlag(PbfValidation.LayerNames) && layer.IsUnnamedInPbf)
             {
                 // Edge case to check: name field comes at very end of layer data
                 throw new PbfValidationFailure(PbfValidation.LayerNames, $"{layer.Name} is missing a name.");
@@ -70,12 +86,17 @@ public class VectorTile : ReadOnlyDictionary<string, VectorTileLayer>
             {
                 layers.Add(layer.Name, layer);
             }
-            else if (ValidationLevel.HasFlag(PbfValidation.LayerDuplication))
+            else if (parent.Settings.ValidationLevel.HasFlag(PbfValidation.LayerDuplication))
             {
                 throw new PbfValidationFailure(PbfValidation.LayerDuplication,
                     $"Duplicate layer name '{layer.Name}' ({layer.Index}); " +
                     $"existing layer has index {existingLayer.Index}.");
             }
         }
+    }
+
+    public override string ToString()
+    {
+        return $"VectorTile({TileId.ToShortString()}, {LayersByName.Count} layers)";
     }
 }

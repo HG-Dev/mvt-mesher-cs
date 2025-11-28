@@ -11,6 +11,7 @@ public readonly struct ReadOnlyPolylines : IReadOnlyList<ReadOnlyPoints>
 {
     public readonly ReadOnlyMemory<float> RawValues;
     readonly ReadOnlyPoints[] _polylines;
+    public readonly bool AllClosedRings;
     
     /// <summary>
     /// Construct a read-only collection of polyline data.
@@ -18,7 +19,7 @@ public readonly struct ReadOnlyPolylines : IReadOnlyList<ReadOnlyPoints>
     /// <param name="floats">1D collection of points (even length)</param>
     /// <param name="pointCountPerPolyline">Number of Vector2 points per polyline (sum up to <see cref="floats"/> length / 2)</param>
     /// <exception cref="ArgumentException">Thrown if <see cref="values"/> has odd length</exception>
-    public ReadOnlyPolylines(ReadOnlyMemory<float> floats, ReadOnlySpan<int> pointCountPerPolyline)
+    public ReadOnlyPolylines(ReadOnlyMemory<float> floats, ReadOnlySpan<int> pointCountPerPolyline, bool ensureClosedRings = false)
     {
         if (floats.Length % 2 != 0)
         {
@@ -27,6 +28,7 @@ public readonly struct ReadOnlyPolylines : IReadOnlyList<ReadOnlyPoints>
 
         RawValues = floats;
         var totalFloatCount = 0;
+        AllClosedRings = true;
         _polylines = new ReadOnlyPoints[pointCountPerPolyline.Length];
         // Populate polylines array by iterating over pointCounts
         for (int i = 0; i < pointCountPerPolyline.Length; i++)
@@ -35,7 +37,9 @@ public readonly struct ReadOnlyPolylines : IReadOnlyList<ReadOnlyPoints>
 
             try
             {
-                _polylines[i] = new ReadOnlyPoints(RawValues.Slice(totalFloatCount, floatsToConsume));    
+                _polylines[i] = new ReadOnlyPoints(RawValues.Slice(totalFloatCount, floatsToConsume), ensureClosedRings);
+                // Track if all polylines are closed rings
+                AllClosedRings &= _polylines[i].IsClosedRing;
             }
             catch (ArgumentOutOfRangeException outOfRangeError)
             {
@@ -52,6 +56,8 @@ public readonly struct ReadOnlyPolylines : IReadOnlyList<ReadOnlyPoints>
             throw new ArgumentException($"{nameof(ReadOnlyPolylines)} requires polyline point counts to sum to {floats.Length} floats, but got {totalFloatCount} floats");
         }
     }
+
+    public static readonly ReadOnlyPolylines Empty = new ReadOnlyPolylines(ReadOnlyMemory<float>.Empty, ReadOnlySpan<int>.Empty);
 
     public ReadOnlyPolylines Slice(int startIndex, int count)
     {
@@ -73,7 +79,7 @@ public readonly struct ReadOnlyPolylines : IReadOnlyList<ReadOnlyPoints>
         for (int i = 0; i < startIndex; i++)
             offset += _polylines[i].RawValues.Length;
 
-        return new ReadOnlyPolylines(RawValues.Slice(offset, totalFloats), pointCountPerPolyline);
+        return new ReadOnlyPolylines(RawValues.Slice(offset, totalFloats), pointCountPerPolyline, ensureClosedRings: AllClosedRings);
     }
 
     public ReadOnlyPolylines Slice(Range range)

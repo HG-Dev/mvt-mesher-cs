@@ -23,7 +23,7 @@ public class TesselationTests
         Assert.That(numBytes, Is.LessThan(int.MaxValue));
         var bytes = byteReader.ReadBytes((int)numBytes);
         var vectorTile = VectorTile.FromByteArray(bytes, CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-'));
-        var polygonGeometries = vectorTile.SelectMany(layerPair => layerPair.Value.FeatureGroups.EnumerateIndividualFeatures())
+        var polygonGeometries = vectorTile.LayersByName.SelectMany(layerPair => layerPair.Value.FeatureGroups.EnumerateIndividualFeatures())
             .Where(feature => feature.Geometry is PolygonGeometry)
             .Select(feature => (feature, (PolygonGeometry)feature.Geometry))
             .ToList();
@@ -43,7 +43,7 @@ public class TesselationTests
                 }
                 tess.Tessellate();
 
-                TestContext.Out.WriteLine($"Polygon from {feature.ParentLayer.Name}/{feature.Name} with {polygon.AllRings.Count} rings and {originalPointCount} points produced {tess.ElementCount} triangles and {tess.Vertices.Length} vertices");
+                //TestContext.Out.WriteLine($"Polygon from {feature.ParentLayer.Name}/{feature.Name} with {polygon.AllRings.Count} rings and {originalPointCount} points produced {tess.ElementCount} triangles and {tess.Vertices.Length} vertices");
             }
         }
 

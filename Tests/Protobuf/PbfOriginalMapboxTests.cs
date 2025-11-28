@@ -1,12 +1,42 @@
 using Mapbox.VectorTile;
+using Mapbox.VectorTile.Geometry;
 using MvtMesherCore.Models;
-using Newtonsoft.Json.Linq;
+using GeometryType = MvtMesherCore.Mapbox.Geometry.GeometryType;
 
 namespace Tests.Protobuf;
 
+[Ignore("Utility tests for extracting geometry commands and exporting MvtJson using original Mapbox methods")]
 [TestFixture]
 public class PbfOriginalMapboxTests
 {
+    [TestCase(Constants.AtlanticPbfPath, (ulong)75124043, GeometryType.Polygon, "Res")]
+    [TestCase(Constants.EnoshimaPbfPath, (ulong)1916566182, GeometryType.Polyline, "Res")]
+    [TestCase(Constants.EnoshimaPbfPath, (ulong)1915597462, GeometryType.Polygon, "Res")]
+    public void ExtractAnomalousGeometryCommands(string pbfPath, ulong id, GeometryType geoType, string outFolder)
+    {
+        using var stream = File.OpenRead(pbfPath);
+        using var byteReader = new BinaryReader(stream);
+        if (!PbfUtility.TryFindGeometryCommandBytesForFeature(byteReader.ReadBytes((int)stream.Length),
+                featureId: id,
+                geometryType: geoType,
+                out ReadOnlyMemory<byte> geometryCommands))
+        {
+            throw new Exception("Failed to find geometry commands for feature");
+        }
+
+        var geo = new MvtMesherCore.Mapbox.Geometry.UnparsedGeometry(geometryCommands, geoType);
+        Assert.DoesNotThrow(() =>
+        {
+            var parsed = geo.Parse();
+            TestContext.Out.WriteLine($"Parsed geometry: {string.Join(", ", parsed.EnumerateAllPoints().Select(pt => $"({pt.X}, {pt.Y})"))}");
+        });
+
+        var tileId = CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-').ToShortString('-');
+        using var bytesFile = File.Open(Path.Combine(outFolder, $"{tileId}_f{id}-{(byte)geoType}_gc.bytes"), FileMode.Create, FileAccess.Write);
+        using var bytesWriter = new BinaryWriter(bytesFile);
+        bytesWriter.Write(geometryCommands.Span);
+    }
+
     [TestCase(Constants.EnoshimaPbfPath, Constants.EnoshimaJsonPath)]
     [TestCase(Constants.AtlanticPbfPath, Constants.AtlanticJsonPath)]
     public void ExportMvtJsonUsingOriginalMapboxMethods(string pbfPath, string outfileJson)
@@ -48,21 +78,19 @@ public class PbfOriginalMapboxTests
                     propertyDict[key] = value?.ToString() ?? throw new Exception("Null property value");
                 }
 
+                List<MvtUnscaledJsonPoint> parsedGeometry = DecodeGeometry.GetGeometry(
+                    (ulong)layer.Extent, // Extent isn't used
+                    feature.GeometryType,
+                    feature.GeometryCommands,
+                    scale: 1.0f // Neither is scale. Go figure.
+                ).SelectMany(part => part.Select(pt => (MvtUnscaledJsonPoint)(pt.X, pt.Y))).ToList();
                 featureObjs.Add(new MvtJsonFeature()
                 {
                     Id = feature.Id,
                     GeometryType = (byte)feature.GeometryType,
+                    GeometryPoints = parsedGeometry,
                     Properties = propertyDict
                 });
-
-                if (feature.Layer.Keys.Contains("name") && feature.GetValue("name") is string name)
-                {
-                    TestContext.Out.WriteLine($"Feature {feature.Id} in layer {layerName} has name: {name}");
-                }
-                else
-                {
-                    TestContext.Out.WriteLine($"Feature {feature.Id} in layer {layerName} has no name");
-                }
             }
             layerObj.Features = featureObjs;
             mvtJson.Layers[layerName] = layerObj;

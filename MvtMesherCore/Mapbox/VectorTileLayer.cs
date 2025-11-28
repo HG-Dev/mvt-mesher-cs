@@ -15,18 +15,18 @@ namespace MvtMesherCore.Mapbox;
 public class VectorTileLayer
 {
     const uint DefaultExtent = 4096;
-    internal static class PbfTags
+    public static class PbfTags
     {
-        internal const uint Name = (1 << 3 | (byte)WireType.Len);
+        public const uint Name = (1 << 3 | (byte)WireType.Len);
         ///<seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#60">Schema on GitHub</seealso>
-        internal const uint Features = (2 << 3 | (byte)WireType.Len);
+        public const uint Features = (2 << 3 | (byte)WireType.Len);
         ///<seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#63">Schema on GitHub</seealso>
-        internal const uint Keys = (3 << 3 | (byte)WireType.Len);
+        public const uint Keys = (3 << 3 | (byte)WireType.Len);
         ///<seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#65">Schema on GitHub</seealso>
-        internal const uint Values = (4 << 3 | (byte)WireType.Len);
-        internal const uint Extent = (5 << 3 | (byte)WireType.Fixed32);
-        internal const uint Version = (15 << 3 | (byte)WireType.Fixed32);
-    
+        public const uint Values = (4 << 3 | (byte)WireType.Len);
+        public const uint Extent = (5 << 3 | (byte)WireType.Fixed32);
+        public const uint Version = (15 << 3 | (byte)WireType.Fixed32);
+
         internal static readonly Dictionary<string, PbfTag> Dictionary = new()
         {
             { "Name", (Name) },
@@ -87,8 +87,34 @@ public class VectorTileLayer
     /// Property values referenced by features of this layer.
     /// </summary>
     /// TODO: Read from bytes lazily so that only required values are obtained
-    public IReadOnlyList<PropertyValue> PropertyValues =>
-        _values ??= PbfMemoryUtility.EnumeratePropertyValuesWithTag(_layerData, PbfTags.Values).ToList();
+    public IReadOnlyList<PropertyValue> PropertyValues
+    {
+        get
+        {
+            if (_values is not null)
+            {
+                return _values;
+            }
+            _values = PbfMemoryUtility.EnumeratePropertyValuesWithTag(_layerData, PbfTags.Values).ToList();
+            if (ParentTile.Settings.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
+            {
+                var distinctValues = new HashSet<PropertyValue>();
+                var duplicateValues = new List<PropertyValue>();
+                foreach (var val in _values)
+                {
+                    if (!distinctValues.Add(val))
+                    {
+                        duplicateValues.Add(val);
+                    }
+                }
+                if (duplicateValues.Any())
+                {
+                    Console.Error.WriteLine($"Warning: {this} contains duplicate property values: {string.Join(", ", duplicateValues)}");
+                }
+            }
+            return _values;
+        }
+    }
     
     /// <summary>
     /// Feature objects found on this layer.
@@ -111,20 +137,20 @@ public class VectorTileLayer
         // https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L50-L73
         int version = PbfSpan.TryFindFirstTag(layerData.Span, PbfTags.Version, out int offset) 
             ? (int)PbfSpan.ReadFixed32(layerData.Span, ref offset) 
-            : VectorTile.ValidationLevel.HasFlag(PbfValidation.FeatureVersion) 
+            : parent.Settings.ValidationLevel.HasFlag(PbfValidation.LayerVersion) 
                 ? -1 
                 : VectorTile.ProtobufSchemaVersion;
 
         switch (version)
         {
             case -1: 
-                throw new PbfValidationFailure(PbfValidation.FeatureVersion, $"Feature on layer #{layerIndex} of {parent.TileId} is missing feature version tag");
+                throw new PbfValidationFailure(PbfValidation.LayerVersion, $"Feature on layer #{layerIndex} of {parent.TileId} is missing feature version tag");
             case not VectorTile.ProtobufSchemaVersion:
-                throw new PbfValidationFailure(PbfValidation.FeatureVersion, $"Feature on layer #{layerIndex} of {parent.TileId} has invalid feature version tag {version}; expected {VectorTile.ProtobufSchemaVersion}");
+                throw new PbfValidationFailure(PbfValidation.LayerVersion, $"Feature on layer #{layerIndex} of {parent.TileId} has invalid feature version tag {version}; expected {VectorTile.ProtobufSchemaVersion}");
         }
         
         // Validate all tags if required
-        if (VectorTile.ValidationLevel.HasFlag(PbfValidation.Tags) &&
+        if (parent.Settings.ValidationLevel.HasFlag(PbfValidation.Tags) &&
             PbfSpan.FindInvalidTags(layerData.Span, PbfTags.ValidFieldNumbers) is {Count: > 0} invalid)
         {
             throw PbfValidationFailure.FromTags(invalid);
@@ -150,7 +176,7 @@ public class VectorTileLayer
 
     public override string ToString()
     {
-        return $"Layer: {Name} in {_parent}";
+        return $"Layer({Name}) in {_parent}";
     }
 
     static bool TryGetName(ReadOnlySpan<byte> layerSpan, out string name)

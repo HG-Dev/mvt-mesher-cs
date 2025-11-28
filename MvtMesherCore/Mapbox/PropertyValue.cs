@@ -9,7 +9,7 @@ namespace MvtMesherCore.Mapbox;
 /// <param name="index"></param>
 /// <param name="kind"></param>
 /// <param name="bytes"></param>
-public readonly struct PropertyValue
+public readonly struct PropertyValue : IEquatable<PropertyValue>
 {
     public static class PbfTags
     {
@@ -73,10 +73,8 @@ public readonly struct PropertyValue
                 Varint = PbfSpan.ReadVarint(valueField.Span, ref offset);
                 break;
             default:
-                if (VectorTile.ValidationLevel.HasFlag(PbfValidation.Tags))
-                    throw new PbfReadFailure($"Unexpected field number when reading Value messages: {valueTag}" +
-                                             $"\n{nameof(PbfTags.ValidSet)} has {string.Join(", ", PbfTags.ValidSet)}");
-                break;
+                throw new PbfReadFailure($"Unexpected field number when reading Value messages: {valueTag}" +
+                                        $"\n{nameof(PbfTags.ValidSet)} has {string.Join(", ", PbfTags.ValidSet)}");
         }
     }
     
@@ -111,6 +109,11 @@ public readonly struct PropertyValue
             default:
                 return "Unknown";
         }
+    }
+
+    public bool Equals(PropertyValue other)
+    {
+        return Kind == other.Kind && Varint.Equals(other.Varint) && Bytes.Span.SequenceEqual(other.Bytes.Span);
     }
 
     public string StringValue => Kind == ValueKind.String 

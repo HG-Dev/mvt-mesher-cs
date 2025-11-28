@@ -14,5 +14,5 @@ public readonly struct Polygon(ReadOnlyPolylines rings)
     public ReadOnlyPoints ExteriorRing => _rings[0];
     public ReadOnlyPolylines InteriorRings => HasInteriorRings
         ? _rings.Slice(1..)
-        : default;
+        : ReadOnlyPolylines.Empty;
 }

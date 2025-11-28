@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using MvtMesherCore.Mapbox.Geometry;
@@ -11,17 +12,23 @@ namespace MvtMesherCore.Mapbox;
 /// ReadOnlyMemory byte slice of its parent layer's ReadOnlyMemory.
 /// Corresponds to https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L31-L47
 /// </summary>
+/// <remarks>
+/// Feature geometry often extends beyond the bounds of its parent tile,
+/// so clipping may be necessary when rendering or meshing.
+/// Additionally, features may be duplicated between tiles to ensure
+/// continuity and completeness.
+/// </remarks>
 [DebuggerDisplay("Feature {Id}")]
 public class VectorTileFeature
 {
     public const string NAME_PROPERTY_KEY = "name";
 
-    static class PbfTags
+    public static class PbfTags
     {
-        internal const uint Id = 1 << 3 | (byte)WireType.Varint;
-        internal const uint Tags = 2 << 3 | (byte)WireType.Len;
-        internal const uint Type = 3 << 3 | (byte)WireType.Varint;
-        internal const uint Geometry = 4 << 3 | (byte)WireType.Len;
+        public const uint Id = 1 << 3 | (byte)WireType.Varint;
+        public const uint Tags = 2 << 3 | (byte)WireType.Len;
+        public const uint Type = 3 << 3 | (byte)WireType.Varint;
+        public const uint Geometry = 4 << 3 | (byte)WireType.Len;
         
         internal static readonly Dictionary<string, PbfTag> Dictionary = new()
         {
@@ -37,6 +44,7 @@ public class VectorTileFeature
     
     readonly VectorTileLayer _parent;
     public VectorTileLayer ParentLayer => _parent;
+    protected VectorTile.ReadSettings Settings => _parent.ParentTile.Settings;
     
     readonly ReadOnlyMemory<byte> _featureData;
     
@@ -56,7 +64,7 @@ public class VectorTileFeature
                 {
                     return val.StringValue;
                 }
-                else if (VectorTile.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
+                else if (Settings.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
                 {
                     throw new PbfValidationFailure(PbfValidation.FeaturePropertyPairs, $"{ToString()} has 'name' property with unexpected kind {val.Kind}");
                 }
@@ -84,7 +92,22 @@ public class VectorTileFeature
         get
         {
             if (!_geometry.Parsed)
-                _geometry = _geometry.Parse(this);
+            {
+                try
+                {
+                    _geometry = _geometry.Parse(
+                        ParentLayer.ParentTile.Settings.ScaleToLayerExtents ? (1f / ParentLayer.Extent) : 1f);
+                }
+                catch (PbfReadFailure geometryIssue)
+                {
+                    throw new PbfValidationFailure(PbfValidation.Geometry, $"{_geometry.DeclaredType} read failure on {this}", geometryIssue);
+                }
+                catch (ArgumentOutOfRangeException alloationIssue)
+                {
+                    throw new PbfValidationFailure(PbfValidation.Geometry, $"{_geometry.DeclaredType} read failure on {this}", alloationIssue);
+                }
+            }
+
             return _geometry;
         }
     }
@@ -107,7 +130,7 @@ public class VectorTileFeature
         Index = index;
         
         // Validate all tags if required
-        if (VectorTile.ValidationLevel.HasFlag(PbfValidation.Tags) &&
+        if (Settings.ValidationLevel.HasFlag(PbfValidation.Tags) &&
             PbfSpan.FindInvalidTags(featureData.Span, PbfTags.ValidFieldNumbers) is {Count: > 0} invalid)
         {
             throw PbfValidationFailure.FromTags(invalid);
@@ -131,7 +154,6 @@ public class VectorTileFeature
                     continue;
                 case PbfTags.Type:
                     geometryType = (GeometryType)PbfSpan.ReadVarint(featureData.Span, ref offset).ToUInt64();
-                    Console.Out.WriteLine($"{Id} geometry type: " + geometryType);
                     continue;
                 case PbfTags.Tags:
                     var tagSpan = PbfMemory.ReadLengthDelimited(featureData, ref offset).Span;
@@ -146,7 +168,7 @@ public class VectorTileFeature
 
         if (kvTags.Count % 2 is not 0)
         {
-            if (VectorTile.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
+            if (Settings.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
             {
                 throw new PbfValidationFailure(PbfValidation.FeaturePropertyPairs, 
                     $"Feature {Id} on {_parent.Name} layer of {_parent.ParentTile.TileId} has odd number of KV tags");
@@ -162,7 +184,7 @@ public class VectorTileFeature
 
     public override string ToString()
     {
-        return $"Feature: {Id} of {_parent}";
+        return $"Feature({Id}:{GeometryType}) of {_parent}";
     }
 
     static Dictionary<string, PropertyValue> PopulateProperties(List<int> indices, IReadOnlyList<string> keys)

@@ -55,4 +55,42 @@ public class ModelTests
         Assert.That(tileJson.Layers, Has.Length.EqualTo(16));
         Assert.That(tileJson.Bounds, Is.Not.Default);
     }
+
+    [Test]
+    public void EquivalentJsonFeaturesShouldWorkInHashSet()
+    {
+        var feature1 = new MvtJsonFeature
+        {
+            Id = 123,
+            GeometryType = 1,
+            Properties = new Dictionary<string, string>
+            {
+                {"key1", "value1"},
+                {"key2", "value2"}
+            },
+            GeometryPoints = new List<MvtUnscaledJsonPoint>
+            {
+                (10, 20),
+                (30, 40)
+            }
+        };
+        var feature2 = new MvtJsonFeature
+        {
+            Id = 123,
+            GeometryType = 1,
+            Properties = new Dictionary<string, string>
+            {
+                {"key1", "value1"},
+                {"key2", "value2"}
+            },
+            GeometryPoints = new List<MvtUnscaledJsonPoint>
+            {
+                (10, 20),
+                (30, 40)
+            }
+        };
+
+        var featureSet = new HashSet<MvtJsonFeature> { feature1 };
+        Assert.That(featureSet.Contains(feature2), Is.True, "Equivalent features should be considered equal in the hash set");
+    }
 }

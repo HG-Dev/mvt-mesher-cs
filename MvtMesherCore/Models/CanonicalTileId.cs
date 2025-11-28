@@ -30,7 +30,7 @@ public record CanonicalTileId(byte Z, int X, int Y)
         public CanonicalTileId ToReadOnly() => new((byte)z,x,y);
     }
     
-    public string ToShortString() => $"{Z}/{X}/{Y}";
+    public string ToShortString(char delimiter='/') => $"{Z}{delimiter}{X}{delimiter}{Y}";
     
     public static CanonicalTileId FromDelimitedPatternInString(string input, char delimiter = '/')
     {

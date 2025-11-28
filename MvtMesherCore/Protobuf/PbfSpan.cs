@@ -176,7 +176,6 @@ public static class PbfSpan
         while (offset < span.Length && PbfSpan.TryFindNextTag(span, tag, ref offset))
         {
             var str = ReadString(span, ref offset);
-            Console.Out.WriteLine($"Found <{str}> at offset {offset}");
             found.Add(str);
         }
 

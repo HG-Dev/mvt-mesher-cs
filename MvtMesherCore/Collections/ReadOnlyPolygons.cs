@@ -10,25 +10,42 @@ namespace MvtMesherCore.Collections;
 /// Polygons are defined as one exterior ring followed by one or more interior rings;
 /// thus a polygon can also be defined as a list of polylines.
 /// </summary>
+/// <remarks>
+/// Rings are defined as closed loops of points, where the first and last points are identical.
+/// The exterior ring is typically wound clockwise, while interior rings (holes) are wound counter-clockwise.
+/// Each polygon must contain at least one ring (the exterior); additional rings are optional.
+/// Each ring must contain at least two points to form a valid polygon shape;
+/// if the first and last points differ, the ring is automatically closed by repeating the first point at the end.
+/// </remarks>
 public readonly struct ReadOnlyPolygons : IReadOnlyList<Polygon>
 {
     public readonly ReadOnlyMemory<float> RawValues;
-    readonly Polygon[] _polygons; 
+    readonly Polygon[] _polygons;
     
     /// <summary>
     /// Construct a read-only collection of polyline data.
     /// </summary>
     /// <param name="floats">1D collection of points of even length.</param>
-    /// <param name="ringCounts">Number of rings (polylines) per polygon. The sum of this should equal the length of <see cref="pointCounts"/>.
-    /// <param name="pointCounts">Number of X + Y points per polyline (coordinate count * 2)</param>
+    /// <param name="ringCounts">Number of rings (polylines) per polygon. The sum of this should equal the length of <see cref="rawPointCountPerRing"/>.
+    /// <param name="rawPointCountPerRing">Number of X + Y points per polyline (coordinate count * 2); rings will be closed if the first and last points differ.</param>
     /// <exception cref="ArgumentException">Thrown if <see cref="values"/> has odd length</exception>
     public ReadOnlyPolygons(ReadOnlyMemory<float> floats, 
         ReadOnlySpan<int> ringCountPerPolygon, 
-        ReadOnlySpan<int> pointCountPerRing)
+        ReadOnlySpan<int> rawPointCountPerRing)
     {
         if (floats.Length % 2 != 0)
         {
             throw new ArgumentException($"{nameof(ReadOnlyPolygons)} requires even number of values, but got {floats.Length}");
+        }
+
+        if (ringCountPerPolygon.Length == 0)
+        {
+            throw new ArgumentException($"{nameof(ReadOnlyPolygons)} requires at least one polygon definition (ring count per polygon).");
+        }
+
+        if (rawPointCountPerRing.Length == 0)
+        {
+            throw new ArgumentException($"{nameof(ReadOnlyPolygons)} requires at least one ring definition (point count per ring).");
         }
 
         RawValues = floats;
@@ -43,7 +60,7 @@ public readonly struct ReadOnlyPolygons : IReadOnlyList<Polygon>
             var ringsToConsume = ringCountPerPolygon[polygonIdx];
 
             // The Vector2 point count for each ring
-            var ringPointCounts = pointCountPerRing.Slice(currentRingStartIdx, ringsToConsume);
+            var ringPointCounts = rawPointCountPerRing.Slice(currentRingStartIdx, ringsToConsume);
             // Values required to construct each ring
             floatCount = 0;
             foreach (var pointCount in ringPointCounts)
@@ -53,7 +70,8 @@ public readonly struct ReadOnlyPolygons : IReadOnlyList<Polygon>
             _polygons[polygonIdx] = new Polygon(
                 new ReadOnlyPolylines(
                     RawValues.Slice(currentFloatStartIdx, floatCount), 
-                    ringPointCounts));
+                    ringPointCounts, 
+                    ensureClosedRings: true));
 
             currentFloatStartIdx += floatCount;
             currentRingStartIdx += ringsToConsume;
@@ -64,9 +82,9 @@ public readonly struct ReadOnlyPolygons : IReadOnlyList<Polygon>
             throw new ArgumentException($"{floats.Length} float values were given, but final index was {currentFloatStartIdx}");
         }
 
-        if (currentRingStartIdx != pointCountPerRing.Length)
+        if (currentRingStartIdx != rawPointCountPerRing.Length)
         {
-            throw new ArgumentException($"{pointCountPerRing.Length} ring entries were given, but final index was {currentRingStartIdx}");
+            throw new ArgumentException($"{rawPointCountPerRing.Length} ring entries were given, but final index was {currentRingStartIdx}");
         }
     }
     

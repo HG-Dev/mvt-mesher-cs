@@ -35,8 +35,14 @@
       "features": [
         {
           "id": 75124073,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": 7336,
+              "y": 2809
+            }
+          ],
+          "props": {
             "name:pt": "Área Marinha Protegida do Banco Princesa Alice",
             "name_int": "Princess Alice Bank Marine Protected Area",
             "name:de": "Meeresschutzgebiet Princess-Alice-Bank",
@@ -51,8 +57,14 @@
         },
         {
           "id": 75124103,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": 3914,
+              "y": -3584
+            }
+          ],
+          "props": {
             "name_int": "Área Marinha Protegida do Monte Submarino Altair",
             "name_de": "Área Marinha Protegida do Monte Submarino Altair",
             "name": "Área Marinha Protegida do Monte Submarino Altair",
@@ -64,8 +76,14 @@
         },
         {
           "id": 75124143,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": 5589,
+              "y": -205
+            }
+          ],
+          "props": {
             "name_int": "Área Marinha Protegida Oceânica do Corvo",
             "name_de": "Área Marinha Protegida Oceânica do Corvo",
             "name": "Área Marinha Protegida Oceânica do Corvo",
@@ -78,8 +96,14 @@
         },
         {
           "id": 75124043,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": 4842,
+              "y": 3662
+            }
+          ],
+          "props": {
             "name:pt": "Área Marinha Protegida de perímetro de proteção e gestão de recursos localizada a sudoeste dos Açores",
             "name_int": "Área Marinha Protegida de perímetro de proteção e gestão de recursos localizada a sudoeste dos Açores",
             "name_de": "Área Marinha Protegida de perímetro de proteção e gestão de recursos localizada a sudoeste dos Açores",
@@ -93,8 +117,14 @@
         },
         {
           "id": 75124083,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": 7883,
+              "y": -2987
+            }
+          ],
+          "props": {
             "name_int": "Área Marinha Protegida do MARNA",
             "name_de": "Área Marinha Protegida do MARNA",
             "name": "Área Marinha Protegida do MARNA",
@@ -106,8 +136,14 @@
         },
         {
           "id": 75124133,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": 7185,
+              "y": -707
+            }
+          ],
+          "props": {
             "name_int": "Área Marinha Protegida Oceânica do Faial",
             "name_de": "Área Marinha Protegida Oceânica do Faial",
             "name": "Área Marinha Protegida Oceânica do Faial",
@@ -120,8 +156,26 @@
         },
         {
           "id": 75124043,
-          "geometryType": 3,
-          "properties": {
+          "type": 3,
+          "pts": [
+            {
+              "x": 4160,
+              "y": 4160
+            },
+            {
+              "x": 4038,
+              "y": 4160
+            },
+            {
+              "x": 4160,
+              "y": 4020
+            },
+            {
+              "x": 4160,
+              "y": 4160
+            }
+          ],
+          "props": {
             "name": "Área Marinha Protegida de perímetro de proteção e gestão de recursos localizada a sudoeste dos Açores",
             "name_int": "Área Marinha Protegida de perímetro de proteção e gestão de recursos localizada a sudoeste dos Açores",
             "class": "área_marinha_protegida_para_a_gestão_de_recursos",
@@ -212,8 +266,14 @@
       "features": [
         {
           "id": 252706841,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": 7824,
+              "y": 2315
+            }
+          ],
+          "props": {
             "name:oc": "Horta",
             "name_int": "Horta",
             "name:ka": "ორტა",
@@ -280,8 +340,30 @@
       "features": [
         {
           "id": 4970,
-          "geometryType": 3,
-          "properties": {
+          "type": 3,
+          "pts": [
+            {
+              "x": -64,
+              "y": -64
+            },
+            {
+              "x": 4160,
+              "y": -64
+            },
+            {
+              "x": 4160,
+              "y": 4160
+            },
+            {
+              "x": -64,
+              "y": 4160
+            },
+            {
+              "x": -64,
+              "y": -64
+            }
+          ],
+          "props": {
             "class": "ocean"
           }
         }
@@ -404,8 +486,14 @@
       "features": [
         {
           "id": 3056397261,
-          "geometryType": 1,
-          "properties": {
+          "type": 1,
+          "pts": [
+            {
+              "x": -455,
+              "y": 938
+            }
+          ],
+          "props": {
             "name:oc": "ocean Atlantic nòrd",
             "name_int": "North Atlantic Ocean",
             "name:bs": "Sjevernoatlantski okean",

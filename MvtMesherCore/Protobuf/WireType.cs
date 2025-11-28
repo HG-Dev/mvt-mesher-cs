@@ -1,3 +1,5 @@
+using System;
+
 namespace MvtMesherCore;
 
 /// <summary>
@@ -23,6 +25,16 @@ public enum WireType : byte
     /// </summary>
     /// <remarks>Known as "BYTES" in MVT schema.</remarks>
     Len = 2,
+    /// <summary>
+    /// Used to group a set of fields. DEPRECATED.
+    /// </summary>
+    [Obsolete]
+    SGroup = 3,
+    /// <summary>
+    /// Used to end a group. DEPRECATED.
+    /// </summary>
+    [Obsolete]
+    EGroup = 4,
     /// <summary>
     /// Any type derived from a 32-bit integer of fixed size.
     /// </summary>

@@ -9,8 +9,9 @@ public enum PbfValidation
     Tags = 1,
     LayerNames = 2,
     LayerDuplication = 4,
-    FeatureVersion = 8,
+    LayerVersion = 8,
     FeaturePropertyPairs = 16,
     Geometry = 32,
-    All = Tags | LayerNames | LayerDuplication | FeatureVersion | FeaturePropertyPairs | Geometry
+    Standard = Tags | LayerNames | LayerDuplication,
+    All = Tags | LayerNames | LayerDuplication | LayerVersion | FeaturePropertyPairs | Geometry
 }
