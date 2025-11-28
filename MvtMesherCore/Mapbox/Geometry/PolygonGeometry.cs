@@ -9,10 +9,10 @@ namespace MvtMesherCore.Mapbox.Geometry;
 /// Container for polyline data parsed from sequential geometry (canvas) commands.
 /// Each polyline should contain at least two UV coordinates.
 /// </summary>
-/// <param name="plines">Polyline collection to be held by container.</param>
-public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryType.Polygon)
+/// <param name="pgons">Polygon collection to be held by container.</param>
+public class PolygonGeometry(IReadOnlyList<FloatPolygon> pgons) : ParsedGeometry(GeometryType.Polygon)
 {
-    public readonly ReadOnlyPolygons Polygons = pgons;
+    public readonly IReadOnlyList<FloatPolygon> Polygons = pgons;
     public override int MajorElementCount => Polygons.Count;
     public override IEnumerable<System.Numerics.Vector2> EnumerateAllPoints() => Polygons.SelectMany(pgon => pgon.AllRings.SelectMany(ring => ring));
 
@@ -20,9 +20,9 @@ public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryTy
     {
         // Ensure evenly sized float array
         var floats = new float[field.Length >> 1 << 1];
-        var readOnlyPolygons = Populate(floats, field);
-        ScaleAll(floats, readOnlyPolygons.RawValues.Length, scale);
-        return new PolygonGeometry(readOnlyPolygons);
+        (var polygons, var actualLength) = Populate(floats, field);
+        ScaleAll(floats, actualLength, scale);
+        return new PolygonGeometry(polygons);
     }
 
     public override string ToString() => $"{nameof(PolylineGeometry)}({Polygons.Count} pgons)";
@@ -37,7 +37,7 @@ public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryTy
     /// <param name="closeRings"></param>
     /// <returns></returns>
     /// <exception cref="PbfReadFailure"></exception>
-    static ReadOnlyPolygons Populate(float[] values, ReadOnlySpan<byte> field)
+    static (List<FloatPolygon> polygons, int actualLength) Populate(float[] values, ReadOnlySpan<byte> field)
     {
         // Obtain the float values, polyline lengths, and polylines/rings per polygon
         int valueIdx = 0;
@@ -48,9 +48,9 @@ public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryTy
         long cX = 0;
         long cY = 0;
         /////////
-        int currentRingCount = 0;
-        List<int> rawPointsPerRing = new List<int>();
-        List<int> ringsPerPolygon = new List<int>();
+        var currentPointsPerRing = 0;
+        List<FloatPolygon> polygons = new List<FloatPolygon>();
+        List<FloatPointRing> currentRings = new List<FloatPointRing>();
         while (offset < field.Length)
         {
             var cmdInteger = PbfSpan.ReadVarint(field, ref offset).ToUInt32();
@@ -68,7 +68,7 @@ public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryTy
                     break;
                 case CanvasCommand.LineTo when commandCount > 1:
                     // Consume `commandCount` points to get rest of line
-                    rawPointsPerRing.Add(commandCount + 1); // Plus one for MoveTo starting point
+                    currentPointsPerRing = commandCount + 1; // Plus one for MoveTo starting point
                     for (int i = 0; i < commandCount; i++)
                     {
                         cX += PbfSpan.ReadVarint(field, ref offset).ZigZagDecode();
@@ -80,13 +80,12 @@ public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryTy
                     break;
                 case CanvasCommand.ClosePath:
                     // Preview and identify current ring's winding order
-                    var ringPreview = new ReadOnlyPoints(new ReadOnlyMemory<float>(
+                    var ring = new FloatPointRing(new ReadOnlyMemory<float>(
                             values, 
-                            valueIdx - rawPointsPerRing[^1] * 2, 
-                            rawPointsPerRing[^1] * 2), 
-                            ensureClosedRing: true);
+                            valueIdx - currentPointsPerRing * 2, 
+                            currentPointsPerRing * 2));
 
-                    var (area, winding) = Formulae.ShoelaceAlgorithm(ringPreview);
+                    var (area, winding) = Formulae.ShoelaceAlgorithm(ring);
 
                     if (winding is CartesianWinding.Invalid)
                     {
@@ -94,24 +93,23 @@ public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryTy
                             "insufficient points when parsing polygon ring");
                     }
                     
-                    currentRingCount++;
-                    if (currentRingCount == 1)
+                    currentRings.Add(ring);
+                    if (currentRings.Count == 1)
                     {
                         // First ring in polygon must be exterior ring
                         if (winding.ToAxisFlippedRingType() is not RingType.Exterior)
                         {
                             throw new PbfReadFailure("First ring in polygon must be exterior ring " +
-                                $"(clockwise winding order on Y-flipped canvas): {string.Join(", ", ringPreview)} area={area}");
+                                $"(clockwise winding order on Y-flipped canvas): {string.Join(", ", ring)} area={area}");
                         }
                     }
-                    // If the ring is an exterior ring, or if this is the final ring in the polygon,
-                    // record the number of rings in the polygon.
+                    // If the ring is an exterior ring, export all current rings as a polygon
                     else if (winding.ToAxisFlippedRingType() is RingType.Exterior)
                     {
                         // Exterior ring or final ring in current polygon
-                        ringsPerPolygon.Add(currentRingCount);
+                        polygons.Add(new FloatPolygon(currentRings.ToArray()));
                         // Start new polygon
-                        currentRingCount = 0;
+                        currentRings = new List<FloatPointRing>();
                     }
 
                     break;
@@ -122,14 +120,11 @@ public class PolygonGeometry(ReadOnlyPolygons pgons) : ParsedGeometry(GeometryTy
         }
 
         // Record rings in final polygon
-        if (currentRingCount > 0)
+        if (currentRings.Any())
         {
-            ringsPerPolygon.Add(currentRingCount);
+            polygons.Add(new FloatPolygon(currentRings.ToArray()));
         }
 
-        return new ReadOnlyPolygons(
-            new ReadOnlyMemory<float>(values, 0, valueIdx), 
-            ringsPerPolygon.ToArray(), 
-            rawPointsPerRing.ToArray());
+        return new(polygons, valueIdx);
     }
 }

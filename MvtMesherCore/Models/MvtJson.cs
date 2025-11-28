@@ -7,7 +7,7 @@ using MvtMesherCore.Collections;
 using MvtMesherCore.Mapbox;
 using MvtMesherCore.Mapbox.Geometry;
 using Newtonsoft.Json;
-using Polygon = MvtMesherCore.Collections.Polygon;
+using Polygon = MvtMesherCore.Collections.FloatPolygon;
 
 namespace MvtMesherCore.Models;
 
@@ -92,15 +92,6 @@ public class MvtJsonFeature : IEquatable<MvtJsonFeature>
         mvtJsonFeature.GeometryPoints = feature.Geometry.EnumerateAllPoints()
             .Select(MvtUnscaledJsonPoint.FromVector2).ToList();
 
-        if (feature.Id == 1915597462)
-        {
-            var geo = ((PolygonGeometry)feature.Geometry);
-            Console.Out.WriteLine($"Feature {feature} has {mvtJsonFeature.GeometryPoints.Count} points, {geo.Polygons.Count} polys "+
-                                    $"and {geo.Polygons.Sum(p => p.AllRings.Count)} rings");
-            Console.Out.WriteLine("FT points: " + string.Join(", ", feature.Geometry.EnumerateAllPoints().Select(p => $"({p.X}, {p.Y})")));
-            Console.Out.WriteLine("JSON points: " + string.Join(", ", mvtJsonFeature.GeometryPoints.Select(p => p.ToString())));
-        }
-
         foreach (var (key, value) in feature.Properties)
         {
             mvtJsonFeature.Properties[key] = value.ToShortString();
@@ -135,19 +126,6 @@ public struct MvtUnscaledJsonPoint
     {
         return vec2List.Select(FromVector2).ToList();
     }
-
-    // public static List<List<MvtUnscaledJsonPoint>> ListFromPolygonRings(ReadOnlyPolygons polygons)
-    // {
-    //     var output = new List<List<MvtUnscaledJsonPoint>>();
-    //     foreach (var poly in polygons)
-    //     {
-    //         foreach (var ring in poly.AllRings)
-    //         {
-    //             output.Add(ListFromVector2(ring));
-    //         }
-    //     }
-    //     return output;
-    // }
 
     public override string ToString()
     {

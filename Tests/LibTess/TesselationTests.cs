@@ -13,6 +13,7 @@ public class TesselationTests
 
     /// <summary>
     /// Polygon geometry obtained from a PBF file should be tesselation-ready.
+    /// LibTessDotNet does not require rings to be closed.
     /// </summary>
     [TestCase(EnoshimaPbfPath, 7)]
     public void PbfGeometryFeaturesShouldCreateMeshes(string pbfPath, int expectedPolygonCount)

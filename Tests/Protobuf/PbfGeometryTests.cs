@@ -1,9 +1,5 @@
-using System.Data.Common;
-using System.Linq;
-using System.Xml;
 using Mapbox.VectorTile;
 using MvtMesherCore;
-using MvtMesherCore.Mapbox;
 using MvtMesherCore.Mapbox.Geometry;
 using MvtMesherCore.Models;
 using VectorTile = MvtMesherCore.Mapbox.VectorTile;
@@ -65,12 +61,12 @@ public class PbfGeometryTests
         var geo = new UnparsedGeometry(geometryCommands, GeometryType.Polyline);
         var points = geo.Parse().EnumerateAllPoints().ToList();
         Assert.That(points.Count, Is.GreaterThan(0), "Parsed polygon should have at least one point");
-        TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via mesher: {string.Join(", ", points.Select(pt => $"({pt.X}, {pt.Y})"))}");
+        //TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via mesher: {string.Join(", ", points.Select(pt => $"({pt.X}, {pt.Y})"))}");
 
         var commands = PbfSpan.ReadVarintPackedField(geometryCommands).Select(v => v.ToUInt32()).ToList();
         var mapboxGeometry = OriginalMapboxUtility.GetGeometry(2, commands).SelectMany(ring => ring).ToList();
         Assert.That(mapboxGeometry.Count, Is.GreaterThan(0), "Parsed polygon should have at least one point");
-        TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via Mapbox.VectorTile: {string.Join(", ", mapboxGeometry.Select(pt => $"({pt.X}, {pt.Y})"))}");
+        //TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via Mapbox.VectorTile: {string.Join(", ", mapboxGeometry.Select(pt => $"({pt.X}, {pt.Y})"))}");
 
         Assert.That(points.Count, Is.EqualTo(mapboxGeometry.Count), "Number of points parsed by MvtMesherCore.VectorTile does not match number parsed by Mapbox.VectorTile");
     }
@@ -129,18 +125,6 @@ public class PbfGeometryTests
             Assert.That(mesherFeatures, Does.Contain(mvtFeature),
                 $"MvtMesherCore.VectorTile is missing polyline feature with Id={mvtFeature.Id} and {mvtFeature.GeometryPoints.Count} points");
 
-            if (mvtFeature.Id == 1916566182)
-            {
-                Console.Out.WriteLine("Debugging feature 1916566182 from Mapbox.VectorTile");
-                var mapboxFeature = mapboxFeatures.FirstOrDefault(f => f.Id == mvtFeature.Id);
-                Assert.That(mapboxFeature, Is.Not.Null, "Mapbox.VectorTile is missing feature 1916566182");
-                for (int i = 0; i < mvtFeature.GeometryPoints.Count; i++)
-                {
-                    Assert.That(mapboxFeature.GeometryPoints[i], Is.EqualTo(mvtFeature.GeometryPoints[i]),
-                        $"Point {i} mismatch: MvtMesherCore.VectorTile has {mvtFeature.GeometryPoints[i]}, Mapbox.VectorTile has {mapboxFeature?.GeometryPoints[i]}");
-                }
-            }
-
             Assert.That(mapboxFeatures, Does.Contain(mvtFeature),
                 $"Mapbox.VectorTile is missing polyline feature with Id={mvtFeature.Id} and {mvtFeature.GeometryPoints.Count} points.\n"
                 + $"Closest match for {mvtFeature}: {mapboxFeatures.FirstOrDefault(f => f.Id == mvtFeature.Id)?.ToString() ?? "None"}");
@@ -160,13 +144,11 @@ public class PbfGeometryTests
             Assert.That(polygon.AllRings.Count, Is.GreaterThan(0), "Parsed polygon should have at least one ring");
             Assert.That(polygon.ExteriorRing[0], Is.EqualTo(polygon.ExteriorRing[^1]),
                 "Exterior ring of polygon should be closed (first and last points should be identical)");
-            TestContext.Out.WriteLine($"Parsed polygon with {polygon.AllRings.Count} rings; exterior ring has {polygon.ExteriorRing.Count} points:\n" +
-                $"{string.Join(", ", polygon.ExteriorRing.Select(pt => $"({pt.X}, {pt.Y})"))}");
+            //TestContext.Out.WriteLine($"Parsed polygon with {polygon.AllRings.Count} rings; exterior ring has {polygon.ExteriorRing.Count} points:\n" +
+            //    $"{string.Join(", ", polygon.ExteriorRing.Select(pt => $"({pt.X}, {pt.Y})"))}");
             for (int ringIdx = 0; ringIdx < polygon.InteriorRings.Count; ringIdx++)
             {
                 var ring = polygon.InteriorRings[ringIdx];
-                Assert.That(ring.IsClosedRing, Is.True,
-                    $"Interior ring {ringIdx} of polygon should be closed");
                 Assert.That(ring[0], Is.EqualTo(ring[^1]),
                     $"Interior ring {ringIdx} of polygon should be closed (first and last points should be identical)");
             }
@@ -196,7 +178,7 @@ public class PbfGeometryTests
         var points = polygons.SelectMany(p => p).SelectMany(r => r).ToList();
         Assert.That(pointsEnumerated, Is.EquivalentTo(points), "EnumerateAllPoints output should match points obtained from rings");
         var polygonRingCounts = string.Join(", ", polygons.Select((p, idx) => $"Pgon {idx}: ({string.Join(", ", p.Select(r => r.Count))})"));
-        TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via mesher. Resulting polygon ring counts: {polygonRingCounts}");
+        //TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via mesher. Resulting polygon ring counts: {polygonRingCounts}");
 
         var commands = PbfSpan.ReadVarintPackedField(geometryCommands).Select(v => v.ToUInt32()).ToList();
         // Mapbox acquires polygon rings, but does not group them into polygons.
@@ -204,7 +186,7 @@ public class PbfGeometryTests
 
         var mapboxPoints = mapboxRings.SelectMany(ring => ring).ToList();
         Assert.That(mapboxPoints.Count, Is.GreaterThan(0), "Parsed polygon should have at least one point");
-        TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via Mapbox.VectorTile: {string.Join(", ", mapboxRings)}");
+        //TestContext.Out.WriteLine($"Parsed geometry from {Path.GetFileName(gcBytesPath)} via Mapbox.VectorTile: {string.Join(", ", mapboxRings)}");
         Assert.That(points.Count, Is.EqualTo(mapboxPoints.Count), "Number of points parsed by MvtMesherCore.VectorTile does not match number parsed by Mapbox.VectorTile");
         Assert.That(points, Is.EquivalentTo(mapboxPoints),
             "Points parsed by MvtMesherCore.VectorTile do not match points parsed by Mapbox.VectorTile");
@@ -247,10 +229,6 @@ public class PbfGeometryTests
                     GeometryType = 3, // Polygon
                     GeometryPoints = polygonPoints
                 };
-                if (feature.Id == 75124043)
-                {
-                    Console.Out.WriteLine($"Debugging feature 75124043 from Mapbox.VectorTile: {string.Join(", ", polygonPoints)}");
-                }
                 mapboxFeatures.Add(mvtFeature);
             }
         }

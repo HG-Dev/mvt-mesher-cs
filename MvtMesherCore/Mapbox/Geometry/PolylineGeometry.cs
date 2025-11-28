@@ -11,9 +11,9 @@ namespace MvtMesherCore.Mapbox.Geometry;
 /// Each polyline should contain at least two UV coordinates.
 /// </summary>
 /// <param name="plines">Polyline collection to be held by container.</param>
-public class PolylineGeometry(ReadOnlyPolylines plines) : ParsedGeometry(GeometryType.Polyline)
+public class PolylineGeometry(IReadOnlyList<FloatPoints> plines) : ParsedGeometry(GeometryType.Polyline)
 {
-    public readonly ReadOnlyPolylines Polylines = plines;
+    public readonly IReadOnlyList<FloatPoints> Polylines = plines;
     public override int MajorElementCount => Polylines.Count;
     public override IEnumerable<System.Numerics.Vector2> EnumerateAllPoints() => Polylines.SelectMany(pline => pline);
 
@@ -21,15 +21,14 @@ public class PolylineGeometry(ReadOnlyPolylines plines) : ParsedGeometry(Geometr
     {
         // Ensure evenly sized float array
         var floats = new float[field.Length >> 1 << 1];
-        var readOnlyPolylines = Populate(floats, field);
-        ScaleAll(floats, readOnlyPolylines.RawValues.Length, scale);
-        return new PolylineGeometry(readOnlyPolylines);
+        var (polylines, actualLength) = Populate(floats, field);
+        ScaleAll(floats, actualLength, scale);
+        return new PolylineGeometry(polylines);
     }
 
-    public override string ToString() => $"{nameof(PolylineGeometry)}({Polylines.Count} plines)";
-
-    static ReadOnlyPolylines Populate(float[] values, ReadOnlySpan<byte> field)
+    static (List<FloatPoints> polylines, int actualLength) Populate(float[] values, ReadOnlySpan<byte> field)
     {
+        List<FloatPoints> polylines = new List<FloatPoints>();
         int valueIdx = 0;
         int offset = 0;
         /////////
@@ -66,13 +65,17 @@ public class PolylineGeometry(ReadOnlyPolylines plines) : ParsedGeometry(Geometr
                         values[valueIdx++] = cX;
                         values[valueIdx++] = cY;
                     }
+                    // Create ReadOnlyPoints for this polyline
+                    polylines.Add(new FloatPoints(new ReadOnlyMemory<float>(values, valueIdx - (pointCounts.Last() << 1), pointCounts.Last() << 1)));
                     break;
                 default:
                     throw new PbfReadFailure("Encountered unexpected" +
                         $"{commandId} command (x{commandCount}) when parsing {GeometryType.Polyline}(s)");
             }
         }
-
-        return new ReadOnlyPolylines(new ReadOnlyMemory<float>(values, 0, valueIdx), pointCounts.ToArray());
+        
+        return (polylines, valueIdx);
     }
+
+    public override string ToString() => $"{nameof(PolylineGeometry)}({Polylines.Count} plines)";
 }
