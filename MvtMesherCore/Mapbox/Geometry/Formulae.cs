@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 
+namespace MvtMesherCore.Mapbox.Geometry;
+
 public static class Formulae
 {
     /// <summary>

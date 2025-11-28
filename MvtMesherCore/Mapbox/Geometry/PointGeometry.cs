@@ -9,9 +9,9 @@ namespace MvtMesherCore.Mapbox.Geometry;
 /// creating one or more UV coordinates.
 /// </summary>
 /// <param name="points">Points collection to be held by container.</param>
-public class PointGeometry(ReadOnlyPoints points) : ParsedGeometry(GeometryType.Point)
+public class PointGeometry(FloatPoints points) : ParsedGeometry(GeometryType.Point)
 {
-    public readonly ReadOnlyPoints Points = points;
+    public readonly FloatPoints Points = points;
     public override int MajorElementCount => Points.Count;
     public override IEnumerable<System.Numerics.Vector2> EnumerateAllPoints() => Points;
 
@@ -19,14 +19,14 @@ public class PointGeometry(ReadOnlyPoints points) : ParsedGeometry(GeometryType.
     {
         // Ensure evenly sized float array (additive)
         var floats = new float[Math.Max(field.Length >> 1, 2)];
-        var readOnlyPoints = Populate(floats, field);
-        ScaleAll(floats, readOnlyPoints.RawValues.Length, scale);
-        return new PointGeometry(readOnlyPoints);
+        var points = Populate(floats, field);
+        ScaleAll(floats, points.RawValues.Length, scale);
+        return new PointGeometry(points);
     }
 
     public override string ToString() => $"{nameof(PointGeometry)}({Points.Count} pts)";
 
-    static ReadOnlyPoints Populate(float[] values, ReadOnlySpan<byte> field)
+    static FloatPoints Populate(float[] values, ReadOnlySpan<byte> field)
     {
         int valueIdx = 0;
         int offset = 0;
@@ -59,6 +59,6 @@ public class PointGeometry(ReadOnlyPoints points) : ParsedGeometry(GeometryType.
         }
 
         //Console.Out.WriteLine($"{valueIdx} out of {values.Length} floats used");
-        return new ReadOnlyPoints(new ReadOnlyMemory<float>(values, 0, valueIdx));
+        return new FloatPoints(new ReadOnlyMemory<float>(values, 0, valueIdx));
     }
 }
