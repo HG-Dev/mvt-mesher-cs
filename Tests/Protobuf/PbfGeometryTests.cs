@@ -9,12 +9,12 @@ namespace Tests.Protobuf;
 [TestFixture]
 public class PbfGeometryTests
 {
-    [TestCase(Constants.AtlanticPbfPath)]
-    public void AllUnscaledPointFeaturesShouldBeEquivalent(string pbfPath)
+    [TestCase(Constants.TestInputFolder, Constants.AtlanticPbfFile)]
+    public void AllUnscaledPointFeaturesShouldBeEquivalent(string pbfFolder, string pbfFile)
     {
         // Arrange
-        Assert.That(Path.GetExtension(pbfPath), Is.EqualTo(".pbf"), "This test requires a PBF file path");
-        var pbfData = File.ReadAllBytes(pbfPath);
+        Assert.That(Path.GetExtension(pbfFile), Is.EqualTo(".pbf"), "This test requires a PBF file path");
+        var pbfData = File.ReadAllBytes(Path.Combine(pbfFolder, pbfFile));
         Assert.That(pbfData.Length, Is.GreaterThan(0), "PBF data should not be empty");
         var rawPbfPoints = PbfUtility.FindAllPointFeaturePoints(pbfData);
         Assert.That(rawPbfPoints.Count, Is.GreaterThan(0), "Expected to find at least one point in the PBF data");
@@ -22,7 +22,7 @@ public class PbfGeometryTests
             .Select(pt => ((long)pt.X.ZigZagDecode(), (long)pt.Y.ZigZagDecode()));
 
         // Act
-        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-'), Constants.ReadSettings);
+        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettings);
         IEnumerable<(ulong, (long, long))> featureIdAndMesherDecodedPoints = vectorTile.Layers.SelectMany(layer => layer.FeatureGroups.EnumerateIndividualFeatures())
             .Where(f => f.GeometryType == GeometryType.Point)
             .Select(f => (f.Id, f.Geometry as PointGeometry))
@@ -54,10 +54,10 @@ public class PbfGeometryTests
             "Decoded points from Mapbox.VectorTile do not match raw decoded points from PBF data");
     }
 
-    [TestCase(Constants.EnoshimaPolylineBytesPath)]
-    public void PolylineGeometryCommandsShouldBeEquivalent(string gcBytesPath)
+    [TestCase(Constants.TestInputFolder, Constants.EnoshimaPolylineBytesFile)]
+    public void PolylineGeometryCommandsShouldBeEquivalent(string inFolder, string gcBytesFile)
     {
-        var geometryCommands = File.ReadAllBytes(gcBytesPath);
+        var geometryCommands = File.ReadAllBytes(Path.Combine(inFolder, gcBytesFile));
         var geo = new UnparsedGeometry(geometryCommands, GeometryType.Polyline);
         var points = geo.Parse().EnumerateAllPoints().ToList();
         Assert.That(points.Count, Is.GreaterThan(0), "Parsed polygon should have at least one point");
@@ -71,18 +71,18 @@ public class PbfGeometryTests
         Assert.That(points.Count, Is.EqualTo(mapboxGeometry.Count), "Number of points parsed by MvtMesherCore.VectorTile does not match number parsed by Mapbox.VectorTile");
     }
 
-    [TestCase(Constants.EnoshimaPbfPath)]
-    public void AllUnscaledPolylineFeaturesShouldBeEquivalent(string pbfPath)
+    [TestCase(Constants.TestInputFolder, Constants.EnoshimaPbfFile)]
+    public void AllUnscaledPolylineFeaturesShouldBeEquivalent(string inFolder, string pbfFile)
     {
         // Arrange
-        Assert.That(Path.GetExtension(pbfPath), Is.EqualTo(".pbf"), "This test requires a PBF file path");
-        var pbfData = File.ReadAllBytes(pbfPath);
+        Assert.That(Path.GetExtension(pbfFile), Is.EqualTo(".pbf"), "This test requires a PBF file path");
+        var pbfData = File.ReadAllBytes(Path.Combine(inFolder, pbfFile));
         Assert.That(pbfData.Length, Is.GreaterThan(0), "PBF data should not be empty");
         var mvtFeatures = PbfUtility.FindAllPolylineFeatures(pbfData);
         Assert.That(mvtFeatures.Count, Is.GreaterThan(0), "Expected to find at least one polyline in the PBF data");
 
         // Act
-        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-'), Constants.ReadSettings);
+        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettings);
         var mesherFeatures = vectorTile.Layers.SelectMany(layer => layer.FeatureGroups.EnumerateIndividualFeatures()
             .Where(f => f.GeometryType == GeometryType.Polyline)
             .Select(MvtJsonFeature.FromVectorTileFeature))
@@ -131,11 +131,11 @@ public class PbfGeometryTests
         }
     }
 
-    [TestCase(Constants.AtlanticPolygonBytesPath)]
-    [TestCase(Constants.EnoshimaPolygonBytesPath)]
-    public void PolygonsWithHolesShouldBeParsedCorrectly(string gcBytesPath)
+    [TestCase(Constants.TestInputFolder, Constants.AtlanticPolygonBytesFile)]
+    [TestCase(Constants.TestInputFolder, Constants.EnoshimaPolygonBytesFile)]
+    public void PolygonsWithHolesShouldBeParsedCorrectly(string gcBytesFolder, string gcBytesFile)
     {
-        var geometryCommands = File.ReadAllBytes(gcBytesPath);
+        var geometryCommands = File.ReadAllBytes(Path.Combine(gcBytesFolder, gcBytesFile));
         var geo = new UnparsedGeometry(geometryCommands, GeometryType.Polygon).Parse() as PolygonGeometry;
         Assert.That(geo, Is.Not.Null, "Parsed geometry should not be null");
         Assert.That(geo!.Polygons.Count, Is.GreaterThan(0), "Parsed polygon feature should have at least one polygon");
@@ -155,11 +155,11 @@ public class PbfGeometryTests
         }
     }
 
-    [TestCase(Constants.AtlanticPolygonBytesPath)]
-    [TestCase(Constants.EnoshimaPolygonBytesPath)]
-    public void UnscaledPolygonFeatureShouldBeEquivalent(string gcBytesPath)
+    [TestCase(Constants.TestInputFolder, Constants.AtlanticPolygonBytesFile)]
+    [TestCase(Constants.TestInputFolder, Constants.EnoshimaPolygonBytesFile)]
+    public void UnscaledPolygonFeatureShouldBeEquivalent(string gcBytesFolder, string gcBytesFile)
     {
-        var geometryCommands = File.ReadAllBytes(gcBytesPath);
+        var geometryCommands = File.ReadAllBytes(Path.Combine(gcBytesFolder, gcBytesFile));
         var geo = new UnparsedGeometry(geometryCommands, GeometryType.Polygon).Parse() as PolygonGeometry;
         var polygons = new List<List<List<MvtUnscaledJsonPoint>>>();
         foreach (var poly in geo!.Polygons)
@@ -192,19 +192,19 @@ public class PbfGeometryTests
             "Points parsed by MvtMesherCore.VectorTile do not match points parsed by Mapbox.VectorTile");
     }
 
-    [TestCase(Constants.AtlanticPbfPath)]
-    [TestCase(Constants.EnoshimaPbfPath)]
-    public void AllUnscaledPolygonFeaturesShouldBeEquivalent(string pbfPath)
+    [TestCase(Constants.TestInputFolder, Constants.AtlanticPbfFile)]
+    [TestCase(Constants.TestInputFolder, Constants.EnoshimaPbfFile)]
+    public void AllUnscaledPolygonFeaturesShouldBeEquivalent(string pbfFolder, string pbfFile)
     {
         // Arrange
-        Assert.That(Path.GetExtension(pbfPath), Is.EqualTo(".pbf"), "This test requires a PBF file path");
-        var pbfData = File.ReadAllBytes(pbfPath);
+        Assert.That(Path.GetExtension(pbfFile), Is.EqualTo(".pbf"), "This test requires a PBF file path");
+        var pbfData = File.ReadAllBytes(Path.Combine(pbfFolder, pbfFile));
         Assert.That(pbfData.Length, Is.GreaterThan(0), "PBF data should not be empty");
         var mvtFeatures = PbfUtility.FindAllPolygonFeatures(pbfData);
         Assert.That(mvtFeatures.Count, Is.GreaterThan(0), "Expected to find at least one polyline in the PBF data");
 
         // Act
-        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-'), Constants.ReadSettings);
+        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettings);
         var mesherFeatures = vectorTile.Layers.SelectMany(layer => layer.FeatureGroups.EnumerateIndividualFeatures()
             .Where(f => f.GeometryType == GeometryType.Polygon)
             .Select(MvtJsonFeature.FromVectorTileFeature))

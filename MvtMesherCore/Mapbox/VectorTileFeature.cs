@@ -54,6 +54,9 @@ public class VectorTileFeature
     /// <seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L32">Schema on GitHub</seealso>
     public readonly ulong Id;
     
+    /// <summary>
+    /// Name of this feature, derived from 'name' property if present.
+    /// </summary>
     public string Name
     {
         get
@@ -80,7 +83,7 @@ public class VectorTileFeature
         }
     }
 
-    public BaseGeometry _geometry;
+    private BaseGeometry _geometry;
     /// <summary>
     /// Geometry commands using internal tile coordinates: n / layer extent
     /// </summary>
@@ -112,6 +115,9 @@ public class VectorTileFeature
         }
     }
 
+    /// <summary>
+    /// Type of geometry encoded in this feature
+    /// </summary>
     public GeometryType GeometryType => _geometry.DeclaredType;
     
     readonly IndexedReadOnlyDictionary<string, PropertyValue> _properties;

@@ -117,9 +117,13 @@ public class VectorTileLayer
     }
     
     /// <summary>
-    /// Feature objects found on this layer.
-    /// Some may have overlapping or missing IDs.
+    /// Feature objects grouped by ID found on this layer.
     /// </summary>
+    /// <remarks>
+    /// Features may lack IDs or have duplicate IDs.
+    /// Features lacking IDs will have an ID of 0 in this collection.
+    /// Where IDs overlap, they are grouped together.
+    /// </remarks>
     public readonly LayerFeatureGroups FeatureGroups;
     
     /// <summary>

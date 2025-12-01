@@ -9,12 +9,12 @@ namespace Tests.Protobuf;
 [TestFixture]
 public class PbfOriginalMapboxTests
 {
-    [TestCase(Constants.AtlanticPbfPath, (ulong)75124043, GeometryType.Polygon, "Res")]
-    [TestCase(Constants.EnoshimaPbfPath, (ulong)1916566182, GeometryType.Polyline, "Res")]
-    [TestCase(Constants.EnoshimaPbfPath, (ulong)1915597462, GeometryType.Polygon, "Res")]
-    public void ExtractAnomalousGeometryCommands(string pbfPath, ulong id, GeometryType geoType, string outFolder)
+    [TestCase(Constants.TestInputFolder, Constants.AtlanticPbfFile, (ulong)75124043, GeometryType.Polygon, Constants.TestOutputFolder)]
+    [TestCase(Constants.TestInputFolder, Constants.EnoshimaPbfFile, (ulong)1916566182, GeometryType.Polyline, Constants.TestOutputFolder)]
+    [TestCase(Constants.TestInputFolder, Constants.EnoshimaPbfFile, (ulong)1915597462, GeometryType.Polygon, Constants.TestOutputFolder)]
+    public void ExtractAnomalousGeometryCommands(string inFolder, string pbfFile, ulong id, GeometryType geoType, string outFolder)
     {
-        using var stream = File.OpenRead(pbfPath);
+        using var stream = File.OpenRead(Path.Combine(inFolder, pbfFile));
         using var byteReader = new BinaryReader(stream);
         if (!PbfUtility.TryFindGeometryCommandBytesForFeature(byteReader.ReadBytes((int)stream.Length),
                 featureId: id,
@@ -31,15 +31,15 @@ public class PbfOriginalMapboxTests
             TestContext.Out.WriteLine($"Parsed geometry: {string.Join(", ", parsed.EnumerateAllPoints().Select(pt => $"({pt.X}, {pt.Y})"))}");
         });
 
-        var tileId = CanonicalTileId.FromDelimitedPatternInString(pbfPath, '-').ToShortString('-');
+        var tileId = CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-').ToShortString('-');
         using var bytesFile = File.Open(Path.Combine(outFolder, $"{tileId}_f{id}-{(byte)geoType}_gc.bytes"), FileMode.Create, FileAccess.Write);
         using var bytesWriter = new BinaryWriter(bytesFile);
         bytesWriter.Write(geometryCommands.Span);
     }
 
-    [TestCase(Constants.EnoshimaPbfPath, Constants.EnoshimaJsonPath)]
-    [TestCase(Constants.AtlanticPbfPath, Constants.AtlanticJsonPath)]
-    public void ExportMvtJsonUsingOriginalMapboxMethods(string pbfPath, string outfileJson)
+    [TestCase(Constants.EnoshimaPbfFile, Constants.EnoshimaJsonFile, Constants.TestOutputFolder)]
+    [TestCase(Constants.AtlanticPbfFile, Constants.AtlanticJsonFile, Constants.TestOutputFolder)]
+    public void ExportMvtJsonUsingOriginalMapboxMethods(string pbfPath, string outfileJson, string outFolder)
     {
         using var stream = File.OpenRead(pbfPath);
         using var byteReader = new BinaryReader(stream);
@@ -96,7 +96,7 @@ public class PbfOriginalMapboxTests
             mvtJson.Layers[layerName] = layerObj;
         }
     
-        using var jsonFile = File.Open(outfileJson, FileMode.Create, FileAccess.Write);
+        using var jsonFile = File.Open(Path.Combine(outFolder, outfileJson), FileMode.Create, FileAccess.Write);
         using var jsonWriter = new StreamWriter(jsonFile);
         Newtonsoft.Json.JsonSerializer serializer = new()
         {
