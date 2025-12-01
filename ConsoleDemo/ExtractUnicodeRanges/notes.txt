@@ -1,0 +1,32 @@
+UnicodeRangeSet CommonUnicodeRangeSet = new()
+{
+    new UnicodeRange(0x0020, 0x007F), // Basic Latin
+    new UnicodeRange(0x00A0, 0x00FF), // Latin-1 Supplement
+    new UnicodeRange(0x0100, 0x017F), // Latin Extended-A
+    new UnicodeRange(0x0180, 0x024F), // Latin Extended-B
+    new UnicodeRange(0x0250, 0x02AF), // IPA Extensions
+    new UnicodeRange(0x02B0, 0x02FF), // Spacing Modifier Letters
+    new UnicodeRange(0x0300, 0x036F), // Combining Diacritical Marks
+    new UnicodeRange(0x0370, 0x03FF), // Greek and Coptic
+    new UnicodeRange(0x0400, 0x04FF), // Cyrillic
+    new UnicodeRange(0x0500, 0x052F), // Cyrillic Supplement
+    new UnicodeRange(0x0590, 0x05FF), // Hebrew
+    new UnicodeRange(0x0600, 0x06FF), // Arabic
+    new UnicodeRange(0x0750, 0x077F), // Arabic Supplement
+    new UnicodeRange(0x0E01, 0x0E5B), // Thai
+    new UnicodeRange(0x0E80, 0x0EFF), // Lao
+    new UnicodeRange(0x1D00, 0x1DBF), // Phonetic Extensions
+    new UnicodeRange(0x1E00, 0x1EFF), // Latin Extended Additional
+    new UnicodeRange(0x2000, 0x206F), // General Punctuation
+    new UnicodeRange(0x2070, 0x209F), // Superscripts and Subscripts
+    new UnicodeRange(0x20A0, 0x20CF), // Currency Symbols
+    new UnicodeRange(0x20D0, 0x20FF), // Combining Marks for Symbols
+    new UnicodeRange(0x3000, 0x303F), // CJK Symbols and Punctuation
+    new UnicodeRange(0x3040, 0x309F), // Hiragana
+    new UnicodeRange(0x30A0, 0x30FF), // Katakana
+    new UnicodeRange(0x31C0, 0x31E3), // CJK Strokes
+    new UnicodeRange(0x31F0, 0x31FF), // Katakana Phonetic Extensions
+    new UnicodeRange(0x3200, 0x32FF), // Enclosed CJK Letters and Months
+    new UnicodeRange(0x3300, 0x33FF), // CJK Compatibility
+    new UnicodeRange(0x4E00, 0x9FFF), // CJK Unified Ideographs
+};
