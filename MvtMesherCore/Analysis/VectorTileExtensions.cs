@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 using MvtMesherCore.Analysis.Language;
 using MvtMesherCore.Mapbox;
 
+/// <summary>
+/// Language analysis extensions for VectorTile.
+/// </summary>
 public static class VectorTileExtensions
 {
     /// <summary>

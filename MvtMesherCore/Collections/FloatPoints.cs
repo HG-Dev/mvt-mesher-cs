@@ -12,9 +12,18 @@ namespace MvtMesherCore.Collections;
 /// </summary>
 public readonly struct FloatPoints : IReadOnlyList<Vector2>, IEnumerable<Vector2>
 {
+    /// <summary>
+    /// Raw float values representing the points as [x0, y0, x1, y1, ..., xN, yN].
+    /// </summary>
     public readonly ReadOnlyMemory<float> RawValues;
+    /// <summary>
+    /// Indicates whether the points form a closed ring (first point equals last point).
+    /// </summary>
     public readonly bool IsClosedRing;
     
+    /// <summary>
+    /// Create a FloatPoints from a ReadOnlyMemory of float values.
+    /// </summary>
     public FloatPoints(ReadOnlyMemory<float> values)
     {
         RawValues = values;
@@ -35,6 +44,10 @@ public readonly struct FloatPoints : IReadOnlyList<Vector2>, IEnumerable<Vector2
         IsClosedRing = first == last;
     }
     
+    /// <summary>
+    /// Enumerates the points in this FloatPoints collection.
+    /// </summary>
+    /// <returns>An enumerator over the Vector2 points.</returns>
     public IEnumerator<Vector2> GetEnumerator()
     {
         for (int i = 1; i < RawValues.Length; i += 2)
@@ -48,8 +61,14 @@ public readonly struct FloatPoints : IReadOnlyList<Vector2>, IEnumerable<Vector2
         return GetEnumerator();
     }
 
+    /// <summary>
+    /// Number of points in this FloatPoints collection.
+    /// </summary>
     public int Count => RawValues.Length >> 1;
 
+    /// <summary>
+    /// Gets the point at the specified index.
+    /// </summary>
     public Vector2 this[int index]
     {
         get
@@ -63,14 +82,24 @@ public readonly struct FloatPoints : IReadOnlyList<Vector2>, IEnumerable<Vector2
         }
     }
 
+    /// <summary>
+    /// Gets a slice of the FloatPoints collection.
+    /// </summary>
     public FloatPoints this[Range range] => Slice(range);
 
+    /// <summary>
+    /// Gets a slice of the FloatPoints collection.
+    /// </summary>
     public FloatPoints Slice(Range range)
     {
         var (offset, length) = range.GetOffsetAndLength(Count);
         return Slice(offset, length);
     }
 
+    /// <summary>
+    /// Gets a slice of the FloatPoints collection.
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when slice range is invalid</exception>
     public FloatPoints Slice(int startIndex, int count)
     {
         if (startIndex < 0 || count < 0 || startIndex + count > Count)
