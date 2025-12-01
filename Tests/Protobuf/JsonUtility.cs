@@ -42,7 +42,7 @@ public static class JsonUtility
                     var comparisonModel = MvtJsonFeature.FromVectorTileFeature(feature);
                     var expectedModel = expectedLayer.Features.FirstOrDefault(f => f.FeatureKey == comparisonModel.FeatureKey);
                     Assert.That(expectedModel, Is.Not.Null, $"JSON comparison model lacks feature {id} in layer {layerName}");
-                    Assert.That((byte)feature.GeometryType, Is.EqualTo(expectedModel.GeometryType), $"{feature} - in layer {layerName} geometry type does not match; internal geometry class: {feature._geometry.GetType().Name}");
+                    Assert.That((byte)feature.GeometryType, Is.EqualTo(expectedModel.GeometryType), $"{feature} - in layer {layerName} geometry type does not match; internal geometry class");
                     Assert.That(comparisonModel.Properties.Count, Is.EqualTo(expectedModel.Properties.Count),
                         $"{feature} in layer {layerName} property count does not match");
                     foreach (var (key, value) in expectedModel.Properties)
