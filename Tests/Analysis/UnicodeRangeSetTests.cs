@@ -110,6 +110,7 @@ public class UnicodeRangeSetTests
         Assert.That(set1.Equals(set2), Is.False);
     }
 
+    [Test]
     public void Simplify_ShouldReduceNumberOfRanges()
     {
         var set = new UnicodeRangeSet();
@@ -120,6 +121,25 @@ public class UnicodeRangeSetTests
         var (simplifiedSet, numMerged) = set.Simplify(2);
         Assert.That(simplifiedSet.Count, Is.LessThan(set.Count));
         Assert.That(numMerged, Is.GreaterThan(0));
+    }
+
+    [Test]
+    public void UnionWith_ShouldCombineRanges()
+    {
+        var set1 = new UnicodeRangeSet
+        {
+            0x0041,
+            0x0042
+        };
+        var set2 = new UnicodeRangeSet
+        {
+            0x0042,
+            0x0061
+        };
+        set1.UnionWith(set2);
+        Assert.That(set1.Count, Is.EqualTo(2));
+        Assert.That(set1[0].Start, Is.EqualTo(0x0041));
+        Assert.That(set1[1].Start, Is.EqualTo(0x0061));
     }
 
     [TestCase(Constants.TestInputFolder, Constants.EnoshimaPbfFile, Constants.EnoshimaJsonFile, Constants.TestOutputFolder)]

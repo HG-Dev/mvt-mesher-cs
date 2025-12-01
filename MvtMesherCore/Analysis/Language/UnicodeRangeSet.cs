@@ -326,6 +326,24 @@ public class UnicodeRangeSet : IReadOnlyList<UnicodeRange>, IEquatable<UnicodeRa
     }
 
     /// <summary>
+    /// Combine this UnicodeRangeSet with another.
+    /// </summary>
+    /// <remarks>
+    /// This modifies the current set to include all ranges from the other set.
+    /// TODO: Optimize this method to avoid repeated additions.
+    /// </remarks>
+    public void UnionWith(UnicodeRangeSet other)
+    {
+        foreach (var range in other._ranges)
+        {
+            for (int cp = range.Start; cp <= range.End; cp++)
+            {
+                Add(cp);
+            }
+        }
+    }
+
+    /// <summary>
     /// Determine if this UnicodeRangeSet is a subset of another.
     /// </summary>
     public bool IsSubsetOf(UnicodeRangeSet other)
