@@ -4,6 +4,9 @@ using System.Numerics;
 
 namespace MvtMesherCore.Mapbox.Geometry;
 
+/// <summary>
+/// Mathematical formulae for geometric calculations.
+/// </summary>
 public static class Formulae
 {
     /// <summary>

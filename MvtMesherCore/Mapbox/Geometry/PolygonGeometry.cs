@@ -12,8 +12,13 @@ namespace MvtMesherCore.Mapbox.Geometry;
 /// <param name="pgons">Polygon collection to be held by container.</param>
 public class PolygonGeometry(IReadOnlyList<FloatPolygon> pgons) : ParsedGeometry(GeometryType.Polygon)
 {
+    /// <summary>
+    /// Polygons contained in this geometry.
+    /// </summary>
     public readonly IReadOnlyList<FloatPolygon> Polygons = pgons;
+    /// <inheritdoc/>
     public override int MajorElementCount => Polygons.Count;
+    /// <inheritdoc/>
     public override IEnumerable<System.Numerics.Vector2> EnumerateAllPoints() => Polygons.SelectMany(pgon => pgon.AllRings.SelectMany(ring => ring));
 
     internal static PolygonGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
@@ -25,18 +30,18 @@ public class PolygonGeometry(IReadOnlyList<FloatPolygon> pgons) : ParsedGeometry
         return new PolygonGeometry(polygons);
     }
 
-    public override string ToString() => $"{nameof(PolylineGeometry)}({Polygons.Count} pgons)";
+    /// <inheritdoc/>
+    public override string ToString() => $"{nameof(PolygonGeometry)}({Polygons.Count} pgons)";
 
     /// <summary>
     /// Populate polygon data from canvas commands.
     /// Each polygon may contain one or more rings; each ring contains two or more points.
     /// An exterior ring is wound clockwise; interior rings (holes) are wound counter-clockwise.
     /// </summary>
-    /// <param name="values"></param>
-    /// <param name="field"></param>
-    /// <param name="closeRings"></param>
-    /// <returns></returns>
-    /// <exception cref="PbfReadFailure"></exception>
+    /// <param name="values">1D float array for writing to</param>
+    /// <param name="field">Span of bytes representing the encoded geometry commands</param>
+    /// <returns>List of polygons and the actual length of floats used</returns>
+    /// <exception cref="PbfReadFailure">Thrown when an invalid polygon ring is encountered</exception>
     static (List<FloatPolygon> polygons, int actualLength) Populate(float[] values, ReadOnlySpan<byte> field)
     {
         // Obtain the float values, polyline lengths, and polylines/rings per polygon

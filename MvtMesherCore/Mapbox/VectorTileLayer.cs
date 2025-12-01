@@ -15,16 +15,24 @@ namespace MvtMesherCore.Mapbox;
 public class VectorTileLayer
 {
     const uint DefaultExtent = 4096;
+
+    /// <summary>
+    /// PBF tags used in the VectorTile.Layer message.
+    /// </summary>
+    /// <seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L50-L73">Schema on GitHub</seealso>
     public static class PbfTags
     {
+        /// <summary> Name tag with Length Delimited wire type. </summary>
         public const uint Name = (1 << 3 | (byte)WireType.Len);
-        ///<seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#60">Schema on GitHub</seealso>
+        /// <summary> Features tag with Length Delimited wire type. </summary>
         public const uint Features = (2 << 3 | (byte)WireType.Len);
-        ///<seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#63">Schema on GitHub</seealso>
+        /// <summary> Keys tag with Length Delimited wire type. </summary>
         public const uint Keys = (3 << 3 | (byte)WireType.Len);
-        ///<seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#65">Schema on GitHub</seealso>
+        /// <summary> Values tag with Length Delimited wire type. </summary>
         public const uint Values = (4 << 3 | (byte)WireType.Len);
+        /// <summary> Extent tag with Fixed32 wire type. </summary>
         public const uint Extent = (5 << 3 | (byte)WireType.Fixed32);
+        /// <summary> Version tag with Fixed32 wire type. </summary>
         public const uint Version = (15 << 3 | (byte)WireType.Fixed32);
 
         internal static readonly Dictionary<string, PbfTag> Dictionary = new()
@@ -41,6 +49,9 @@ public class VectorTileLayer
     }
 
     readonly VectorTile _parent;
+    /// <summary>
+    /// Parent tile containing this layer.
+    /// </summary>
     public VectorTile ParentTile => _parent;
     
     readonly ReadOnlyMemory<byte> _layerData;
@@ -95,7 +106,7 @@ public class VectorTileLayer
             {
                 return _values;
             }
-            _values = PbfMemoryUtility.EnumeratePropertyValuesWithTag(_layerData, PbfTags.Values).ToList();
+            _values = PbfMemoryUtility.EnumerateLayerPropertyValues(_layerData).ToList();
             if (ParentTile.Settings.ValidationLevel.HasFlag(PbfValidation.FeaturePropertyPairs))
             {
                 var distinctValues = new HashSet<PropertyValue>();
@@ -178,6 +189,7 @@ public class VectorTileLayer
         FeatureGroups = new (EnumerateFeatures(layerData, this));
     }
 
+    /// <inheritdoc/>
     public override string ToString()
     {
         return $"Layer({Name}) in {_parent}";

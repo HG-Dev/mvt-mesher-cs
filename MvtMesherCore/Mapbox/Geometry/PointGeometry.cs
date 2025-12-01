@@ -11,8 +11,13 @@ namespace MvtMesherCore.Mapbox.Geometry;
 /// <param name="points">Points collection to be held by container.</param>
 public class PointGeometry(FloatPoints points) : ParsedGeometry(GeometryType.Point)
 {
+    /// <summary>
+    /// Points contained in this geometry.
+    /// </summary>
     public readonly FloatPoints Points = points;
+    /// <inheritdoc/>
     public override int MajorElementCount => Points.Count;
+    /// <inheritdoc/>
     public override IEnumerable<System.Numerics.Vector2> EnumerateAllPoints() => Points;
 
     internal static PointGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
@@ -24,8 +29,15 @@ public class PointGeometry(FloatPoints points) : ParsedGeometry(GeometryType.Poi
         return new PointGeometry(points);
     }
 
+    /// <inheritdoc/>
     public override string ToString() => $"{nameof(PointGeometry)}({Points.Count} pts)";
 
+    /// <summary>
+    /// Populate point data from canvas commands.
+    /// </summary>
+    /// <param name="values">1D float array for writing to</param>
+    /// <param name="field">Span of bytes representing the encoded geometry commands</param>
+    /// <returns>List of polygons and the actual length of floats used</returns>
     static FloatPoints Populate(float[] values, ReadOnlySpan<byte> field)
     {
         int valueIdx = 0;

@@ -4,26 +4,56 @@ using System.Collections.Generic;
 namespace MvtMesherCore.Mapbox;
 
 /// <summary>
-/// An area of ReadOnlyMemory&lt;byte&gt; and also the value if varint
+/// Either: an area of ReadOnlyMemory&lt;byte&gt; (string) or a Varint and its intended ValueKind.
 /// </summary>
-/// <param name="index"></param>
-/// <param name="kind"></param>
-/// <param name="bytes"></param>
 public readonly struct PropertyValue : IEquatable<PropertyValue>
 {
+    /// <summary>
+    /// PBF tags for PropertyValue fields.
+    /// </summary>
     public static class PbfTags
     {
+        /// <summary>
+        /// Unknown tag value.
+        /// </summary>
         public const uint Unknown = 0;
+        /// <summary>
+        /// String tag value with Length Delimited wire type.
+        /// </summary>
         public const uint String = 1 << 3 | (byte)WireType.Len;
+        /// <summary>
+        /// Float tag value with Fixed32 wire type.
+        /// </summary>
         public const uint Float = 2 << 3 | (byte)WireType.Fixed32;
+        /// <summary>
+        /// Double tag value with Fixed64 wire type.
+        /// </summary>
         public const uint Double = 3 << 3 | (byte)WireType.Fixed64;
+        /// <summary>
+        /// Int64 tag value with Varint wire type.
+        /// </summary>
         public const uint Int64 = 4 << 3 | (byte)WireType.Varint;
+        /// <summary>
+        /// UInt64 tag value with Varint wire type.
+        /// </summary>
         public const uint UInt64 = 5 << 3 | (byte)WireType.Varint;
+        /// <summary>
+        /// SInt64 tag value with Varint wire type.
+        /// </summary>
         public const uint SInt64 = 6 << 3 | (byte)WireType.Varint;
+        /// <summary>
+        /// Bool tag value with Varint wire type.
+        /// </summary>
         public const uint Bool = 7 << 3 | (byte)WireType.Varint;
         
+        /// <summary>
+        /// Set of all valid PropertyValue tags.
+        /// </summary>
         public static readonly HashSet<PbfTag> ValidSet = [String, Float, Double, Int64, UInt64, SInt64, Bool];
 
+        /// <summary>
+        /// Mapping from PBF tags to ValueKind enum values.
+        /// </summary>
         public static Dictionary<PbfTag, ValueKind> TagToValueKindMap = new()
         {
             { (String), ValueKind.String },
@@ -78,16 +108,37 @@ public readonly struct PropertyValue : IEquatable<PropertyValue>
         }
     }
     
+    /// <summary>
+    /// Index of this property in list of layer properties.
+    /// </summary>
+    /// <remarks>
+    /// Layers possess a list of PropertyValues in their 'values' field.
+    /// This index is used for dereferencing from said list.
+    /// </remarks>
     public readonly int Index;
+    /// <summary>
+    /// Kind of value stored in this PropertyValue, as determined by its PBF tag.
+    /// </summary>
     public readonly ValueKind Kind;
+    /// <summary>
+    /// Varint representation of this value, if applicable.
+    /// </summary>
     public readonly Varint Varint;
+    /// <summary>
+    /// Raw bytes of this value, if applicable.
+    /// </summary>
     public readonly ReadOnlyMemory<byte> Bytes;
 
+    /// <inheritdoc/>
     public override string ToString()
     {
         return $"PropertyValue[{Index}] ({Kind}): {Varint}:{ToShortString()}";
     }
 
+    /// <summary>
+    /// Gets a minimal string representation of the value.
+    /// For strings, returns the string itself; for Varint derivatives, returns the numeric value.
+    /// </summary>
     public string ToShortString()
     {
         switch (Kind)
@@ -111,18 +162,42 @@ public readonly struct PropertyValue : IEquatable<PropertyValue>
         }
     }
 
+    /// <summary>
+    /// Checks equality between this PropertyValue and another.
+    /// </summary>
     public bool Equals(PropertyValue other)
     {
         return Kind == other.Kind && Varint.Equals(other.Varint) && Bytes.Span.SequenceEqual(other.Bytes.Span);
     }
 
+    /// <summary>
+    /// Read the string value of this PropertyValue.
+    /// </summary>
     public string StringValue => Kind == ValueKind.String 
         ? System.Text.Encoding.UTF8.GetString(Bytes.Span) 
         : throw new PbfReadFailure($"{ToString()} not a string");
+    /// <summary>
+    /// Read the Varint of this PropertyValue as a float.
+    /// </summary>
     public float FloatValue => Varint.ToUInt32();
+    /// <summary>
+    /// Read the Varint of this PropertyValue as a double.
+    /// </summary>
     public double DoubleValue => Varint.ToUInt64();
+    /// <summary>
+    /// Read the Varint of this PropertyValue as a signed 64-bit integer.
+    /// </summary>
     public long Int64Value => Varint.ToInt64();
+    /// <summary>
+    /// Read the Varint of this PropertyValue as an unsigned 64-bit integer.
+    /// </summary>
     public ulong UInt64Value => Varint.ToUInt64();
+    /// <summary>
+    /// Read the Varint of this PropertyValue as a signed 64-bit integer using ZigZag decoding.
+    /// </summary>
     public long SInt64Value => Varint.ZigZagDecode();
+    /// <summary>
+    /// Read the Varint of this PropertyValue as a boolean.
+    /// </summary>
     public bool BooleanValue => Varint.ToBoolean();
 }

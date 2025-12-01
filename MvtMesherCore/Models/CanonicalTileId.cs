@@ -27,11 +27,23 @@ public record CanonicalTileId(byte Z, int X, int Y)
         /// <summary> The Y coordinate in the tile grid. </summary>
         public int y;
 		
+        /// <summary> Converts this struct to a CanonicalTileId. </summary>
         public CanonicalTileId ToReadOnly() => new((byte)z,x,y);
     }
     
+    /// <summary>
+    /// Returns a string in the form "Z/X/Y".
+    /// </summary>
     public string ToShortString(char delimiter='/') => $"{Z}{delimiter}{X}{delimiter}{Y}";
     
+    /// <summary>
+    /// Parses a CanonicalTileId from a string containing a delimited Z/X/Y pattern.
+    /// </summary>
+    /// <param name="input">String to parse</param>
+    /// <param name="delimiter">Divider character used to separate Z, X, and Y values</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException">Thrown when input is null, empty, or whitespace</exception>
+    /// <exception cref="FormatException">Thrown when a valid Z/X/Y pattern cannot be found in the input string</exception>
     public static CanonicalTileId FromDelimitedPatternInString(string input, char delimiter = '/')
     {
         if (string.IsNullOrWhiteSpace(input))

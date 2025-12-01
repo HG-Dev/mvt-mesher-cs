@@ -1,3 +1,6 @@
+/// <summary>
+/// Winding order in a standard Cartesian coordinate system.
+/// </summary>
 public enum CartesianWinding : sbyte
 {
     /// <summary>
@@ -14,6 +17,9 @@ public enum CartesianWinding : sbyte
     CounterClockwise = 1
 }
 
+/// <summary>
+/// Ring type in a Mapbox Vector Tile y-flipped coordinate system.
+/// </summary>
 public enum RingType : sbyte
 {
     /// <summary>
@@ -34,7 +40,13 @@ public enum RingType : sbyte
     Exterior = 1 // Should have positive area on standard Cartesian canvas
 }
 
+/// <summary>
+/// Extension methods for CartesianWinding.
+/// </summary>
 public static class WindingExtensions
 {
+    /// <summary>
+    /// Convert CartesianWinding to RingType (y-flipped).
+    /// </summary>
     public static RingType ToAxisFlippedRingType(this CartesianWinding winding) => (RingType)winding;
 }

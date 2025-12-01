@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 /// <summary>
 /// Represents a read-only dictionary that references external key and value lists.
 /// Pairs are stored as integer indices pointing to these lists and sorted by key index.
-/// Implements IReadOnlyDictionary<TKey, TValue>.
+/// Implements IReadOnlyDictionary&lt;TKey, TValue&gt;.
 /// </summary>
 /// <typeparam name="TKey">The type of keys.</typeparam>
 /// <typeparam name="TValue">The type of values.</typeparam>
@@ -52,6 +52,13 @@ public sealed class IndexedReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionar
         _lazyKeyIndexMap = new Dictionary<TKey, int>(keys.Count);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IndexedReadOnlyDictionary{TKey,TValue}"/> class
+    /// using a pair stream of integer indices.
+    /// </summary>
+    /// <param name="keys">Indexable list of keys.</param>
+    /// <param name="values">Indexable list of values.</param>
+    /// <param name="pairStream">Integer pairs representing key and value indices.</param>
     public IndexedReadOnlyDictionary(IReadOnlyList<TKey> keys, IReadOnlyList<TValue> values, IReadOnlyList<int> pairStream) : this(keys, values,
         BufferPairStream(pairStream))
     {

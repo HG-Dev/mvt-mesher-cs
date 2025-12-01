@@ -13,8 +13,13 @@ namespace MvtMesherCore.Mapbox.Geometry;
 /// <param name="plines">Polyline collection to be held by container.</param>
 public class PolylineGeometry(IReadOnlyList<FloatPoints> plines) : ParsedGeometry(GeometryType.Polyline)
 {
+    /// <summary>
+    /// Polylines contained in this geometry.
+    /// </summary>
     public readonly IReadOnlyList<FloatPoints> Polylines = plines;
+    /// <inheritdoc/>
     public override int MajorElementCount => Polylines.Count;
+    /// <inheritdoc/>
     public override IEnumerable<System.Numerics.Vector2> EnumerateAllPoints() => Polylines.SelectMany(pline => pline);
 
     internal static PolylineGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
@@ -26,6 +31,12 @@ public class PolylineGeometry(IReadOnlyList<FloatPoints> plines) : ParsedGeometr
         return new PolylineGeometry(polylines);
     }
 
+    /// <summary>
+    /// Populate polyline data, stored as a list of <see cref="FloatPoints"/>, from canvas commands.
+    /// </summary>
+    /// <param name="values">1D float array for writing to</param>
+    /// <param name="field">Span of bytes representing the encoded geometry commands</param>
+    /// <returns>List of polylines and the actual length of floats used</returns>
     static (List<FloatPoints> polylines, int actualLength) Populate(float[] values, ReadOnlySpan<byte> field)
     {
         List<FloatPoints> polylines = new List<FloatPoints>();
@@ -76,6 +87,7 @@ public class PolylineGeometry(IReadOnlyList<FloatPoints> plines) : ParsedGeometr
         
         return (polylines, valueIdx);
     }
-
+    
+    /// <inheritdoc/>
     public override string ToString() => $"{nameof(PolylineGeometry)}({Polylines.Count} plines)";
 }

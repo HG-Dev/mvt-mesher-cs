@@ -21,13 +21,24 @@ namespace MvtMesherCore.Mapbox;
 [DebuggerDisplay("Feature {Id}")]
 public class VectorTileFeature
 {
+    /// <summary>
+    /// Property key assumed to be most commonly used for feature names.
+    /// </summary>
     public const string NAME_PROPERTY_KEY = "name";
 
+    /// <summary>
+    /// PBF tags used in the VectorTile.Feature message.
+    /// </summary>
+    /// <seealso href="https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L31-L47">Schema on GitHub</seealso>
     public static class PbfTags
     {
+        /// <summary> ID tag with Varint wire type.</summary>
         public const uint Id = 1 << 3 | (byte)WireType.Varint;
+        /// <summary> Tags tag with Length Delimited wire type. </summary>
         public const uint Tags = 2 << 3 | (byte)WireType.Len;
+        /// <summary> Type tag with Varint wire type. </summary>
         public const uint Type = 3 << 3 | (byte)WireType.Varint;
+        /// <summary> Geometry tag with Length Delimited wire type. </summary>
         public const uint Geometry = 4 << 3 | (byte)WireType.Len;
         
         internal static readonly Dictionary<string, PbfTag> Dictionary = new()
@@ -43,7 +54,13 @@ public class VectorTileFeature
     }
     
     readonly VectorTileLayer _parent;
+    /// <summary>
+    /// Parent layer containing this feature.
+    /// </summary>
     public VectorTileLayer ParentLayer => _parent;
+    /// <summary>
+    /// Settings used when reading this feature.
+    /// </summary>
     protected VectorTile.ReadSettings Settings => _parent.ParentTile.Settings;
     
     readonly ReadOnlyMemory<byte> _featureData;
@@ -121,6 +138,7 @@ public class VectorTileFeature
     public GeometryType GeometryType => _geometry.DeclaredType;
     
     readonly IndexedReadOnlyDictionary<string, PropertyValue> _properties;
+
     /// <summary>
     /// Key value pairs created by dereferencing indices on lists in the parent layer
     /// </summary>
@@ -188,6 +206,7 @@ public class VectorTileFeature
             _parent.PropertyNames, _parent.PropertyValues, kvTags);
     }
 
+    /// <inheritdoc/>
     public override string ToString()
     {
         return $"Feature({Id}:{GeometryType}) of {_parent}";

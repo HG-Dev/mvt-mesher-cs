@@ -7,12 +7,27 @@ using MvtMesherCore.Models;
 
 namespace MvtMesherCore.Mapbox;
 
+/// <summary>
+/// A Mapbox Vector Tile, parsed from a profobuf-encoded byte array.
+/// </summary>
 [DebuggerDisplay("Tile {TileId}")]
 public class VectorTile
 {
+    /// <summary>
+    /// Expected version of the protobuf schema.
+    /// https://github.com/mapbox/vector-tile-spec/tree/master/2.1
+    /// </summary>
+    /// <remarks>
+    /// Currently, only version 2 is supported.
+    /// </remarks>
     public const int ProtobufSchemaVersion = 2;
+
+    /// <summary>
+    /// PBF tags used in the VectorTile message.
+    /// </summary>
     public static class PbfTags
     {
+        /// <summary> Layers tag with Length Delimited wire type. </summary>
         public static readonly PbfTag Layers = new PbfTag(3, WireType.Len);
         internal static readonly Dictionary<string, PbfTag> Dictionary = new()
         {
@@ -21,26 +36,46 @@ public class VectorTile
         internal static readonly HashSet<int> ValidFieldNumbers = [..Dictionary.Values.Select(tag => tag.FieldNumber)];
     }
 
+    /// <summary>
+    /// Settings for reading a VectorTile.
+    /// </summary>
     public class ReadSettings
     {
+        /// <summary>
+        /// If true, scale geometries to the layer's extent when reading.
+        /// </summary>
         public bool ScaleToLayerExtents = true;
+        /// <summary>
+        /// Level of PBF validation to perform when reading.
+        /// </summary>
         public PbfValidation ValidationLevel = PbfValidation.Standard;
     }
 
+    /// <summary>
+    /// Tile ID of this vector tile.
+    /// </summary>
+    /// <remarks>
+    /// Not included in the PBF data itself, but useful for context.
+    /// </remarks>
     public readonly CanonicalTileId TileId;
+    /// <summary>
+    /// Settings used when reading this vector tile.
+    /// </summary>
     public readonly ReadSettings Settings;
     
     /// <summary>
     /// Alternative dereferencing method for clarity
     /// </summary>
     public readonly ReadOnlyDictionary<string, VectorTileLayer> LayersByName;
+    /// <summary>
+    /// Names of all layers in this vector tile.
+    /// </summary>
     public ICollection<string> LayerNames => LayersByName.Keys;
+    /// <summary>
+    /// All layers in this vector tile.
+    /// </summary>
     public ICollection<VectorTileLayer> Layers => LayersByName.Values;
 
-
-    /// <summary>
-    /// A Mapbox Vector Tile layer. Contains features, Name, Version, Extent (ulong), PropertyValues, and Keys
-    /// </summary>
     VectorTile(CanonicalTileId tileId, Dictionary<string, VectorTileLayer> layers, ReadSettings settings)
     {
         TileId = tileId;
@@ -48,6 +83,14 @@ public class VectorTile
         LayersByName = new ReadOnlyDictionary<string, VectorTileLayer>(layers);
     }
 
+    /// <summary>
+    /// Create a VectorTile from a byte array of protobuf data.
+    /// </summary>
+    /// <param name="rawData">Bytes of protobuf-encoded vector tile data.</param>
+    /// <param name="tileId">ID of this tile</param>
+    /// <param name="settings">Settings to use when reading</param>
+    /// <returns>A VectorTile instance</returns>
+    /// <exception cref="ArgumentException">Thrown when the input data is empty or gzip compressed.</exception>
     public static VectorTile FromByteArray(byte[] rawData, CanonicalTileId tileId, ReadSettings? settings = null)
     {
         settings ??= new ReadSettings();
@@ -95,6 +138,7 @@ public class VectorTile
         }
     }
 
+    /// <inheritdoc/>
     public override string ToString()
     {
         return $"VectorTile({TileId.ToShortString()}, {LayersByName.Count} layers)";

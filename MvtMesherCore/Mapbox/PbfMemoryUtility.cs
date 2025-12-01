@@ -3,15 +3,23 @@ using System.Collections.Generic;
 
 namespace MvtMesherCore.Mapbox;
 
+/// <summary>
+/// Utility methods for reading MVT-specific PBF data from ReadOnlyMemory&lt;byte&gt;.
+/// </summary>
 public static class PbfMemoryUtility
 {
-    public static IEnumerable<PropertyValue> EnumeratePropertyValuesWithTag(ReadOnlyMemory<byte> fullMemory, PbfTag tag)
+    /// <summary>
+    /// Enumerates all PropertyValues in a VectorTileLayer's Values field.
+    /// </summary>
+    /// <param name="fullMemory">VectorTileLayer memory</param>
+    /// <returns>All PropertyValues in the layer</returns>
+    public static IEnumerable<PropertyValue> EnumerateLayerPropertyValues(ReadOnlyMemory<byte> fullMemory)
     {
         var offset = 0;
         var index = 0;
 
         // Values have two tags: the value tag for a field, and then its internal type
-        while (offset < fullMemory.Length && PbfSpan.TryFindNextTag(fullMemory.Span, tag, ref offset))
+        while (offset < fullMemory.Length && PbfSpan.TryFindNextTag(fullMemory.Span, VectorTileLayer.PbfTags.Values, ref offset))
         {
 #if false
 // DISABLED: Verbose logging
