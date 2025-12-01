@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleDemo", "ConsoleDemo"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtractUnicodeRanges", "ExtractUnicodeRanges", "{F5281C70-4797-F17B-419F-2F46F0E4704D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractUnicodeRanges", "ConsoleDemo\ExtractUnicodeRanges\ExtractUnicodeRanges\ExtractUnicodeRanges.csproj", "{1470D204-FB56-4623-95B8-BDB0575C7EB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractUnicodeRanges", "ConsoleDemo\ExtractUnicodeRanges\ExtractUnicodeRanges.csproj", "{1470D204-FB56-4623-95B8-BDB0575C7EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

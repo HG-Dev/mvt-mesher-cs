@@ -20,11 +20,19 @@ public static class Constants
     public const string EnoshimaPolylineBytesFile = "14-14540-6473_f1916566182-2_gc.bytes";
     public const string EnoshimaPolygonBytesFile = "14-14540-6473_f1915597462-3_gc.bytes";
 
+    public const string ToranomonPbfFile = "14-14552-6452_toranomon.pbf";
+
     public static readonly Regex LabelRegex = new Regex("name|label", RegexOptions.IgnoreCase);
 
-    public static readonly VectorTile.ReadSettings ReadSettings = new VectorTile.ReadSettings()
+    public static readonly VectorTile.ReadSettings ReadSettingsStrict = new VectorTile.ReadSettings()
     {
         ScaleToLayerExtents = false,
         ValidationLevel = PbfValidation.All & ~PbfValidation.LayerVersion // OpenFreeMap features lack version number
+    };
+
+    public static readonly VectorTile.ReadSettings ReadSettingsStandard = new VectorTile.ReadSettings()
+    {
+        ScaleToLayerExtents = false,
+        ValidationLevel = PbfValidation.Standard
     };
 }

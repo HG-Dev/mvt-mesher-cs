@@ -23,7 +23,7 @@ public class PointGeometry(FloatPoints points) : ParsedGeometry(GeometryType.Poi
     internal static PointGeometry CreateFromCommands(ReadOnlySpan<byte> field, float scale)
     {
         // Ensure evenly sized float array (additive)
-        var floats = new float[Math.Max(field.Length >> 1, 2)];
+        var floats = new float[Math.Max(field.Length >> 1 << 1, 2)];
         var points = Populate(floats, field);
         ScaleAll(floats, points.RawValues.Length, scale);
         return new PointGeometry(points);
@@ -59,6 +59,12 @@ public class PointGeometry(FloatPoints points) : ParsedGeometry(GeometryType.Poi
                 throw new PbfReadFailure(
                     $"Encountered unexpected geometry command command {commandId} when parsing {GeometryType.Point}(s)");
             }
+
+            if (pointsToConsume * 2 > (values.Length - valueIdx))
+            {
+                throw new Exception(
+                    $"PointGeometry command tries to write beyond allocated float array (needed {pointsToConsume * 2} values, have space for {(values.Length - valueIdx)}).");
+            }
             
             // For every time MoveTo is repeated, obtain normalized coordinates.
             for (int i = 0; i < pointsToConsume; i++)
@@ -70,7 +76,13 @@ public class PointGeometry(FloatPoints points) : ParsedGeometry(GeometryType.Poi
             }
         }
 
-        //Console.Out.WriteLine($"{valueIdx} out of {values.Length} floats used");
+        // if (valueIdx <= values.Length / 2)
+        // {
+        //     Console.Out.WriteLine($"{valueIdx} out of {values.Length} floats used");
+        //     // Trim excess
+        //     Array.Resize(ref values, valueIdx);
+        // }
+        //
         return new FloatPoints(new ReadOnlyMemory<float>(values, 0, valueIdx));
     }
 }

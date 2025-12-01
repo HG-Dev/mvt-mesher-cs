@@ -152,7 +152,7 @@ public class UnicodeRangeSetTests
         Assert.That(numBytes, Is.LessThan(int.MaxValue));
         var bytes = byteReader.ReadBytes((int)numBytes);
         var tileId = CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-');
-        var vectorTile = MvtMesherCore.Mapbox.VectorTile.FromByteArray(bytes, tileId, Constants.ReadSettings);
+        var vectorTile = MvtMesherCore.Mapbox.VectorTile.FromByteArray(bytes, tileId, Constants.ReadSettingsStrict);
         var charSets = vectorTile.TabulateStringPropertyCharSets(Constants.LabelRegex);
         Assert.That(charSets.Values.All(set => set.CodePointCount > 0), Is.True, "All character sets should have at least one character");
 

@@ -120,11 +120,15 @@ public class VectorTileFeature
                 }
                 catch (PbfReadFailure geometryIssue)
                 {
-                    throw new PbfValidationFailure(PbfValidation.Geometry, $"{_geometry.DeclaredType} read failure on {this}", geometryIssue);
+                    if (Settings.ValidationLevel.HasFlag(PbfValidation.Geometry))
+                        throw new PbfValidationFailure(PbfValidation.Geometry, $"{_geometry.DeclaredType} read failure on {this}", geometryIssue);
                 }
                 catch (ArgumentOutOfRangeException alloationIssue)
                 {
-                    throw new PbfValidationFailure(PbfValidation.Geometry, $"{_geometry.DeclaredType} read failure on {this}", alloationIssue);
+                    if (Settings.ValidationLevel.HasFlag(PbfValidation.Geometry))
+                        throw new PbfValidationFailure(PbfValidation.Geometry, $"{_geometry.DeclaredType} read failure on {this}", alloationIssue);
+                    else
+                        Console.Error.WriteLine($"Warning: {_geometry.DeclaredType} read failure on {this}: {alloationIssue.Message}");
                 }
             }
 

@@ -66,6 +66,10 @@
       <Content Include="Res\14-14540-6473_f1915597462-3_gc.bytes">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="Res\14-14552-6452_toranomon.pbf" />
+      <Content Include="Res\14-14552-6452_toranomon.pbf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

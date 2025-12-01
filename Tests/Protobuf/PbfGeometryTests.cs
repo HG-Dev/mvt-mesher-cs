@@ -22,7 +22,7 @@ public class PbfGeometryTests
             .Select(pt => ((long)pt.X.ZigZagDecode(), (long)pt.Y.ZigZagDecode()));
 
         // Act
-        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettings);
+        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettingsStrict);
         IEnumerable<(ulong, (long, long))> featureIdAndMesherDecodedPoints = vectorTile.Layers.SelectMany(layer => layer.FeatureGroups.EnumerateIndividualFeatures())
             .Where(f => f.GeometryType == GeometryType.Point)
             .Select(f => (f.Id, f.Geometry as PointGeometry))
@@ -82,7 +82,7 @@ public class PbfGeometryTests
         Assert.That(mvtFeatures.Count, Is.GreaterThan(0), "Expected to find at least one polyline in the PBF data");
 
         // Act
-        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettings);
+        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettingsStrict);
         var mesherFeatures = vectorTile.Layers.SelectMany(layer => layer.FeatureGroups.EnumerateIndividualFeatures()
             .Where(f => f.GeometryType == GeometryType.Polyline)
             .Select(MvtJsonFeature.FromVectorTileFeature))
@@ -204,7 +204,7 @@ public class PbfGeometryTests
         Assert.That(mvtFeatures.Count, Is.GreaterThan(0), "Expected to find at least one polyline in the PBF data");
 
         // Act
-        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettings);
+        VectorTile vectorTile = VectorTile.FromByteArray(pbfData, CanonicalTileId.FromDelimitedPatternInString(pbfFile, '-'), Constants.ReadSettingsStrict);
         var mesherFeatures = vectorTile.Layers.SelectMany(layer => layer.FeatureGroups.EnumerateIndividualFeatures()
             .Where(f => f.GeometryType == GeometryType.Polygon)
             .Select(MvtJsonFeature.FromVectorTileFeature))
