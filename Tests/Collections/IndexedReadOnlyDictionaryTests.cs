@@ -79,4 +79,24 @@ public class IndexedReadOnlyDictionaryTests
         Assert.That(dict.Count, Is.EqualTo(0));
         Assert.That(dict.ContainsKey("A"), Is.False);
     }
+
+    [Test]
+    public void TryGetValue_MaskedKey_ShouldReturnFalse()
+    {
+        var pairs = new List<(int keyIndex, int valueIndex)> { (0, 2), (2, 2) }; // Keys "A" and "C" map to value 30
+        var dict = new IndexedReadOnlyDictionary<string, int>(_keys, _values, pairs);
+
+        // "B" is not included in the pairs
+        Assert.That(dict.TryGetValue("B", out _), Is.False);
+        // "B" is still not included after index map update
+        Assert.That(dict.TryGetValue("B", out _), Is.False);
+    }
+
+    [Test]
+    public void TryGetValue_EmptyDictionary_ShouldReturnFalse()
+    {
+        var dict = new IndexedReadOnlyDictionary<string, int>(_keys, _values, Array.Empty<int>());
+
+        Assert.That(dict.TryGetValue("A", out _), Is.False);
+    }
 }

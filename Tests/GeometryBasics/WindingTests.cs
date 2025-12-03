@@ -1,6 +1,8 @@
 using System.Numerics;
 using MvtMesherCore.Mapbox.Geometry;
 
+namespace Tests.GeometryBasics;
+
 [TestFixture]
 public class WindingTests
 {

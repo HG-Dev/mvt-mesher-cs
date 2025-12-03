@@ -19,7 +19,23 @@ public sealed class IndexedReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionar
     readonly IReadOnlyList<TKey> _keys;
     readonly IReadOnlyList<TValue> _values;
     readonly (int keyIndex, int valueIndex)[] _pairs;
-    readonly Dictionary<TKey, int> _lazyKeyIndexMap;
+    readonly Dictionary<TKey, int> __lazyKeyIndexMap;
+    private IReadOnlyDictionary<TKey, int> KeyIndexMap
+    {
+        get
+        {
+            // Populate the lazy key index map on first access
+            if (__lazyKeyIndexMap.Count == 0 && _pairs.Length > 0)
+            {
+                foreach (var (keyIdx, _) in _pairs)
+                {
+                    var lookupKey = _keys[keyIdx];
+                    __lazyKeyIndexMap.Add(lookupKey, keyIdx);
+                }
+            }
+            return __lazyKeyIndexMap;
+        }
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IndexedReadOnlyDictionary{TKey,TValue}"/> class.
@@ -48,8 +64,7 @@ public sealed class IndexedReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionar
                 throw new ArgumentException($"Encountered duplicate key index {_pairs[i].keyIndex}. Context: {_pairs[i - 1]}@{i-1} vs. {_pairs[i]}@{i}");
         }
 
-        // Prepare key index map for O(1) lookup
-        _lazyKeyIndexMap = new Dictionary<TKey, int>(keys.Count);
+        __lazyKeyIndexMap = new Dictionary<TKey, int>(keys.Count);
     }
 
     /// <summary>
@@ -79,37 +94,13 @@ public sealed class IndexedReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionar
             yield return (kIdx, vIdx);
         }
     }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    bool TryGetKeyIndex(TKey key, out int keyIndex)
-    {
-        if (!_lazyKeyIndexMap.TryGetValue(key, out keyIndex))
-        {
-            for (int i = 0; i < _keys.Count; i++)
-            {
-                if (!EqualityComparer<TKey>.Default.Equals(key, _keys[i])) 
-                    continue;
-                
-                keyIndex = i;
-                break;
-            }
-
-            if (keyIndex < 0)
-            {
-                return false;
-            }
-
-            _lazyKeyIndexMap.Add(key, keyIndex);
-        }
-
-        return true;
-    }
     
     /// <inheritdoc />
     public bool ContainsKey(TKey key)
     {
-        if (!TryGetKeyIndex(key, out int keyIndex))
+        if (!KeyIndexMap.TryGetValue(key, out int keyIndex))
         {
+            // No pair references this key
             return false;
         }
 
@@ -120,15 +111,21 @@ public sealed class IndexedReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionar
     public bool TryGetValue(TKey key, out TValue value)
     {
         value = default!;
-        if (!TryGetKeyIndex(key, out int keyIndex))
+        if (!KeyIndexMap.TryGetValue(key, out int keyIndex))
         {
+            // No pair references this key
+            Console.Out.WriteLine($"Key '{key}' not found in key index map.");
             return false;
         }
 
+        Console.Out.WriteLine($"Looking up key '{key}' with index {keyIndex}");
+        // Search for pair with matching key index
         int pairIndex = BinarySearchPairs(keyIndex);
         if (pairIndex < 0)
             return false;
 
+        Console.Out.WriteLine($"Searched pairs, found at index {pairIndex}");
+        // Dereference value using value index from found pair
         value = _values[_pairs[pairIndex].valueIndex];
         return true;
     }
@@ -139,7 +136,7 @@ public sealed class IndexedReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionar
         get
         {
             if (!TryGetValue(key, out var value))
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException($"The given key '{key}' was not present in the dictionary.");
             return value;
         }
     }
@@ -181,9 +178,11 @@ public sealed class IndexedReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionar
                 case < 0: // keyIndex is bigger than what was found at mid
                     low = mid + 1;
                     continue;
-                default: // keyIndex is smaller than what was found at mid
+                case > 0: // keyIndex is smaller than what was found at mid
                     high = mid - 1;
                     continue;
+                default:
+                    throw new InvalidOperationException("Unreachable code reached in BinarySearchPairs.");
             }
         }
         // keyIndex was not found

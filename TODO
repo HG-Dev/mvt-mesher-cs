@@ -4,3 +4,20 @@
 4. VectorTile needs a ToString() method
 5. Consider aggregating layers field in VectorTile instead of treating vector tile as collection -- DONE
 6. Remove reference to vector-tile-cs
+7. Using the OpenMapTile schema, define expected features for style settings:
+    1. [Required] KEY: Layer (building, landcover, poi, transportation)
+    2. [Optional] KEY: FeatureID + Geometry
+    3. [Optional] KEY: Class (poi->fast_food, transportation->raceway)
+    4. [Optional] KEY: Subclass (often duplicates class) ()
+    5. [Required] VALUE: Color
+
+Other notes:
+Transportation props:
+https://openmaptiles.org/schema/#transportation
+layer prop can be disregarded (original value of layer tag)
+level: experimental for steps and footways
+indoor: experimental for steps and footways
+surface: string, "paved" or "unpaved"
+ramp: 1 or 0, is sloped or not
+
+
